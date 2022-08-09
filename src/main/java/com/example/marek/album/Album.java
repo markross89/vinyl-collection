@@ -2,6 +2,7 @@ package com.example.marek.album;
 
 import com.example.marek.image.Image;
 import com.example.marek.track.Track;
+import com.example.marek.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,5 +33,7 @@ public class Album {
 	private List<Track> tracks;
 	@OneToMany(cascade=CascadeType.REMOVE )
 	private List<Image> images;
+	@ManyToMany(cascade=CascadeType.REMOVE )
+	private List<User> users;
 
 }

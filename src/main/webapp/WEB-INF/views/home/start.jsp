@@ -6,9 +6,14 @@
 </head>
 <body>
 <form   method="post">
-    First name: <input type="text" name="dada"><br>
+    First name: <input type="text" name="data"><br>
 
    <button type="submit">dcd</button>
+</form>
+<a href="<c:url value="/security/login"/>">login</a>
+<form action="<c:url value="/logout"/>" method="post">
+    <input class="fa fa-id-badge" type="submit" value="Wyloguj">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 <table>
     <c:forEach items="${thumbs}" var="e">
