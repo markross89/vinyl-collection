@@ -9924,12 +9924,22 @@ a:focus {
   }
 }
 .bg-login-image {
-  background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+  background: url(/resources/html-css/img/vinyl2.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+.bg-contact-image {
+  background: url(/resources/html-css/img/vinyl9.jpeg);
   background-position: center;
   background-size: cover;
 }
 .bg-register-image {
-  background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
+  background: url(/resources/html-css/img/vinyl6.png);
+  background-position: center;
+  background-size: cover;
+}
+.bg-about-image {
+  background: url(/resources/html-css/img/vinylv.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -10324,7 +10334,18 @@ body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
 
-.form-center{
+
+.markus-markus {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
 }
+.markus-social {
+  display: flex;
+
+  justify-content: space-evenly;
+
+}
+
+

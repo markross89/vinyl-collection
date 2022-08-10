@@ -37,50 +37,39 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-6 d-none d-lg-block bg-about-image"></div>
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                      <h2 class="h4 text-gray-900 mb-4">About us </h2><br>
+                      <div class="markus-contact">
+                      <h5>We are proud to offer you <br>
+                      a service that allow you <br>
+                      to catalog your beloved records.<br>
+                      Keep track of your albums, create playlists<br>
+                      and prepare boxes for your events.
+                      As a programmer and vinyl enthusiast<br>
+                      I've decided to develop tool that with <br>
+                      support of new technology will help<br>
+                      you mange your record collection. <br>
+                      Enjoy! Don't hesitate to leave a comment<br>
+                      or contact us. <br>KEEP IT OLD SCHOOL  </h5>
+
+                          <hr />
+                        <div class="text-center">
+                          <a class="small" href="<c:url value="/home/contact" />"
+                          >Contact</a
+                          >
+                          <hr />
+                      </div>
+
                     </div>
-                    <form class="user" method="post">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control form-control-user"
-                          id="exampleInputEmail"
-                          aria-describedby="emailHelp"
-                          placeholder="Enter Email Address..."
-                          name="username"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          type="password"
-                          class="form-control form-control-user"
-                          id="exampleInputPassword"
-                          placeholder="Password"
-                          name="password"
-                        />
-                      </div>
 
-
-                        <input type="submit"  value="Login" class="btn btn-primary btn-user btn-block"
-                      >
-
-
-                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                      <hr />
-                    </form>
 
                     <div class="text-center">
-                      <a class="small" href="<c:url value="/security/register" />"
-                        >Create an Account!</a
-                      >
-                      <div class="text-center">
-                        <a class="small" href="<c:url value="/home/start" />"
+                      <a class="small" href="<c:url value="/home/start" />"
                         >Back Home</a
-                        >
+                      >
                     </div>
                   </div>
                 </div>

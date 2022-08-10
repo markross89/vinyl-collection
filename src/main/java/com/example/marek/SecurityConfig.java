@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure (HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-				.antMatchers("/")
+				.antMatchers("/home/**")
 				.hasAnyRole("USER", "ADMIN")
 				.and().formLogin().loginPage("/security/login")
 				.and().logout().logoutSuccessUrl("/")

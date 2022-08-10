@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Home page</title>
+    <title>Vinyl Collection - Start page</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -31,76 +31,6 @@
   <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <!-- Sidebar - Brand -->
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
-        >
-          <div class="sidebar-brand-text mx-3">Vinyl collection</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
-
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
-
-        <!-- Heading -->
-        <div class="sidebar-heading">Menu</div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Albums</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Songs</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
-          >
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Boxes</span></a
-          >
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block" />
-
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/home/about"/>"> <span>About us</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/home/contact"/>"> <span>Contact</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/security/login"/>"> <span>Login</span></a>
-
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/security/register"/>"> <span>Register</span></a>
-        </li>
-      </ul>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -110,9 +40,9 @@
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
           >
             <!-- Topbar Search -->
-
+          
             <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
             >
               <div class="input-group">
                 <input
@@ -131,50 +61,21 @@
               </div>
             </form>
 
-
-
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
-              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-              <!-- Nav Item - User Information -->
-              <li class="nav-item dropdown no-arrow">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Douglas McGee</span
-                  >
-                  <img
-                          class="img-profile rounded-circle"
-                          src="<c:url value="/resources/html-css/img/undraw_profile.svg" />"
-
-                  />
-                </a>
-
-
-                <!-- Dropdown - User Information -->
-
-              </li>
+            <div style="text-align:left" class="markus">
+              <a href="<c:url value="/security/login"/>"><h4>login</h4></a>
+              <a href="<c:url value="/security/login"/>"><h4>register</h4></a>
+            </div>
+             
             </ul>
           </nav>
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
+          <div class="container-fluid">
             <!-- Page Heading -->
 
-
-
-<c:forEach items="${thumbs}" var="e">
-            <div class="card shadow mb-4" style="width: 250px;"
-                >
+            <c:forEach items="${thumbs}" var="e">
+            <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
                     ${e.title}
@@ -182,8 +83,9 @@
               </div>
               <div class="card-body"><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="200" height="200"></a></div>
             </div>
-</c:forEach>
-          </div>
+
+            </c:forEach>
+
           <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
@@ -192,7 +94,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Vinyl Collection 2022</span>
+              <span>Copyright &copy; Vinyl Coolection 2022</span>
             </div>
           </div>
         </footer>

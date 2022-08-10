@@ -29,7 +29,7 @@ public class HomeController {
 	private static final String DISCOGS_NEW_RELASE = "https://api.discogs.com/database/search?q=new&type=release&format_exact=Vinyl&";
 	private static final String DISCOGS_KEY_SECRET = "key=RqgTChKtuwVLyeWqVgFL&secret=sTkBKTNnXoSjWCnVRIOabYoBZUsDgzmY";
 	private static final String DISCOGS_ALBUM = "https://api.discogs.com/releases/";
-	private static final String DISCOGS_SEARCH = "https://api.discogs.com/database/search?q=";
+	private static final String DISCOGS_SEARCH = "https://api.discogs.com/database/search?type=release&q=";
 	
 	private final ApiController apiController;
 	private final AlbumDao albumDao;
@@ -55,16 +55,16 @@ public class HomeController {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
-		return "home/start";
+		return "home/home";
 	}
 	
-	@PostMapping("/start")
-	public String searchDiscogs (@RequestParam String data, Model model) throws JsonProcessingException {
+	@GetMapping("/search")
+	public String searchDiscogs (@RequestParam String value, Model model) throws JsonProcessingException {
 		
-		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, data, "&", DISCOGS_KEY_SECRET));
+		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value, "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
 		
-		return "home/searchDetails";
+		return "home/home";
 		
 	}
 
@@ -134,10 +134,16 @@ public class HomeController {
 		
 	}
 	
-	@GetMapping("/test")
-	public String login ()  {
+	@GetMapping("/contact")
+	public String contact ()  {
 		
-		return "home/home";
+		return "contact/contact";
+	}
+	
+	@GetMapping("/about")
+	public String about()  {
+		
+		return "contact/about";
 	}
 
 

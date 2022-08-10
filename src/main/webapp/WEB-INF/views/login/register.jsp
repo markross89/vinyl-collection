@@ -1,39 +1,125 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<form method="post">
+    <title>Vinyl Collection - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
+  </head>
+
+  <body class="bg-gradient-primary">
     <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                </div>
+                <form class="user">
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="exampleFirstName"
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="exampleLastName"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control form-control-user"
+                      id="exampleInputEmail"
+                      placeholder="Email Address"
+                    />
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="password"
+                        class="form-control form-control-user"
+                        id="exampleInputPassword"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="password"
+                        class="form-control form-control-user"
+                        id="exampleRepeatPassword"
+                        placeholder="Repeat Password"
+                      />
+                    </div>
+                  </div>
+                  <a
+                    href="login.html"
+                    class="btn btn-primary btn-user btn-block"
+                  >
+                    Register Account
+                  </a>
 
-        <label for="f"><b>First Name</b></label>
-        <input type="text" placeholder="Enter first name" name="firstName" id="f" required>
+                  <hr />
+                </form>
+              
 
-        <label for="s"><b>Second Name</b></label>
-        <input type="text" placeholder="Enter second name" name="secondName" id="s" required>
-
-        <label for="username"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email/Username" name="username" id="username" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-        <hr>
-
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <button type="submit" class="registerbtn">Register</button>
+                <div class="text-center">
+                  <a class="small" href="<c:url value="/security/login" />"
+                    >Already have an account? Login!</a
+                  >
+                  <div class="text-center">
+                    <a class="small" href="<c:url value="/home/start" />"
+                    >Back Home</a
+                    >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="/security/login">Sign in</a>.</p>
-    </div>
-</form>
-</body>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+  </body>
 </html>

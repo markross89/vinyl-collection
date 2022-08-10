@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +15,7 @@
 
     <!-- Custom fonts for this template-->
     <link
-      href="vendor/fontawesome-free/css/all.min.css"
+            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
       rel="stylesheet"
       type="text/css"
     />
@@ -24,7 +25,7 @@
     />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
   </head>
 
   <body class="bg-gradient-primary">
@@ -36,51 +37,33 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-6 d-none d-lg-block bg-contact-image"></div>
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                    </div>
-                    <form class="user">
-                      <div class="form-group">
-                        <input
-                          type="email"
-                          class="form-control form-control-user"
-                          id="exampleInputEmail"
-                          aria-describedby="emailHelp"
-                          placeholder="Enter Email Address..."
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          type="password"
-                          class="form-control form-control-user"
-                          id="exampleInputPassword"
-                          placeholder="Password"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox small">
-                          <input
-                            type="checkbox"
-                            class="custom-control-input"
-                            id="customCheck"
-                          />
+                      <h2 class="h4 text-gray-900 mb-4">You can find us here </h2><br>
+                      <div class="markus-contact">
+                      <h4>Topolka 41</h4>
+                      <h4>87-875 Topolka</h4>
+                        <h4>+48 781 037 897 </h4>
+
+                          <a href="<c:url value="https://accounts.google.com/signin/v2/identifier?hl=pl&flowName=GlifWebSignIn&flowEntry=ServiceLogin" />" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i>
+                              roszak89@gmail.com</a>
+                          <hr />
+                        <div class="markus-social">
+                            <a href="<c:url value="https://www.facebook.com/" />"><img src="<c:url value="/resources/html-css/img/facebook.png" />" width="30" height="30"></a>
+                            <a href="<c:url value=" https://www.instagram.com/" />"><img src="<c:url value="/resources/html-css/img/instagram2.png" />" width="30" height="30"></a>
+                            <a href="<c:url value="https://www.twitter.com/" />"><img src="<c:url value="/resources/html-css/img/twitter.png" />" width="30" height="30"></a>
                         </div>
+                          <hr />
                       </div>
-                      <a
-                        href="index.html"
-                        class="btn btn-primary btn-user btn-block"
-                      >
-                        Login
-                      </a>
-                      <hr />
-                    </form>
+
+                    </div>
+
 
                     <div class="text-center">
-                      <a class="small" href="register.html"
-                        >Create an Account!</a
+                      <a class="small" href="<c:url value="/home/start" />"
+                        >Back Home</a
                       >
                     </div>
                   </div>

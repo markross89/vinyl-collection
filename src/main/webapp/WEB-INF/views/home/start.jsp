@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form   method="post">
-    First name: <input type="text" name="data"><br>
+<form  action="/home/search" method="get">
+    First name: <input type="text" name="value"><br>
 
    <button type="submit">dcd</button>
 </form>
