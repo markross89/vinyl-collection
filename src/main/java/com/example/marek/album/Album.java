@@ -14,6 +14,7 @@ import java.util.List;
 @Table
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Album {
@@ -29,11 +30,11 @@ public class Album {
 	private String catno;
 	private String genre;
 	private Date date;
-	@OneToMany(cascade=CascadeType.REMOVE )
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Track> tracks;
-	@OneToMany(cascade=CascadeType.REMOVE )
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Image> images;
-	@ManyToMany(cascade=CascadeType.REMOVE )
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<User> users;
-
+	
 }

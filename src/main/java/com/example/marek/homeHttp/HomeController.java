@@ -9,9 +9,12 @@ import com.example.marek.image.ImageRepository;
 import com.example.marek.track.Track;
 import com.example.marek.track.TrackDao;
 import com.example.marek.track.TrackRepository;
+import com.example.marek.user.CurrentUser;
 import com.example.marek.user.User;
 import com.example.marek.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +41,8 @@ public class HomeController {
 	private final AlbumRepository albumRepository;
 	private final UserRepository userRepository;
 	
-	public HomeController (ApiController apiController, AlbumDao albumDao,  TrackRepository trackRepository, ImageRepository imageRepository, AlbumRepository albumRepository,
+	public HomeController (ApiController apiController,  AlbumDao albumDao, TrackRepository trackRepository,
+						   ImageRepository imageRepository, AlbumRepository albumRepository,
 						   UserRepository userRepository) {
 		
 		this.apiController = apiController;
@@ -61,13 +65,13 @@ public class HomeController {
 	@GetMapping("/search")
 	public String searchDiscogs (@RequestParam String value, Model model) throws JsonProcessingException {
 		
-		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value, "&", DISCOGS_KEY_SECRET));
+		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value.replaceAll(" ", ","), "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
 		
 		return "home/home";
 		
 	}
-
+	
 	@GetMapping("/details/{id}")
 	public String albumDetails (Model model, @PathVariable long id) throws JsonProcessingException {
 		
@@ -80,17 +84,16 @@ public class HomeController {
 	}
 	
 	@GetMapping("/add/{id}")
-	public String addAlbum (@PathVariable long id) throws JsonProcessingException {
+	public String addAlbum (@PathVariable long id, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
 		
-		Optional<Album> list = albumRepository.findAlbumByDiscogsId(id);
+		Album a = albumRepository.findAlbumByDiscogsId(id);
 		
-		if (list.isPresent()) {
-			List<User> users = list.get().getUsers();
-			users.add(userRepository.findById(1l).get());
-			list.get().setUsers(users);
-			albumDao.update(list.get());
+		if (a != null) {
+			List<User> users = a.getUsers();
+			users.add(customUser.getUser());
+			a.setUsers(users);
+			albumDao.update(a);
 			
-			return "home/start";
 		}
 		else {
 			
@@ -98,53 +101,43 @@ public class HomeController {
 			
 			List<Track> tracks = new ArrayList<>();
 			for (Object o : apiController.getAlbumTracklist(map)) {
-				Track track = new Track();
-				track.setPosition(apiController.getTracklistSongDetail(o, "position"));
-				track.setTitle(apiController.getTracklistSongDetail(o, "title"));
-				track.setDuration(apiController.getTracklistSongDetail(o, "duration"));
+				Track track = Track.builder().position(apiController.getTracklistSongDetail(o, "position"))
+						.title(apiController.getTracklistSongDetail(o, "title"))
+						.duration(apiController.getTracklistSongDetail(o, "duration"))
+						.build();
 				tracks.add(track);
 				trackRepository.save(track);
 			}
+			
 			List<Image> images = new ArrayList<>();
 			for (Object o : apiController.getAlbumImages(map)) {
-				Image image = new Image();
-				image.setType(apiController.getAlbumImageDetail(o, "type"));
-				image.setUri(apiController.getAlbumImageDetail(o, "uri"));
+				Image image = Image.builder().type(apiController.getAlbumImageDetail(o, "type"))
+						.uri(apiController.getAlbumImageDetail(o, "uri")).build();
 				images.add(image);
 				imageRepository.save(image);
 			}
 			
-			Album album = new Album();
 			LocalDate date = LocalDate.now();
-			album.setDiscogsId(id);
-			album.setArtist(apiController.getAlbumArtist(map));
-			album.setTitle(apiController.getAlbumTitle(map));
-			album.setLabel(apiController.getAlbumLabel(map));
-			album.setCatno(apiController.getAlbumCatno(map));
-			album.setUri(apiController.getAlbumUri(map));
-			album.setGenre(apiController.getAlbumGenre(map));
-			album.setImages(images);
-			album.setTracks(tracks);
-			album.setDate(Date.valueOf(date));
+			List<User> usersList = new ArrayList<>();
+			usersList.add(customUser.getUser());
+			Album album = Album.builder().discogsId(id)
+					.artist(apiController.getAlbumArtist(map))
+					.title(apiController.getAlbumTitle(map))
+					.label(apiController.getAlbumLabel(map))
+					.catno(apiController.getAlbumCatno(map))
+					.uri(apiController.getAlbumUri(map))
+					.genre(apiController.getAlbumGenre(map))
+					.images(images)
+					.tracks(tracks)
+					.date(Date.valueOf(date))
+					.users(usersList).build();
 			albumRepository.save(album);
 			
 		}
-		return "home/start";
+		return "redirect:/album/albums";
 		
 		
 	}
 	
-	@GetMapping("/contact")
-	public String contact ()  {
-		
-		return "contact/contact";
-	}
 	
-	@GetMapping("/about")
-	public String about()  {
-		
-		return "contact/about";
-	}
-
-
 }

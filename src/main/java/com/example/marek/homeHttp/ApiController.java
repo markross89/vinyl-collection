@@ -149,16 +149,14 @@ public class ApiController {
 		
 		List<Map<String, String>> thumbs = new ArrayList<>();
 		for (Object o : getThumbList(map)) {
-			Map<String, String> song = new HashMap<>();
-			song.put("id", getThumbDetails(o, "id"));
-			song.put("title", getThumbDetails(o, "title"));
-			song.put("image", getThumbDetails(o, "cover_image"));
-			thumbs.add(song);
+			Map<String, String> album = new HashMap<>();
+			album.put("id", getThumbDetails(o, "id"));
+			album.put("title", getThumbDetails(o, "title"));
+			album.put("image", getThumbDetails(o, "cover_image"));
+			thumbs.add(album);
 		}
 		
 		return thumbs;
 	}
 
-
-	
 }

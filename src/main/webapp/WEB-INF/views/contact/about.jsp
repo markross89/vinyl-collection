@@ -57,7 +57,7 @@
 
                           <hr />
                         <div class="text-center">
-                          <a class="small" href="<c:url value="/home/contact" />"
+                          <a class="small" href="<c:url value="/contact" />"
                           >Contact</a
                           >
                           <hr />

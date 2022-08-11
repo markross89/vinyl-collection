@@ -174,19 +174,16 @@
 
 
            <c:forEach items="${thumbs}" var="e">
-            <div class="card shadow mb-4" style="width: 250px;"
+            <div class="card shadow mb-4" style="width: 260px;"
                 >
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
                     ${e.title}
                 </h6>
               </div>
-
-              <div class="card-body markus-add" ><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="200" height="200"></a><br>
-              <div class="markus-add"><a href="<c:url value="/home/add/${e.id}"/>" class="add-class">Add</a></div>
+              <div class="card-body elements" ><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
+                <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Remove</a></div>
               </div>
-
-
             </div>
            </c:forEach>
           </div>

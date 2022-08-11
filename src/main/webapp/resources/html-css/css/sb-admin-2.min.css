@@ -10343,9 +10343,57 @@ body.sidebar-toggled footer.sticky-footer {
 }
 .markus-social {
   display: flex;
-
   justify-content: space-evenly;
 
 }
+.submitLink {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  cursor: pointer;
+}
+.markus-logout {
+  display: flex;
+  justify-content: right;
+}
+.submitLink:hover {
+  text-underline: #3b5998;
+  text-decoration: underline;
+
+}
+
+.markus-hey {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+
+}
+.markus-add{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding: 5px;
+  margin: 5px;
+
+}
+.add-class{
+  color:dimgrey;
+  font-weight: bold;
+}
+.add-class:hover{
+  color: dimgrey;
+  text-underline: dimgrey;
+}
+.elements{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+
+}
+
+
+
 
 

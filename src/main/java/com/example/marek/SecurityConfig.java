@@ -17,10 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure (HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-				.antMatchers("/home/**")
+				.antMatchers("/album/**", "/home/add/**")
 				.hasAnyRole("USER", "ADMIN")
-				.and().formLogin().loginPage("/security/login")
-				.and().logout().logoutSuccessUrl("/")
+				.and().formLogin().loginPage("/login").defaultSuccessUrl("/album/albums")
+				.and().logout().logoutSuccessUrl("/home/start")
 				.permitAll()
 				.and().exceptionHandling().accessDeniedPage("/403");
 		http.csrf().disable();
