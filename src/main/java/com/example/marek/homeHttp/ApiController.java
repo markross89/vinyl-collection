@@ -44,6 +44,7 @@ public class ApiController {
 		return map.get("id").toString();
 	}
 	
+	
 	public String getAlbumArtist (Map<String, Object> map) {
 		
 		return ((Map) (((List) map.get("artists")).get(0))).get("name").toString();

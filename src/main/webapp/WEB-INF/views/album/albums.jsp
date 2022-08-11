@@ -64,7 +64,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="<c:url value="/track/tracks"/>">
             <i class="fas fa-fw fa-table"></i>
             <span>Songs</span></a
           >
@@ -181,7 +181,7 @@
                     ${e.title}
                 </h6>
               </div>
-              <div class="card-body elements" ><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
+              <div class="card-body elements" ><a href="<c:url value="/album/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
                 <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Remove</a></div>
               </div>
             </div>

@@ -66,7 +66,6 @@ public class HomeController {
 	
 	@GetMapping("/details/{id}")
 	public String albumDetails (Model model, @PathVariable long id) throws JsonProcessingException {
-		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 		model.addAttribute("albumDetails", apiController.getAlbumDetails(map));
 		model.addAttribute("tracklist", apiController.getTracklist(map));

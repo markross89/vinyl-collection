@@ -10338,7 +10338,10 @@ body.sidebar-toggled footer.sticky-footer {
 .markus-markus {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+
+
+
 
 }
 .markus-social {
@@ -10389,8 +10392,19 @@ body.sidebar-toggled footer.sticky-footer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
 
-
+.markus-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.vertical {
+  display: flex;
+  border-left: 1px  lightgray;
+  height: 400px;
+justify-content: space-around;
+  left: 50%;
 }
 
 

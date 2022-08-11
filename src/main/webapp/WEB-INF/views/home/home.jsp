@@ -39,7 +39,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="<c:url value="/home/start"/>"
         >
           <div class="sidebar-brand-text mx-3">Vinyl collection</div>
         </a>
@@ -64,7 +64,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="<c:url value="/track/tracks"/>">
             <i class="fas fa-fw fa-table"></i>
             <span>Songs</span></a
           >
@@ -168,7 +168,7 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
+          <div class="markus-markus" >
             <!-- Page Heading -->
 
 

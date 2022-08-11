@@ -159,26 +159,79 @@
 
           </nav>
           <!-- End of Topbar -->
+<div class="content-details" style="display: flex; flex-direction: row">
 
-          <!-- Begin Page Content -->
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
-            <!-- Page Heading -->
+          <div class="col-lg-6 mb-4">
+            <div class="card bg-light text-black shadow markus-details">
 
+              <div class="album-details" style="width: 200px">
 
-
-           <c:forEach items="${thumbs}" var="e">
-            <div class="card shadow mb-4" style="width: 260px;"
-                >
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    ${e.title}
-                </h6>
+              <div class="card-body">
+                Artist:
+                <div class="text-black-50 small">${album.artist}</div>
               </div>
-              <div class="card-body elements" ><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
-                <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Remove</a></div>
+                <div class="card-body">
+                  Album:
+                  <div class="text-black-50 small">${album.title}</div>
+              </div>
+              <div class="card-body">
+                Label:
+                <div class="text-black-50 small">${album.label}</div>
+              </div>
+              <div class="card-body">
+                Catno:
+                <div class="text-black-50 small">${album.catno}</div>
+              </div>
+              <div class="card-body">
+                Genre:
+                <div class="text-black-50 small">${album.genre}</div>
+              </div>
+                <div class="card-body">
+                  <a href="<c:url value="${album.uri}"/>" class="add-class" style="text-underline: dimgray">See on Discogs</a>
+                </div>
+
+              </div>
+              <div class = "vertical"></div>
+
+            <div class="tracklist-details" style="width: 300px">
+              <div class="card-body">
+                Songs:
+
+                <c:forEach items="${album.tracks}" var="e">
+                  <br><div class="text-black-50 small">${e.position}     ${e.title}     ${e.duration}</div>
+                </c:forEach>
+
               </div>
             </div>
-           </c:forEach>
+
+            </div>
+          </div>
+
+  <div class="col-lg-6 mb-4">
+    <div class="card bg-light text-black shadow markus-details">
+      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
+        Gallery:
+      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
+
+<c:forEach items="${album.images}" var="e">
+
+      <div  style="padding: 10px"><a href="<c:url value="${e.uri}"/>"><img src="${e.uri}" alt="${e.type}" width="130" height="130"></a><br>
+
+      </div>
+</c:forEach>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
+
+
+            <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Add to Box</a></div>
+            <div class="markus-add"><a href="<c:url value="/album/remove/${album.discogsId}"/>" class="add-class">Remove</a></div>
+
           </div>
           <!-- /.container-fluid -->
         </div>

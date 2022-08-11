@@ -69,5 +69,11 @@ public class AlbumController {
 		return "redirect:/album/albums";
 	}
 	
+	@GetMapping("/details/{id}")
+	public String albumDetails (Model model, @PathVariable long id) {
+		
+		model.addAttribute("album", albumRepository.findAlbumByDiscogsId(id));
+		return "album/details";
+	}
 	
 }
