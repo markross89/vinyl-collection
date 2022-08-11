@@ -1,19 +1,14 @@
 package com.example.marek.homeHttp;
 
 import com.example.marek.album.Album;
-import com.example.marek.album.AlbumDao;
 import com.example.marek.album.AlbumRepository;
 import com.example.marek.image.Image;
-import com.example.marek.image.ImageDao;
 import com.example.marek.image.ImageRepository;
 import com.example.marek.track.Track;
-import com.example.marek.track.TrackDao;
 import com.example.marek.track.TrackRepository;
 import com.example.marek.user.CurrentUser;
 import com.example.marek.user.User;
-import com.example.marek.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,22 +30,19 @@ public class HomeController {
 	private static final String DISCOGS_SEARCH = "https://api.discogs.com/database/search?type=release&q=";
 	
 	private final ApiController apiController;
-	private final AlbumDao albumDao;
 	private final TrackRepository trackRepository;
 	private final ImageRepository imageRepository;
 	private final AlbumRepository albumRepository;
-	private final UserRepository userRepository;
 	
-	public HomeController (ApiController apiController,  AlbumDao albumDao, TrackRepository trackRepository,
-						   ImageRepository imageRepository, AlbumRepository albumRepository,
-						   UserRepository userRepository) {
+	
+	public HomeController (ApiController apiController, TrackRepository trackRepository,
+						   ImageRepository imageRepository, AlbumRepository albumRepository) {
 		
 		this.apiController = apiController;
-		this.albumDao = albumDao;
 		this.trackRepository = trackRepository;
 		this.imageRepository = imageRepository;
 		this.albumRepository = albumRepository;
-		this.userRepository = userRepository;
+		
 	}
 	
 	
@@ -92,7 +84,7 @@ public class HomeController {
 			List<User> users = a.getUsers();
 			users.add(customUser.getUser());
 			a.setUsers(users);
-			albumDao.update(a);
+			albumRepository.save(a);
 			
 		}
 		else {

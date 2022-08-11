@@ -28,16 +28,14 @@ public class AlbumController {
 	private final AlbumRepository albumRepository;
 	private final ImageRepository imageRepository;
 	private final TrackRepository trackRepository;
-	private final AlbumDao albumDao;
 	private final UserRepository userRepository;
 	
-	public AlbumController (AlbumRepository albumRepository, ImageRepository imageRepository, TrackRepository trackRepository, AlbumDao albumDao,
+	public AlbumController (AlbumRepository albumRepository, ImageRepository imageRepository, TrackRepository trackRepository,
 							UserRepository userRepository) {
 		
 		this.albumRepository = albumRepository;
 		this.imageRepository = imageRepository;
 		this.trackRepository = trackRepository;
-		this.albumDao = albumDao;
 		this.userRepository = userRepository;
 	}
 	

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Start page</title>
+    <title>Vinyl Collection - Home page</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -31,6 +32,82 @@
   <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="<c:url value="/home/start"/>"
+        >
+          <div class="sidebar-brand-text mx-3">Vinyl collection</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Heading -->
+        <div class="sidebar-heading">Menu</div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/album/albums"/>">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Albums</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Songs</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Tracklist</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Boxes</span></a
+          >
+        </li>
+
+        </sec:authorize>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/contact"/>"> <span>Contact</span></a>
+        </li>
+        <sec:authorize access="isAnonymous()">
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/login"/>"> <span>Login</span></a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+        </li>
+        </sec:authorize>
+
+      </ul>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -40,9 +117,9 @@
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
           >
             <!-- Topbar Search -->
-          
+
             <form
-              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
             >
               <div class="input-group">
                 <input
@@ -54,38 +131,55 @@
                   name="value"
                 />
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
+                  <button class="btn btn-primary" type="submit">
                     <i class="fas fa-search fa-sm"></i>
                   </button>
                 </div>
               </div>
             </form>
 
-            <div style="text-align:left" class="markus">
-              <a href="<c:url value="/security/login"/>"><h4>login</h4></a>
-              <a href="<c:url value="/security/login"/>"><h4>register</h4></a>
-            </div>
-             
-            </ul>
+
+
+
+
+             <sec:authorize access="isAuthenticated()">
+               <div style="margin:7px;">
+                  <a class="markus-logout"  href="#">
+                  <span class="submitLink"><sec:authentication property="principal.username"/></span> </a>
+               </div>
+
+
+               <div class="markus-logout" style="margin:7px;">
+                    <form action="<c:url value="/logout"/>" method="post">
+                      <input class="submitLink" type="submit" value="Logout">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+               </div>
+               </sec:authorize>
+
           </nav>
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
+          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
             <!-- Page Heading -->
 
-            <c:forEach items="${thumbs}" var="e">
-            <div class="card shadow mb-4">
+
+
+           <c:forEach items="${thumbs}" var="e">
+            <div class="card shadow mb-4" style="width: 260px;"
+                >
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
                     ${e.title}
                 </h6>
               </div>
-              <div class="card-body"><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="200" height="200"></a></div>
+              <div class="card-body elements" ><a href="<c:url value="/home/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
+                <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Remove</a></div>
+              </div>
             </div>
-
-            </c:forEach>
-
+           </c:forEach>
+          </div>
           <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
@@ -94,7 +188,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Vinyl Coolection 2022</span>
+              <span>Copyright &copy; Vinyl Collection 2022</span>
             </div>
           </div>
         </footer>
