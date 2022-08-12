@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="g" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Details</title>
+    <title>Vinyl Collection - Track List Details</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -157,81 +160,61 @@
                </div>
                </sec:authorize>
 
+
+
+
+
+                <!-- Dropdown - User Information -->
+
+
           </nav>
           <!-- End of Topbar -->
-<div class="content-details" style="display: flex; flex-direction: row">
-
-          <div class="col-lg-6 mb-4">
-            <div class="card bg-light text-black shadow markus-details">
-
-              <div class="album-details" style="width: 200px">
-
-              <div class="card-body">
-                Artist:
-                <div class="text-black-50 small">${albumDetails.artist}</div>
-              </div>
-                <div class="card-body">
-                  Album:
-                  <div class="text-black-50 small">${albumDetails.title}</div>
-              </div>
-              <div class="card-body">
-                Label:
-                <div class="text-black-50 small">${albumDetails.label}</div>
-              </div>
-              <div class="card-body">
-                Catno:
-                <div class="text-black-50 small">${albumDetails.catno}</div>
-              </div>
-              <div class="card-body">
-                Genre:
-                <div class="text-black-50 small">${albumDetails.genre}</div>
-              </div>
-                <div class="card-body">
-                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="text-underline: dimgray">See on Discogs</a>
-                </div>
-                <div class="card-body">
-                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="add-class" style="text-underline: dimgray">Add</a>
-                </div>
-              </div>
-              <div class = "vertical"></div>
-
-            <div class="tracklist-details" style="width: 300px">
-              <div class="card-body">
-                Songs:
-
-                <c:forEach items="${tracklist}" var="e">
-                  <br><div class="text-black-50 small">${e.position}     ${e.title}     ${e.duration}</div>
-                </c:forEach>
-
-              </div>
-            </div>
-
-            </div>
+          <div class="card-body">
+            ${name.name}:
           </div>
 
-  <div class="col-lg-6 mb-4">
-    <div class="card bg-light text-black shadow markus-details">
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-        Gallery:
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-
-<c:forEach items="${images}" var="e">
-
-      <div  style="padding: 10px"><a href="<c:url value="${e.uri}"/>"><img src="${e.uri}" alt="${e.type}" width="130" height="130"></a><br>
-
-      </div>
-</c:forEach>
-      </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
+          <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
+            <!-- Page Heading -->
 
-            <div class="markus-add"><a href="<c:url value="/home/add/${albumDetails.id}"/>" class="add-class">Add</a></div>
 
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Artist</th>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Label</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Tracklist</th>
+                  </tr>
+                  </thead>
+                   <tbody>
+
+
+<c:forEach items="${albums}" var="a">
+           <c:forEach items="${a.tracks}" var="t"  >
+             <c:set var="counter" value="${counter + 1}"  scope="request" />
+                  <tr>
+                    <td>${counter}</td>
+                    <td>${t.title}</td>
+                    <td>${a.artist}</td>
+                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
+                    <td>${a.label}</td>
+                    <td>${a.date}</td>
+                    <td>${t.duration}</td>
+                    <th><a href="<c:url value="/box/add/${a.discogsId}"/>" style="color: grey">Add</a></th>
+                  </tr>
+           </c:forEach>
+</c:forEach>
+                   </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <!-- /.container-fluid -->
         </div>

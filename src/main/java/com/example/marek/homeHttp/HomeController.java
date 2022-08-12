@@ -24,7 +24,7 @@ import java.util.*;
 public class HomeController {
 	
 	
-	private static final String DISCOGS_NEW_RELASE = "https://api.discogs.com/database/search?q=new&type=release&format_exact=Vinyl&";
+	private static final String DISCOGS_NEW_RELASE = "https://api.discogs.com/database/search?type=release&q=";
 	private static final String DISCOGS_KEY_SECRET = "key=RqgTChKtuwVLyeWqVgFL&secret=sTkBKTNnXoSjWCnVRIOabYoBZUsDgzmY";
 	private static final String DISCOGS_ALBUM = "https://api.discogs.com/releases/";
 	private static final String DISCOGS_SEARCH = "https://api.discogs.com/database/search?type=release&q=";
@@ -33,6 +33,7 @@ public class HomeController {
 	private final TrackRepository trackRepository;
 	private final ImageRepository imageRepository;
 	private final AlbumRepository albumRepository;
+
 	
 	
 	public HomeController (ApiController apiController, TrackRepository trackRepository,
@@ -49,7 +50,7 @@ public class HomeController {
 	@GetMapping("/start")
 	public String start (Model model) throws JsonProcessingException {
 		
-		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, DISCOGS_KEY_SECRET));
+		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, java.time.LocalDate.now().toString() , "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
 		return "home/home";
 	}
@@ -59,6 +60,7 @@ public class HomeController {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value.replaceAll(" ", ","), "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
+	
 		
 		return "home/home";
 		

@@ -3,10 +3,7 @@ package com.example.marek.tracklist;
 
 import com.example.marek.track.Track;
 import com.example.marek.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,6 +14,7 @@ import java.util.List;
 @Table
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tracklist {
@@ -29,7 +27,7 @@ public class Tracklist {
 	private Date date;
 	@ManyToMany
 	private List<Track> tracks;
-	@ManyToOne(cascade=CascadeType.REMOVE )
+	@ManyToOne
 	private User user;
 	
 }

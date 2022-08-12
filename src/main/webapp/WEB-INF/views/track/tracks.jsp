@@ -15,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Home page</title>
+    <title>Vinyl Collection - Songs</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -169,6 +169,9 @@
 
           </nav>
           <!-- End of Topbar -->
+          <div class="card-body">
+            Songs collection:
+          </div>
 
           <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
@@ -187,6 +190,7 @@
                     <th>Label</th>
                     <th>Date</th>
                     <th>Duration</th>
+                    <th>Tracklist</th>
                   </tr>
                   </thead>
                    <tbody>
@@ -199,10 +203,11 @@
                     <td>${counter}</td>
                     <td>${t.title}</td>
                     <td>${a.artist}</td>
-                    <td>${a.title}</td>
+                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
                     <td>${a.label}</td>
                     <td>${a.date}</td>
                     <td>${t.duration}</td>
+                    <th><a href="<c:url value="/track/addForm/${t.id}"/>" style="color: grey">Add</a></th>
                   </tr>
            </c:forEach>
 </c:forEach>

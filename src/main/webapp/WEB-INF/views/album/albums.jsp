@@ -12,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Home page</title>
+    <title>Vinyl Collection - Albums</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -72,7 +72,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Tracklist</span></a
           >
@@ -166,7 +166,9 @@
 
           </nav>
           <!-- End of Topbar -->
-
+          <div class="card-body">
+            Album collection:
+          </div>
           <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
             <!-- Page Heading -->

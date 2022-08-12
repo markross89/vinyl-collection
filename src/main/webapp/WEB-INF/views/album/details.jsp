@@ -12,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Home page</title>
+    <title>Vinyl Collection - Details</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -64,7 +64,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="<c:url value="/track/tracks"/>">
             <i class="fas fa-fw fa-table"></i>
             <span>Songs</span></a
           >
@@ -72,7 +72,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Tracklist</span></a
           >
@@ -189,7 +189,12 @@
                 <div class="card-body">
                   <a href="<c:url value="${album.uri}"/>" class="add-class" style="text-underline: dimgray">See on Discogs</a>
                 </div>
-
+                <div class="card-body">
+               <a href="<c:url value="/album/remove/${e.id}"/>" class="add-class" style="text-underline: dimgray">Add to Box</a>
+                </div>
+                  <div class="card-body">
+               <a href="<c:url value="/album/remove/${album.discogsId}"/>" class="add-class" style="text-underline: dimgray">Remove</a>
+                  </div>
               </div>
               <div class = "vertical"></div>
 
@@ -226,13 +231,7 @@
 
 </div>
 
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
 
-
-            <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Add to Box</a></div>
-            <div class="markus-add"><a href="<c:url value="/album/remove/${album.discogsId}"/>" class="add-class">Remove</a></div>
-
-          </div>
           <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->

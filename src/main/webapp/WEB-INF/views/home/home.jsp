@@ -72,7 +72,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Tracklist</span></a
           >
@@ -166,7 +166,9 @@
 
           </nav>
           <!-- End of Topbar -->
-
+          <div class="card-body">
+            Fresh Albums From Discogs:
+          </div>
           <!-- Begin Page Content -->
           <div class="markus-markus" >
             <!-- Page Heading -->
