@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="g" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Songs</title>
+    <title>Vinyl Collection - Track lists</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -80,7 +77,7 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Track lists</span></a
           >
-        </li>
+
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
@@ -89,12 +86,18 @@
             <span>Boxes</span></a
           >
         </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/box/add"/>">
+              <span> Add</span></a
+            >
+          </li>
+
 
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
         </sec:authorize>
-
 
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
@@ -172,51 +175,42 @@
           </nav>
           <!-- End of Topbar -->
           <div class="card-body">
-            Songs collection:
+            Boxes:
           </div>
-
           <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
             <!-- Page Heading -->
 
 
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Artist</th>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Label</th>
-                    <th>Date</th>
-                    <th>Duration</th>
-                    <th>Track</th>
-                  </tr>
-                  </thead>
-                   <tbody>
 
-
-<c:forEach items="${albums}" var="a">
-           <c:forEach items="${a.tracks}" var="t"  >
-             <c:set var="counter" value="${counter + 1}"  scope="request" />
-                  <tr>
-                    <td>${counter}</td>
-                    <td>${t.title}</td>
-                    <td>${a.artist}</td>
-                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
-                    <td>${a.label}</td>
-                    <td>${a.date}</td>
-                    <td>${t.duration}</td>
-                    <th><a href="<c:url value="/track/addForm/${t.id}"/>" style="color: darkgreen">Add</a></th>
-                  </tr>
+           <c:forEach items="${boxes}" var="e">
+            <a href="<c:url value="/box/details/${e.id}"/>">
+             <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card border-left-primary shadow h-100 py-2">
+                 <div class="card-body">
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div
+                               class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                       >
+                           ${e.date}
+                       </div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">
+                         ${e.name}
+                       </div>
+                       <div>
+                         <a href="<c:url value="/box/delete/${e.id}"/>" class="add-class" style="text-underline: dimgray; color: red">Delete</a>
+                       </div>
+                     </div>
+                     <div class="col-auto">
+                       <i class="fas fa-folder fa-2x text-gray-300"></i>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+            </a>
            </c:forEach>
-</c:forEach>
-                   </tbody>
-                </table>
-              </div>
-            </div>
           </div>
           <!-- /.container-fluid -->
         </div>
@@ -237,48 +231,8 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

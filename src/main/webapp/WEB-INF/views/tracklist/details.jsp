@@ -52,12 +52,12 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-
+        <sec:authorize access="isAuthenticated()">
         <!-- Heading -->
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <sec:authorize access="isAuthenticated()">
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/album/albums"/>">
             <i class="fas fa-fw fa-folder"></i>
@@ -77,23 +77,29 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
+            <span>Track lists</span></a
           >
         </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/tracklist/delete/${name.id}"/>">
+              <span> Delete</span></a
+            >
+          </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/box/boxes"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Boxes</span></a
           >
         </li>
 
-        </sec:authorize>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
-
+        </sec:authorize>
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
         </li>
@@ -190,26 +196,26 @@
                     <th>Label</th>
                     <th>Date</th>
                     <th>Duration</th>
-                    <th>Tracklist</th>
+                    <th>Track</th>
                   </tr>
                   </thead>
                    <tbody>
 
 
-<c:forEach items="${albums}" var="a">
-           <c:forEach items="${a.tracks}" var="t"  >
+<c:forEach items="${tracks}" var="a">
+
              <c:set var="counter" value="${counter + 1}"  scope="request" />
                   <tr>
                     <td>${counter}</td>
-                    <td>${t.title}</td>
+                    <td>${a.title}</td>
                     <td>${a.artist}</td>
-                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
+                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.album}</a></td>
                     <td>${a.label}</td>
                     <td>${a.date}</td>
-                    <td>${t.duration}</td>
-                    <th><a href="<c:url value="/box/add/${a.discogsId}"/>" style="color: grey">Add</a></th>
+                    <td>${a.duration}</td>
+                    <th><a href="<c:url value="/track/delete/${a.id}/${name.id}"/>" style="color: red">Remove</a></th>
                   </tr>
-           </c:forEach>
+
 </c:forEach>
                    </tbody>
                 </table>

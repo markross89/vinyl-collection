@@ -49,12 +49,12 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-
+        <sec:authorize access="isAuthenticated()">
         <!-- Heading -->
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <sec:authorize access="isAuthenticated()">
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/album/albums"/>">
             <i class="fas fa-fw fa-folder"></i>
@@ -74,23 +74,23 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
+            <span>Track lists</span></a
           >
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/box/boxes"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Boxes</span></a
           >
         </li>
 
-        </sec:authorize>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
-
+        </sec:authorize>
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
         </li>
@@ -184,7 +184,10 @@
                 </h6>
               </div>
               <div class="card-body elements" ><a href="<c:url value="/album/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
-                <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="add-class">Remove</a></div>
+
+                <div class="markus-add"><a href="<c:url value="/box/addForm/${e.id}"/>" class="" style="text-underline: green; color: green; font-weight: bold">Add to Box</a></div>
+                <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class="" style="text-underline: red; color: red; font-weight: bold">Remove</a></div>
+
               </div>
             </div>
            </c:forEach>

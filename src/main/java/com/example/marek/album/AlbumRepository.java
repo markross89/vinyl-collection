@@ -18,6 +18,7 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 	
 	List<Album> findByUsersContains (User user);
 	
+	
 	@Modifying
 	void deleteAlbumByDiscogsId (long id);
 	

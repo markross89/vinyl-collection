@@ -51,10 +51,11 @@
         <hr class="sidebar-divider" />
 
         <!-- Heading -->
+        <sec:authorize access="isAuthenticated()">
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <sec:authorize access="isAuthenticated()">
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/album/albums"/>">
             <i class="fas fa-fw fa-folder"></i>
@@ -74,22 +75,22 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
+            <span>Track lists</span></a
           >
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/box/boxes"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Boxes</span></a
           >
         </li>
 
-        </sec:authorize>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
+        </sec:authorize>
 
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
@@ -103,7 +104,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
 

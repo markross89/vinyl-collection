@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Add Track List</title>
+    <title>Vinyl Collection - Add to Box</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -34,16 +34,32 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-createTracklist-image"></div>
+            <div class="col-lg-5 d-none d-lg-block bg-addBox-image"></div>
             <div class="col-lg-7">
               <div class="p-5">
-                <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Create Track List!</h1>
-                </div>
 
-                <form class="user" action="<c:url value="/tracklist/addTracklist" />">
+                <form action="/box/addAlbum/${album.discogsId}">
+                <div style="margin-bottom: 10px">
+                  <select name="boxId" class="selectBox" id="tracklist" >
+                    <option value="0" hidden  selected >Pick a Box</option>
+                    <c:forEach items="${boxes}" var="e">
+                      <option value="${e.id}">${e.name}</option>
+                    </c:forEach>
+                  </select>
+                </div>
+                <button  class="btn btn-primary btn-user btn-block" style="border-radius: 25px; font-size: small; width: 530px;
+                           height: 45px" type="submit">
+                  Add
+                </button>
+                <div class="text-center" style="margin-bottom: 50px; margin-top: 50px">
+                 <hr />
+                </div>
+               </form>
+
+                <form class="user" action="<c:url value="/box/addCreate/${album.discogsId}" />">
                   <div class="form-group row">
                     <div class="" style="width: 530px; height: 45px; margin-left: 8px">
+
                       <input
                         type="text"
                         class="form-control form-control-user"
@@ -56,12 +72,12 @@
 
                   </div>
                   <button  class="btn btn-primary btn-user btn-block" type="submit">
-                    Add
+                   Create & Add
                   </button>
 
                   <hr />
                 </form>
-              
+
 
 
                   <div class="text-center">

@@ -1,6 +1,7 @@
 package com.example.marek.album;
 
 
+import com.example.marek.homeHttp.ApiController;
 import com.example.marek.image.ImageRepository;
 import com.example.marek.track.TrackRepository;
 import com.example.marek.user.CurrentUser;
@@ -14,25 +15,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
 @RequestMapping("/album")
 public class AlbumController {
 	
-	
+	private final ApiController apiController;
 	private final AlbumRepository albumRepository;
 	private final ImageRepository imageRepository;
 	private final TrackRepository trackRepository;
 	private final UserRepository userRepository;
 	
-	public AlbumController (AlbumRepository albumRepository, ImageRepository imageRepository, TrackRepository trackRepository,
+	public AlbumController (ApiController apiController, AlbumRepository albumRepository, ImageRepository imageRepository, TrackRepository trackRepository,
 							UserRepository userRepository) {
 		
+		this.apiController = apiController;
 		this.albumRepository = albumRepository;
 		this.imageRepository = imageRepository;
 		this.trackRepository = trackRepository;
@@ -44,15 +43,7 @@ public class AlbumController {
 	public String display (Model model, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
 		
 		List<Album> albums = albumRepository.findByUsersContains(customUser.getUser());
-		List<Map<String, String>> thumbs = new ArrayList<>();
-		for (Album a : albums) {
-			Map<String, String> map = new HashMap<>();
-			map.put("id", String.valueOf(a.getDiscogsId()));
-			map.put("title", String.join("-", a.getArtist(), a.getTitle()));
-			map.put("image", a.getImages().get(0).getUri());
-			thumbs.add(map);
-		}
-		model.addAttribute("thumbs", thumbs);
+		model.addAttribute("thumbs", apiController.thumbsDisplayDatabase(albums));
 		
 		return "album/albums";
 	}

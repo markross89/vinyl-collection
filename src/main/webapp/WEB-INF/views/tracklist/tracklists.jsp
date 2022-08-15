@@ -51,10 +51,11 @@
         <hr class="sidebar-divider" />
 
         <!-- Heading -->
+        <sec:authorize access="isAuthenticated()">
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <sec:authorize access="isAuthenticated()">
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/album/albums"/>">
             <i class="fas fa-fw fa-folder"></i>
@@ -74,27 +75,28 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
+            <span>Track lists</span></a
           >
         </li>
           <li class="nav-item">
             <a class="nav-link" href="<c:url value="/tracklist/add"/>">
-              <span>Add</span></a
+              <span> Add</span></a
             >
           </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/box/boxes"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Boxes</span></a
           >
         </li>
 
-        </sec:authorize>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
+        </sec:authorize>
 
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
@@ -228,48 +230,8 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

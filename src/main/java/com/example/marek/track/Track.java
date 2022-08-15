@@ -1,10 +1,11 @@
 package com.example.marek.track;
 
-import com.example.marek.album.Album;
+
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
+
 
 
 @Entity
@@ -19,9 +20,14 @@ public class Track {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
+	long discogsId;
 	String title;
 	String position;
 	String duration;
+	String artist;
+	String album;
+	String label;
+	Date date;
 
 	
 }

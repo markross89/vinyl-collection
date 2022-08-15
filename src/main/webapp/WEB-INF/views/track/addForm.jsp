@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Add Track List</title>
+    <title>Vinyl Collection - Add to Track List</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -34,7 +34,7 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-5 d-none d-lg-block bg-addTrack-image"></div>
             <div class="col-lg-7">
               <div class="p-5">
 

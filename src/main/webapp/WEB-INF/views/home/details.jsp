@@ -49,12 +49,12 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-
+        <sec:authorize access="isAuthenticated()">
         <!-- Heading -->
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <sec:authorize access="isAuthenticated()">
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/album/albums"/>">
             <i class="fas fa-fw fa-folder"></i>
@@ -74,22 +74,23 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Tracklist</span></a
+            <span>Track lists</span></a
           >
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<c:url value="/box/boxes"/>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Boxes</span></a
           >
         </li>
 
-        </sec:authorize>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
+        </sec:authorize>
 
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
@@ -187,10 +188,10 @@
                 <div class="text-black-50 small">${albumDetails.genre}</div>
               </div>
                 <div class="card-body">
-                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="text-underline: dimgray">See on Discogs</a>
+                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="color: dimgray">See on Discogs</a>
                 </div>
                 <div class="card-body">
-                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="add-class" style="text-underline: dimgray">Add</a>
+                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="" style="text-underline: green; color: green; font-weight: bold">Add</a>
                 </div>
               </div>
               <div class = "vertical"></div>
@@ -230,7 +231,7 @@
 
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
 
-            <div class="markus-add"><a href="<c:url value="/home/add/${albumDetails.id}"/>" class="add-class">Add</a></div>
+
 
           </div>
           <!-- /.container-fluid -->

@@ -1,5 +1,6 @@
 package com.example.marek.homeHttp;
 
+import com.example.marek.album.Album;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -157,6 +158,18 @@ public class ApiController {
 			thumbs.add(album);
 		}
 		
+		return thumbs;
+	}
+	public List<Map<String, String>> thumbsDisplayDatabase(List<Album> albums) {
+		
+		List<Map<String, String>> thumbs = new ArrayList<>();
+		for (Album a : albums) {
+			Map<String, String> map = new HashMap<>();
+			map.put("id", String.valueOf(a.getDiscogsId()));
+			map.put("title", String.join("-", a.getArtist(), a.getTitle()));
+			map.put("image", a.getImages().get(0).getUri());
+			thumbs.add(map);
+		}
 		return thumbs;
 	}
 

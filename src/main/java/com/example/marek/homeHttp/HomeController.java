@@ -33,7 +33,6 @@ public class HomeController {
 	private final TrackRepository trackRepository;
 	private final ImageRepository imageRepository;
 	private final AlbumRepository albumRepository;
-
 	
 	
 	public HomeController (ApiController apiController, TrackRepository trackRepository,
@@ -50,7 +49,7 @@ public class HomeController {
 	@GetMapping("/start")
 	public String start (Model model) throws JsonProcessingException {
 		
-		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, java.time.LocalDate.now().toString() , "&", DISCOGS_KEY_SECRET));
+		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, java.time.LocalDate.now().toString(), "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
 		return "home/home";
 	}
@@ -60,7 +59,7 @@ public class HomeController {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value.replaceAll(" ", ","), "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
-	
+		
 		
 		return "home/home";
 		
@@ -68,6 +67,7 @@ public class HomeController {
 	
 	@GetMapping("/details/{id}")
 	public String albumDetails (Model model, @PathVariable long id) throws JsonProcessingException {
+		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 		model.addAttribute("albumDetails", apiController.getAlbumDetails(map));
 		model.addAttribute("tracklist", apiController.getTracklist(map));
@@ -92,11 +92,18 @@ public class HomeController {
 			
 			Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 			
+			LocalDate date = LocalDate.now();
+			
 			List<Track> tracks = new ArrayList<>();
 			for (Object o : apiController.getAlbumTracklist(map)) {
 				Track track = Track.builder().position(apiController.getTracklistSongDetail(o, "position"))
 						.title(apiController.getTracklistSongDetail(o, "title"))
 						.duration(apiController.getTracklistSongDetail(o, "duration"))
+						.album(apiController.getAlbumTitle(map))
+						.artist(apiController.getAlbumArtist(map))
+						.label(apiController.getAlbumLabel(map))
+						.discogsId(id)
+						.date(Date.valueOf(date))
 						.build();
 				tracks.add(track);
 				trackRepository.save(track);
@@ -110,7 +117,7 @@ public class HomeController {
 				imageRepository.save(image);
 			}
 			
-			LocalDate date = LocalDate.now();
+			
 			List<User> usersList = new ArrayList<>();
 			usersList.add(customUser.getUser());
 			Album album = Album.builder().discogsId(id)

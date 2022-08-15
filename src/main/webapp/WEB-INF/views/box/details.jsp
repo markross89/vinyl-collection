@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="g" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Songs</title>
+    <title>Vinyl Collection - Box Details</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -52,9 +49,8 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-
-        <!-- Heading -->
         <sec:authorize access="isAuthenticated()">
+        <!-- Heading -->
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -90,12 +86,17 @@
           >
         </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/box/delete/${box.id}"/>">
+              <span> Delete</span></a
+            >
+          </li>
+
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
         </sec:authorize>
-
-
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
         </li>
@@ -172,51 +173,27 @@
           </nav>
           <!-- End of Topbar -->
           <div class="card-body">
-            Songs collection:
+            ${box.name}:
           </div>
-
           <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
             <!-- Page Heading -->
 
 
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Artist</th>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Label</th>
-                    <th>Date</th>
-                    <th>Duration</th>
-                    <th>Track</th>
-                  </tr>
-                  </thead>
-                   <tbody>
 
-
-<c:forEach items="${albums}" var="a">
-           <c:forEach items="${a.tracks}" var="t"  >
-             <c:set var="counter" value="${counter + 1}"  scope="request" />
-                  <tr>
-                    <td>${counter}</td>
-                    <td>${t.title}</td>
-                    <td>${a.artist}</td>
-                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
-                    <td>${a.label}</td>
-                    <td>${a.date}</td>
-                    <td>${t.duration}</td>
-                    <th><a href="<c:url value="/track/addForm/${t.id}"/>" style="color: darkgreen">Add</a></th>
-                  </tr>
-           </c:forEach>
-</c:forEach>
-                   </tbody>
-                </table>
+           <c:forEach items="${thumbs}" var="e">
+            <div class="card shadow mb-4" style="width: 260px;"
+                >
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    ${e.title}
+                </h6>
+              </div>
+              <div class="card-body elements" ><a href="<c:url value="/album/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
+                <div class="markus-add"><a href="<c:url value="/box/removeAlbum/${e.id}/${box.id}"/>" class="" style="text-underline: red; color: red; font-weight: bold">Remove</a></div>
               </div>
             </div>
+           </c:forEach>
           </div>
           <!-- /.container-fluid -->
         </div>

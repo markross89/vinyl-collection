@@ -9934,12 +9934,37 @@ a:focus {
   background-size: cover;
 }
 .bg-register-image {
-  background: url(/resources/html-css/img/vinyl6.png);
+  background: url(/resources/html-css/img/record9.png);
   background-position: center;
   background-size: cover;
 }
 .bg-about-image {
-  background: url(/resources/html-css/img/vinylv.jpg);
+  background: url(/resources/html-css/img/record8.png);
+  background-position: center;
+  background-size: cover;
+}
+.bg-message-image {
+  background: url(/resources/html-css/img/record1.jpg);
+  background-position: center;
+  background-size: cover;
+}
+.bg-addBox-image {
+  background: url(/resources/html-css/img/record10.png);
+  background-position: center;
+  background-size: cover;
+}
+.bg-createBox-image {
+  background: url(/resources/html-css/img/record7.png);
+  background-position: center;
+  background-size: cover;
+}
+.bg-createTracklist-image {
+  background: url(/resources/html-css/img/record4.png);
+  background-position: center;
+  background-size: cover;
+}
+.bg-addTrack-image {
+  background: url(/resources/html-css/img/record5.png);
   background-position: center;
   background-size: cover;
 }
@@ -10381,7 +10406,7 @@ body.sidebar-toggled footer.sticky-footer {
 
 }
 .add-class{
-  color:dimgrey;
+  color:green;
   font-weight: bold;
 }
 .add-class:hover{
@@ -10418,6 +10443,10 @@ justify-content: space-around;
   border: 1px solid lightgray;
   cursor: pointer;
   border-radius: 25px;
+}
+.markus-error{
+  font-size: small;
+  margin-left: 15px;
 }
 
 

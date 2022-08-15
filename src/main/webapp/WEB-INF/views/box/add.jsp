@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Add Track List</title>
+    <title>Vinyl Collection - Add Box</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -34,21 +34,21 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-createTracklist-image"></div>
+            <div class="col-lg-5 d-none d-lg-block bg-createBox-image"></div>
             <div class="col-lg-7">
               <div class="p-5">
                 <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Create Track List!</h1>
+                  <h1 class="h4 text-gray-900 mb-4">Create Box!</h1>
                 </div>
 
-                <form class="user" action="<c:url value="/tracklist/addTracklist" />">
+                <form class="user" action="<c:url value="/box/addBox" />">
                   <div class="form-group row">
                     <div class="" style="width: 530px; height: 45px; margin-left: 8px">
                       <input
                         type="text"
                         class="form-control form-control-user"
                         id="exampleFirstName"
-                        placeholder="Track List Name"
+                        placeholder="Box Name"
                         name="name"
                       />
                     </div>
@@ -65,7 +65,7 @@
 
 
                   <div class="text-center">
-                    <a class="small" href="<c:url value="/tracklist/tracklists" />"
+                    <a class="small" href="<c:url value="/box/boxes" />"
                     >Back</a
                     >
                 </div>
