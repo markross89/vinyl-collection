@@ -2,20 +2,15 @@ package com.example.marek.user;
 
 import com.example.marek.role.Role;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Setter
 @Getter
 @Entity
-@Data
-
 
 public class User {
 	@Id

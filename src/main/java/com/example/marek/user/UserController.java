@@ -44,7 +44,9 @@ public class UserController {
 					return "/login/messageRegister";
 				}
 				else {
+				
 					userService.saveUser(user);
+					return "redirect:/login";
 				}
 			}
 			return "redirect:/login";

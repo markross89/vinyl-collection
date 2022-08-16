@@ -4,6 +4,7 @@ import com.example.marek.role.Role;
 import com.example.marek.role.RoleRepository;
 import com.example.marek.user.User;
 import com.example.marek.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,8 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
+	
+	
 }
 
 

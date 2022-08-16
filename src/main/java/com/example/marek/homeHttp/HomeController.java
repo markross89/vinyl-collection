@@ -83,10 +83,14 @@ public class HomeController {
 		
 		if (a != null) {
 			List<User> users = a.getUsers();
-			users.add(customUser.getUser());
-			a.setUsers(users);
-			albumRepository.save(a);
-			
+			if (!users.contains(customUser.getUser())) {
+				return "/album/messageAlbum";
+			}
+			else {
+				users.add(customUser.getUser());
+				a.setUsers(users);
+				albumRepository.save(a);
+			}
 		}
 		else {
 			

@@ -74,7 +74,7 @@
                     </form>
 
                     <div class="text-center">
-                      <a class="small" href="<c:url value="/register" />"
+                      <a class="small" href="<c:url value="/user/register" />"
                         >Create an Account!</a
                       >
                       <div class="text-center">

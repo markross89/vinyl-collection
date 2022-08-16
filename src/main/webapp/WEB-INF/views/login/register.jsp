@@ -63,9 +63,7 @@
                           <form:password path="password" class="form-control form-control-user" placeholder="Password"/>
                     <form:errors path="password" Class="markus-error" />
                       </div>
-                      <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" placeholder="Repeat Password" name="passwordRepeat"/>
-                      </div>
+
                   </div>
                     <button  class="btn btn-primary btn-user btn-block" type="submit" value="Save">Register Account</button>
 
