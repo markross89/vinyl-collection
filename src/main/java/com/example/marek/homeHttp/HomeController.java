@@ -14,8 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
+
 import java.util.*;
 
 
@@ -35,8 +34,8 @@ public class HomeController {
 	private final AlbumRepository albumRepository;
 	
 	
-	public HomeController (ApiController apiController, TrackRepository trackRepository,
-						   ImageRepository imageRepository, AlbumRepository albumRepository) {
+	public HomeController (ApiController apiController, TrackRepository trackRepository, ImageRepository imageRepository,
+						   AlbumRepository albumRepository) {
 		
 		this.apiController = apiController;
 		this.trackRepository = trackRepository;
@@ -82,61 +81,23 @@ public class HomeController {
 		Album a = albumRepository.findAlbumByDiscogsId(id);
 		
 		if (a != null) {
+			
 			List<User> users = a.getUsers();
-			if (!users.contains(customUser.getUser())) {
-				return "/album/messageAlbum";
+			for (User u : users) {
+				if (u.getId().equals(customUser.getUser().getId())) {
+					return "/album/messageAlbum";
+				}
 			}
-			else {
-				users.add(customUser.getUser());
-				a.setUsers(users);
-				albumRepository.save(a);
-			}
+			users.add(customUser.getUser());
+			a.setUsers(users);
+			albumRepository.save(a);
 		}
 		else {
-			
 			Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 			
-			LocalDate date = LocalDate.now();
-			
-			List<Track> tracks = new ArrayList<>();
-			for (Object o : apiController.getAlbumTracklist(map)) {
-				Track track = Track.builder().position(apiController.getTracklistSongDetail(o, "position"))
-						.title(apiController.getTracklistSongDetail(o, "title"))
-						.duration(apiController.getTracklistSongDetail(o, "duration"))
-						.album(apiController.getAlbumTitle(map))
-						.artist(apiController.getAlbumArtist(map))
-						.label(apiController.getAlbumLabel(map))
-						.discogsId(id)
-						.date(Date.valueOf(date))
-						.build();
-				tracks.add(track);
-				trackRepository.save(track);
-			}
-			
-			List<Image> images = new ArrayList<>();
-			for (Object o : apiController.getAlbumImages(map)) {
-				Image image = Image.builder().type(apiController.getAlbumImageDetail(o, "type"))
-						.uri(apiController.getAlbumImageDetail(o, "uri")).build();
-				images.add(image);
-				imageRepository.save(image);
-			}
-			
-			
-			List<User> usersList = new ArrayList<>();
-			usersList.add(customUser.getUser());
-			Album album = Album.builder().discogsId(id)
-					.artist(apiController.getAlbumArtist(map))
-					.title(apiController.getAlbumTitle(map))
-					.label(apiController.getAlbumLabel(map))
-					.catno(apiController.getAlbumCatno(map))
-					.uri(apiController.getAlbumUri(map))
-					.genre(apiController.getAlbumGenre(map))
-					.images(images)
-					.tracks(tracks)
-					.date(Date.valueOf(date))
-					.users(usersList).build();
-			albumRepository.save(album);
-			
+			List<Track> tracks = apiController.saveAlbumTracks(id, map);
+			List<Image> images = apiController.saveAlbumImages(map);
+			apiController.saveAlbum(images, tracks, map, customUser.getUser(), id);
 		}
 		return "redirect:/album/albums";
 		

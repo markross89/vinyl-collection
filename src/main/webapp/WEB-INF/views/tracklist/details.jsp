@@ -83,7 +83,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<c:url value="/tracklist/delete/${name.id}"/>">
-              <span> Delete</span></a
+              <span> Delete </span></a
+            >
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/tracklist/createBoxForm/${name.id}"/>">
+              <span> Create Box</span></a
             >
           </li>
 
@@ -112,7 +118,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
 
@@ -190,12 +196,12 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Artist</th>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Label</th>
-                    <th>Date</th>
-                    <th>Duration</th>
+                    <th><a href="<c:url value="/tracklist/sortTitle/${name.id}"/>" style="color: grey">Title</a></th>
+                    <th><a href="<c:url value="/tracklist/sortArtist/${name.id}"/>" style="color: grey">Artist</a></th>
+                    <th><a href="<c:url value="/tracklist/sortAlbum/${name.id}"/>" style="color: grey">Album</a></th>
+                    <th><a href="<c:url value="/tracklist/sortLabel/${name.id}"/>" style="color: grey">Label</a></th>
+                    <th><a href="<c:url value="/tracklist/sortDate/${name.id}"/>" style="color: grey">Date</a></th>
+                    <th><a href="<c:url value="/tracklist/sortDuration/${name.id}"/>" style="color: grey">Duration</a></th>
                     <th>Track</th>
                   </tr>
                   </thead>

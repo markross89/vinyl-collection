@@ -10448,6 +10448,27 @@ justify-content: space-around;
   font-size: small;
   margin-left: 15px;
 }
+.search-container {
+
+  float: right;
+}
+
+.search-container button {
+  float: right;
+  color: white;
+  height: 30px;
+  font-size: small;
+  background-color: royalblue;
+  border-style: hidden;
+  cursor: pointer;
+}
+
+
+
+.input:focus{
+  border-color: lightpink;
+}
+
 
 
 

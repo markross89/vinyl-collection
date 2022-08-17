@@ -31,7 +31,7 @@ public class Album {
 	private String genre;
 	private Date date;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.REMOVE)
 	private List<Track> tracks;
 	
 	@OneToMany(cascade = CascadeType.REMOVE)

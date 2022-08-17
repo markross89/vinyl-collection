@@ -110,7 +110,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
 
@@ -197,8 +197,11 @@
                        <div class="h5 mb-0 font-weight-bold text-gray-800">
                          ${e.name}
                        </div>
-                       <div>
+                       <div style="margin-top: 20px">
                          <a href="<c:url value="/tracklist/delete/${e.id}"/>" class="add-class" style="text-underline: dimgray; color: red">Delete</a>
+                       </div>
+                       <div style="margin-top: 10px">
+                         <a href="<c:url value="/tracklist/createBoxForm/${e.id}"/>" class="add-class" style="text-underline: green; color: green">Create Box</a>
                        </div>
                      </div>
                      <div class="col-auto">

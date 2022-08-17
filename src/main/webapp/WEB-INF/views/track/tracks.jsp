@@ -108,7 +108,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
 
@@ -173,6 +173,12 @@
           <!-- End of Topbar -->
           <div class="card-body">
             Songs collection:
+            <div class="search-container input">
+              <form action="<c:url value="/track/searchCollection"/>">
+                <input class="input" type="text" placeholder="Search.." name="query" style="border-radius:4px; border-style: solid;">
+                <button type="submit" style="border-radius: 3px"><i class="fa fa-search" ></i></button>
+              </form>
+            </div>
           </div>
 
           <!-- Begin Page Content -->
@@ -186,33 +192,33 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Artist</th>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Label</th>
-                    <th>Date</th>
-                    <th>Duration</th>
+                    <th><a href="<c:url value="/track/sortBy/title"/>" style="color: grey">Title</a></th>
+                    <th><a href="<c:url value="/track/sortBy/artist"/>" style="color: grey">Artist</a></th>
+                    <th><a href="<c:url value="/track/sortBy/album"/>" style="color: grey">Album</a></th>
+                    <th><a href="<c:url value="/track/sortBy/label"/>" style="color: grey">Label</a></th>
+                    <th><a href="<c:url value="/track/sortBy/date"/>" style="color: grey">Date</a></th>
+                    <th><a href="<c:url value="/track/sortBy/duration"/>" style="color: grey">Duration</a></th>
                     <th>Track</th>
                   </tr>
                   </thead>
                    <tbody>
 
 
-<c:forEach items="${albums}" var="a">
-           <c:forEach items="${a.tracks}" var="t"  >
+
+           <c:forEach items="${tracks}" var="t"  >
              <c:set var="counter" value="${counter + 1}"  scope="request" />
                   <tr>
                     <td>${counter}</td>
                     <td>${t.title}</td>
-                    <td>${a.artist}</td>
-                    <td><a href="<c:url value="/album/details/${a.discogsId}"/>" style="color: grey">${a.title}</a></td>
-                    <td>${a.label}</td>
-                    <td>${a.date}</td>
+                    <td>${t.artist}</td>
+                    <td><a href="<c:url value="/album/details/${t.discogsId}"/>" style="color: grey">${t.album}</a></td>
+                    <td>${t.label}</td>
+                    <td>${t.date}</td>
                     <td>${t.duration}</td>
                     <th><a href="<c:url value="/track/addForm/${t.id}"/>" style="color: darkgreen">Add</a></th>
                   </tr>
            </c:forEach>
-</c:forEach>
+
                    </tbody>
                 </table>
               </div>

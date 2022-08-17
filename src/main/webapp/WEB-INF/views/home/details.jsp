@@ -104,7 +104,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
 

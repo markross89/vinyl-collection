@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Transactional
@@ -40,7 +42,7 @@ public class TrackController {
 	@GetMapping("/tracks")  // display all songs
 	public String display (Model model, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
 		
-		model.addAttribute("albums", albumRepository.findByUsersContains(customUser.getUser()));
+		model.addAttribute("tracks", trackRepository.findTracksByUser(customUser.getUser().getId()));
 		return "track/tracks";
 	}
 	
@@ -73,7 +75,7 @@ public class TrackController {
 	@GetMapping("/addCreate/{id}")  //  fulfill add form by creating new track list and add song to it
 	public String addCreate (@PathVariable long id, @RequestParam String name, @AuthenticationPrincipal CurrentUser customUser) {
 		
-		if (tracklistRepository.findByName(name).isPresent()) {
+		if (tracklistRepository.findByNameAndUser(name, customUser.getUser()).isPresent()) {
 			return "/track/messageTrack";
 		}
 		else {
@@ -96,4 +98,58 @@ public class TrackController {
 		trackRepository.deleteTrackTracklistConstrains(tracklistId, trackId);
 		return "redirect:/tracklist/details/"+tracklistId+"";
 	}
+	
+	
+
+	@GetMapping("/searchCollection")  // search action for song collection
+	public String searchCollection (@RequestParam String query, @AuthenticationPrincipal CurrentUser customUser, Model model) {
+			model.addAttribute("tracks", trackRepository.searchSongCollection(customUser.getUser().getId(), query));
+		return "track/tracks";
+	}
+	
+	
+	//   sorting actions for song collection
+	
+	@GetMapping("/sortBy/title")
+	public String sortByTitle (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByTitle(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
+	@GetMapping("/sortBy/artist")
+	public String sortByArtist (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByArtist(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
+	@GetMapping("/sortBy/album")
+	public String sortByAlbum (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByAlbum(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
+	@GetMapping("/sortBy/label")
+	public String sortByLabel (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByLabel(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
+	@GetMapping("/sortBy/date")
+	public String sortByDate (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByDate(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
+	@GetMapping("/sortBy/duration")
+	public String sortByDuration (Model model, @AuthenticationPrincipal CurrentUser customUser) {
+		
+		model.addAttribute("tracks", trackRepository.sortAllUserSongsByDuration(customUser.getUser().getId()));
+		return "/track/tracks";
+	}
+	
 }

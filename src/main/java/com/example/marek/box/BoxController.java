@@ -80,7 +80,7 @@ public class BoxController {
 	@GetMapping("/removeAlbum/{discogsId}/{boxId}")  //  removes album from box
 	public String remove (@PathVariable long discogsId, @PathVariable long boxId) {
 		
-		boxRepository.deleteBoxAlbumConstrains(boxId, albumRepository.findAlbumByDiscogsId(discogsId).getId());
+		boxRepository.deleteBoxAlbumConstrainsWithBoxId(boxId, albumRepository.findAlbumByDiscogsId(discogsId).getId());
 		return "redirect:/box/details/"+boxId+"";
 	}
 	
