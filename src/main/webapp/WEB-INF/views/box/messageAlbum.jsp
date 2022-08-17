@@ -51,7 +51,7 @@
                       <p class="text-gray-500 mb-0">
                         Try Again
                       </p>
-                      <a href="<c:url value="/album/albums"/>">&larr; back</a>
+                      <a href="<c:url value="/box/addForm/${id}"/>">&larr; back</a>
                     </div>
                     </div>
                   </div>

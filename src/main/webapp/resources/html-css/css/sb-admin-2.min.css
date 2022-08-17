@@ -8897,6 +8897,7 @@ a.text-dark:hover {
   color: #858796 !important;
 }
 .text-black-50 {
+  font-size: large;
   color: rgba(0, 0, 0, 0.5) !important;
 }
 .text-white-50 {
@@ -9973,6 +9974,12 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
+.bg-balloons-image {
+  background: url(/resources/html-css/img/balloons.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
 form.user .custom-checkbox.small label {
   line-height: 1.5rem;
 }

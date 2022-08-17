@@ -3,12 +3,9 @@ package com.example.marek.album;
 
 import com.example.marek.box.BoxRepository;
 import com.example.marek.homeHttp.ApiController;
-import com.example.marek.image.ImageRepository;
-import com.example.marek.track.TrackRepository;
 import com.example.marek.tracklist.TracklistRepository;
 import com.example.marek.user.CurrentUser;
 import com.example.marek.user.User;
-import com.example.marek.user.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+
 @Transactional
 @Controller
 @RequestMapping("/album")
@@ -27,24 +25,17 @@ public class AlbumController {
 	
 	private final ApiController apiController;
 	private final AlbumRepository albumRepository;
-	private final ImageRepository imageRepository;
-	private final TrackRepository trackRepository;
-	private final UserRepository userRepository;
 	private final TracklistRepository tracklistRepository;
 	private final BoxRepository boxRepository;
 	
-	public AlbumController (ApiController apiController, AlbumRepository albumRepository, ImageRepository imageRepository, TrackRepository trackRepository,
-							UserRepository userRepository, TracklistRepository tracklistRepository, BoxRepository boxRepository) {
+	public AlbumController (ApiController apiController, AlbumRepository albumRepository, TracklistRepository tracklistRepository,
+							BoxRepository boxRepository) {
 		
 		this.apiController = apiController;
 		this.albumRepository = albumRepository;
-		this.imageRepository = imageRepository;
-		this.trackRepository = trackRepository;
-		this.userRepository = userRepository;
 		this.tracklistRepository = tracklistRepository;
 		this.boxRepository = boxRepository;
 	}
-	
 	
 	@GetMapping("/albums")
 	public String display (Model model, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
@@ -57,7 +48,6 @@ public class AlbumController {
 	
 	@GetMapping("/remove/{id}")
 	public String remove (@PathVariable long id, @AuthenticationPrincipal CurrentUser customUser) {
-		
 		
 		Album album = albumRepository.findAlbumByDiscogsId(id);
 		tracklistRepository.deleteTrackTracklistConstrains(album.getId(), customUser.getUser().getId());

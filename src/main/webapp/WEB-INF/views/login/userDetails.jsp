@@ -165,74 +165,41 @@
 
           </nav>
           <!-- End of Topbar -->
-<div class="content-details" style="display: flex; flex-direction: row">
+          <div class="card-body" style=" font-size: large">
+            User Details:
+          </div>
 
-          <div class="col-lg-6 mb-4">
-            <div class="card bg-light text-black shadow markus-details">
+          <div style="float: right" ><img src="/resources/html-css/img/users.png" style="width: 800px; height: 550px; margin-top: 20px"></div>
 
-              <div class="album-details" style="width: 200px">
+          <div class="col-lg-6 mb-4" style="margin-left: 40px">
+            <div class="card bg-light text-black shadow markus-details" style="height: 600px">
+              <div class="album-details" >
 
-              <div class="card-body">
-                Artist:
-                <div class="text-black-50 small">${albumDetails.artist}</div>
+              <div class="card-body" style="font-size: x-large">
+                First Name:
+                <div class="text-black-50 small" style="font-size: xxx-large">${user.firstName}</div>
               </div>
-                <div class="card-body">
-                  Album:
-                  <div class="text-black-50 small">${albumDetails.title}</div>
+                <div class="card-body" style="font-size: x-large">
+                  Last Name:
+                  <div class="text-black-50 small" style="font-size: xxx-large">${user.lastName}</div>
               </div>
-              <div class="card-body">
-                Label:
-                <div class="text-black-50 small">${albumDetails.label}</div>
+              <div class="card-body" style="font-size: x-large">
+                Email / Username:
+                <div class="text-black-50 small" style="font-size: xxx-large">${user.username}</div>
               </div>
-              <div class="card-body">
-                Catno:
-                <div class="text-black-50 small">${albumDetails.catno}</div>
+                <div class="markus-add"><a href="<c:url value="/user/editUser"/>" class="add-class" style="font-size: larger; font-weight: normal"> Edit</a></div>
+                <div class="markus-add" style="margin-top: 10px"> <a href="<c:url value="/home/start"/>" class="add-class" style="color: dimgray; font-size: larger; font-weight: normal"> Back home</a></div>
               </div>
-              <div class="card-body">
-                Genre:
-                <div class="text-black-50 small">${albumDetails.genre}</div>
-              </div>
-                <div class="card-body">
-                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="color: dimgray">See on Discogs</a>
-                </div>
-                <div class="card-body">
-                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="" style="text-underline: green; color: green; font-weight: bold">Add</a>
-                </div>
-              </div>
-              <div class = "vertical"></div>
 
-            <div class="tracklist-details" style="width: 300px">
-              <div class="card-body">
-                Songs:
 
-                <c:forEach items="${tracklist}" var="e">
-                  <br><div class="text-black-50 small">${e.position}     ${e.title}     ${e.duration}</div>
-                </c:forEach>
 
-              </div>
-            </div>
 
             </div>
           </div>
 
-  <div class="col-lg-6 mb-4">
-    <div class="card bg-light text-black shadow markus-details">
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-        Gallery:
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
 
-<c:forEach items="${images}" var="e">
 
-      <div  style="padding: 10px"><a href="<c:url value="${e.uri}"/>"><img src="${e.uri}" alt="${e.type}" width="130" height="130"></a><br>
 
-      </div>
-</c:forEach>
-      </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
 

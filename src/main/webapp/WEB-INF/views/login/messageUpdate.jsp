@@ -37,21 +37,21 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-message-image"></div>
+                <div class="col-lg-6 d-none d-lg-block bg-balloons-image"></div>
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Sorry!</h1>
+                      <h1 class="h4 text-gray-900 mb-4">Congratulation!</h1>
                     </div>
                    
                     <div class="text-center">
                       
                     <div>
-                      <p class="lead text-gray-800 mb-5">This item was added before</p>
+                      <p class="lead text-gray-800 mb-5">Your Profile Was Updated Successfully</p>
                       <p class="text-gray-500 mb-0">
-                        Try Again
+                        Changes will commit after logout
                       </p>
-                      <a href="<c:url value="/tracklist/add"/>">&larr; back</a>
+                      <a href="<c:url value="/album/albums"/>">&larr; back</a>
                     </div>
                     </div>
                   </div>

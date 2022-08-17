@@ -1,10 +1,11 @@
 package com.example.marek.track;
 
-import com.example.marek.album.AlbumRepository;
+
 import com.example.marek.tracklist.Tracklist;
 import com.example.marek.tracklist.TracklistRepository;
 import com.example.marek.user.CurrentUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 
 @Transactional
@@ -27,14 +27,12 @@ import java.util.Map;
 @RequestMapping("/track")
 public class TrackController {
 	
-	private final AlbumRepository albumRepository;
+	
 	private final TrackRepository trackRepository;
 	private final TracklistRepository tracklistRepository;
 	
-	public TrackController (AlbumRepository albumRepository, TrackRepository trackRepository,
-							TracklistRepository tracklistRepository) {
+	public TrackController (TrackRepository trackRepository, TracklistRepository tracklistRepository) {
 		
-		this.albumRepository = albumRepository;
 		this.trackRepository = trackRepository;
 		this.tracklistRepository = tracklistRepository;
 	}
@@ -52,14 +50,14 @@ public class TrackController {
 		model.addAttribute("track", trackRepository.findById(id).get());
 		model.addAttribute("tracklists", tracklistRepository.findAllByUserId(customUser.getUser().getId()));
 		return "track/addForm";
-		
 	}
 	
 	@GetMapping("/addToTracklist/{id}")  // fulfill add form by selecting existing track list and add song to it
-	public String addToTracklist (@PathVariable long id, @RequestParam long tracklistId) {
+	public String addToTracklist (@PathVariable long id, @RequestParam long tracklistId, Model model) {
 		
 		if (tracklistId != 0) {
 			if (trackRepository.findTracksFromTracklist(tracklistId).contains(trackRepository.findById(id).get())) {
+				model.addAttribute("id", id);
 				return "/track/messageTrack";
 			}
 			else {
@@ -99,14 +97,12 @@ public class TrackController {
 		return "redirect:/tracklist/details/"+tracklistId+"";
 	}
 	
-	
-
 	@GetMapping("/searchCollection")  // search action for song collection
 	public String searchCollection (@RequestParam String query, @AuthenticationPrincipal CurrentUser customUser, Model model) {
-			model.addAttribute("tracks", trackRepository.searchSongCollection(customUser.getUser().getId(), query));
+		
+		model.addAttribute("tracks", trackRepository.searchSongCollection(customUser.getUser().getId(), query));
 		return "track/tracks";
 	}
-	
 	
 	//   sorting actions for song collection
 	

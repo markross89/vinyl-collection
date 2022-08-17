@@ -26,9 +26,6 @@ public class TracklistController {
 	private final AlbumRepository albumRepository;
 	private final BoxRepository boxRepository;
 	
-	
-	
-	
 	public TracklistController (TracklistRepository tracklistRepository, TrackRepository trackRepository, AlbumRepository albumRepository,
 								BoxRepository boxRepository){
 		
@@ -58,7 +55,6 @@ public class TracklistController {
 					.user(customUser.getUser())
 					.build();
 			tracklistRepository.save(tracklist);
-			
 			return "redirect:/tracklist/tracklists";
 		}
 	}
@@ -75,7 +71,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.findTracksFromTracklist(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -87,7 +82,8 @@ public class TracklistController {
 	}
 	
 	@GetMapping("/createBoxFromTracklist/{tracklistId}")  // create a box and fills it with albums used for the track list
-	public String createBox (@PathVariable long tracklistId, @RequestParam String name, @AuthenticationPrincipal CurrentUser customUser) {
+	public String createBox (@PathVariable long tracklistId, @RequestParam String name, @AuthenticationPrincipal CurrentUser customUser,
+							 Model model) {
 		
 		List<Long> ids = albumRepository.findAlbumsIdByTracklist(tracklistId);
 		List<Album> albums = new ArrayList<>();
@@ -104,7 +100,15 @@ public class TracklistController {
 			boxRepository.save(box);
 			return "redirect:/box/boxes";
 		}
+		model.addAttribute("id", tracklistId);
 		return "/box/messageBox";
+	}
+	
+	@GetMapping("/searchTracklist/{id}")  // search action for track list
+	public String searchCollection (@PathVariable long id, @RequestParam String query, Model model) {
+		model.addAttribute("tracks", trackRepository.searchTracklist(id, query));
+		model.addAttribute("name", tracklistRepository.findById(id).get());
+		return "tracklist/details";
 	}
 	
 	
@@ -115,7 +119,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByArtist(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -124,7 +127,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByTitle(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -133,7 +135,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByAlbum(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -142,7 +143,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByLabel(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -151,7 +151,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByDuration(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	
@@ -160,7 +159,6 @@ public class TracklistController {
 		
 		model.addAttribute("tracks", trackRepository.sortByDate(id));
 		model.addAttribute("name", tracklistRepository.findById(id).get());
-		
 		return "/tracklist/details";
 	}
 	

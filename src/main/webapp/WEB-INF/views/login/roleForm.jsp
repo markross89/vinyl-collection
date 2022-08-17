@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Add to Track List</title>
+    <title>Vinyl Collection - Role Update</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -34,16 +34,16 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-addTrack-image"></div>
+            <div class="col-lg-5 d-none d-lg-block bg-addBox-image"></div>
             <div class="col-lg-7">
               <div class="p-5">
 
-                <form action="/track/addToTracklist/${track.id}" >
+                <form action="/user/changeRole/${user}" method="post">
                 <div style="margin-bottom: 10px">
-                  <select name="tracklistId" class="selectBox" id="tracklist" >
-                    <option value="0" hidden  selected >Pick Track List</option>
-                    <c:forEach items="${tracklists}" var="e">
-                      <option value="${e.id}">${e.name}</option>
+                  <select name="role" class="selectBox" id="tracklist" >
+
+                    <c:forEach items="${roles}" var="e">
+                      <option value="${e.name}">${e.name}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -56,32 +56,12 @@
                 </div>
                </form>
 
-                <form class="user" action="<c:url value="/track/addCreate/${track.id}" />">
-                  <div class="form-group row">
-                    <div class="" style="width: 530px; height: 45px; margin-left: 8px">
 
-                      <input
-                        type="text"
-                        class="form-control form-control-user"
-                        id="exampleFirstName"
-                        placeholder="Track List Name"
-                        name="name"
-                      />
-                    </div>
-
-
-                  </div>
-                  <button  class="btn btn-primary btn-user btn-block" type="submit">
-                   Create & Add
-                  </button>
-
-                  <hr />
-                </form>
 
 
 
                   <div class="text-center">
-                    <a class="small" href="<c:url value="/track/tracks" />"
+                    <a class="small" href="<c:url value="/user/userList" />"
                     >Back</a
                     >
                 </div>

@@ -3,9 +3,9 @@ package com.example.marek.homeHttp;
 import com.example.marek.album.Album;
 import com.example.marek.album.AlbumRepository;
 import com.example.marek.image.Image;
-import com.example.marek.image.ImageRepository;
+
 import com.example.marek.track.Track;
-import com.example.marek.track.TrackRepository;
+
 import com.example.marek.user.CurrentUser;
 import com.example.marek.user.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,23 +29,17 @@ public class HomeController {
 	private static final String DISCOGS_SEARCH = "https://api.discogs.com/database/search?type=release&q=";
 	
 	private final ApiController apiController;
-	private final TrackRepository trackRepository;
-	private final ImageRepository imageRepository;
 	private final AlbumRepository albumRepository;
 	
 	
-	public HomeController (ApiController apiController, TrackRepository trackRepository, ImageRepository imageRepository,
-						   AlbumRepository albumRepository) {
+	public HomeController (ApiController apiController, AlbumRepository albumRepository) {
 		
 		this.apiController = apiController;
-		this.trackRepository = trackRepository;
-		this.imageRepository = imageRepository;
 		this.albumRepository = albumRepository;
 		
 	}
 	
-	
-	@GetMapping("/start")
+	@GetMapping("/start") // home page
 	public String start (Model model) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, java.time.LocalDate.now().toString(), "&", DISCOGS_KEY_SECRET));
@@ -53,35 +47,29 @@ public class HomeController {
 		return "home/home";
 	}
 	
-	@GetMapping("/search")
+	@GetMapping("/search")  // search Discogs library
 	public String searchDiscogs (@RequestParam String value, Model model) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value.replaceAll(" ", ","), "&", DISCOGS_KEY_SECRET));
 		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
-		
-		
 		return "home/home";
-		
 	}
 	
-	@GetMapping("/details/{id}")
+	@GetMapping("/details/{id}")  // display details of album found on discogs
 	public String albumDetails (Model model, @PathVariable long id) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 		model.addAttribute("albumDetails", apiController.getAlbumDetails(map));
 		model.addAttribute("tracklist", apiController.getTracklist(map));
 		model.addAttribute("images", apiController.getImages(map));
-		
 		return "home/details";
 	}
 	
-	@GetMapping("/add/{id}")
+	@GetMapping("/add/{id}")  // adds album to database / constraint to logged user
 	public String addAlbum (@PathVariable long id, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
 		
 		Album a = albumRepository.findAlbumByDiscogsId(id);
-		
 		if (a != null) {
-			
 			List<User> users = a.getUsers();
 			for (User u : users) {
 				if (u.getId().equals(customUser.getUser().getId())) {
@@ -100,9 +88,5 @@ public class HomeController {
 			apiController.saveAlbum(images, tracks, map, customUser.getUser(), id);
 		}
 		return "redirect:/album/albums";
-		
-		
 	}
-	
-	
 }

@@ -19,7 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure (HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-				.antMatchers("/album/**", "/home/add/**")
+				.antMatchers("/user/register").permitAll()
+				.antMatchers("/album/**", "/home/add/**","album/**", "/box/**", "/track/**", "/tracklist/**", "/user/**")
 				.hasAnyRole("USER", "ADMIN")
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/album/albums")
 				.and().logout().logoutSuccessUrl("/home/start")
@@ -27,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and().exceptionHandling().accessDeniedPage("/403");
 		http.csrf().disable();
 	}
-	
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder () {

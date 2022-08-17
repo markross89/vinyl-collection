@@ -3,8 +3,6 @@ package com.example.marek.box;
 import com.example.marek.album.Album;
 import com.example.marek.album.AlbumRepository;
 import com.example.marek.homeHttp.ApiController;
-import com.example.marek.track.Track;
-import com.example.marek.tracklist.Tracklist;
 import com.example.marek.user.CurrentUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -48,7 +46,7 @@ public class BoxController {
 	public String add (@RequestParam String name, @AuthenticationPrincipal CurrentUser customUser) {
 		
 		if (boxRepository.findByName(name).isPresent()) {
-			return "/box/messageBox";
+			return "/box/messageBox2";
 		}
 		else {
 			Box box = Box.builder()
@@ -90,12 +88,10 @@ public class BoxController {
 		model.addAttribute("album", albumRepository.findAlbumByDiscogsId(id));
 		model.addAttribute("boxes", boxRepository.findAllByUserId(customUser.getUser().getId()));
 		return "box/addForm";
-		
 	}
 	
 	@GetMapping("/addAlbum/{discogsId}")  //  adds album to box
 	public String addAlbum (@PathVariable long discogsId, @RequestParam long boxId) {
-		
 		
 		if (boxId != 0) {
 			Album album = albumRepository.findAlbumByDiscogsId(discogsId);
@@ -116,10 +112,10 @@ public class BoxController {
 	}
 	
 	@GetMapping("/addCreate/{discogsId}")  //  fulfill add form by creating new track list and add song to it
-	public String addCreate (@PathVariable long discogsId, @RequestParam String name, @AuthenticationPrincipal CurrentUser customUser) {
-		
+	public String addCreate (@PathVariable long discogsId, @RequestParam String name, @AuthenticationPrincipal CurrentUser customUser, Model model) {
 		
 		if (boxRepository.findByName(name).isPresent()) {
+			model.addAttribute("id", discogsId);
 			return "/box/messageAlbum";
 		}
 		else {
@@ -135,5 +131,4 @@ public class BoxController {
 			return "redirect:/box/boxes";
 		}
 	}
-	
 }

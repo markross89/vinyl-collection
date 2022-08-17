@@ -114,7 +114,12 @@
           <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
-
+        <sec:authorize access="hasRole('ADMIN')">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/user/userList"/>"> <span>Users</span></a>
+          </li>
+        </sec:authorize>
       </ul>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -152,7 +157,7 @@
 
              <sec:authorize access="isAuthenticated()">
                <div style="margin:7px;">
-                  <a class="markus-logout"  href="#">
+                  <a class="markus-logout"  href="<c:url value="/user/details"/>">
                   <span class="submitLink"><sec:authentication property="principal.username"/></span> </a>
                </div>
 

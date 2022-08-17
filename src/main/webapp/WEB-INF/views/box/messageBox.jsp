@@ -51,7 +51,7 @@
                       <p class="text-gray-500 mb-0">
                         Try Again
                       </p>
-                      <a href="<c:url value="/box/boxes"/>">&larr; back</a>
+                      <a href="<c:url value="/tracklist/createBoxForm/${id}"/>">&larr; back</a>
                     </div>
                     </div>
                   </div>

@@ -64,7 +64,7 @@
                         type="text"
                         class="form-control form-control-user"
                         id="exampleFirstName"
-                        placeholder="Track List Name"
+                        placeholder="Box Name"
                         name="name"
                       />
                     </div>
@@ -81,7 +81,7 @@
 
 
                   <div class="text-center">
-                    <a class="small" href="<c:url value="/tracklist/tracklists" />"
+                    <a class="small" href="<c:url value="/box/boxes" />"
                     >Back</a
                     >
                 </div>

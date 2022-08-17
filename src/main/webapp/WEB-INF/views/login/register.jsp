@@ -58,16 +58,17 @@
                           <form:input path="username" class="form-control form-control-user" placeholder="Email"/>
                     <form:errors path="username" Class="markus-error" />
                   </div>
-                  <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="form-group ">
+
                           <form:password path="password" class="form-control form-control-user" placeholder="Password"/>
                     <form:errors path="password" Class="markus-error" />
-                      </div>
+
 
                   </div>
                     <button  class="btn btn-primary btn-user btn-block" type="submit" value="Save">Register Account</button>
 
                 </form:form>
+                <hr/>
 
 
                 <div class="text-center">

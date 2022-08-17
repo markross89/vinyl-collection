@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="g" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Details</title>
+    <title>Vinyl Collection - User List</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -77,6 +80,18 @@
             <span>Track lists</span></a
           >
         </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/tracklist/delete/${name.id}"/>">
+              <span> Delete </span></a
+            >
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/tracklist/createBoxForm/${name.id}"/>">
+              <span> Create Box</span></a
+            >
+          </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
@@ -91,7 +106,6 @@
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
         </sec:authorize>
-
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
         </li>
@@ -104,7 +118,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
+          <a class="nav-link" href="<c:url value="user/register"/>"> <span>Register</span></a>
         </li>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN')">
@@ -163,81 +177,59 @@
                </div>
                </sec:authorize>
 
+
+
+
+
+                <!-- Dropdown - User Information -->
+
+
           </nav>
           <!-- End of Topbar -->
-<div class="content-details" style="display: flex; flex-direction: row">
-
-          <div class="col-lg-6 mb-4">
-            <div class="card bg-light text-black shadow markus-details">
-
-              <div class="album-details" style="width: 200px">
-
-              <div class="card-body">
-                Artist:
-                <div class="text-black-50 small">${albumDetails.artist}</div>
-              </div>
-                <div class="card-body">
-                  Album:
-                  <div class="text-black-50 small">${albumDetails.title}</div>
-              </div>
-              <div class="card-body">
-                Label:
-                <div class="text-black-50 small">${albumDetails.label}</div>
-              </div>
-              <div class="card-body">
-                Catno:
-                <div class="text-black-50 small">${albumDetails.catno}</div>
-              </div>
-              <div class="card-body">
-                Genre:
-                <div class="text-black-50 small">${albumDetails.genre}</div>
-              </div>
-                <div class="card-body">
-                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="color: dimgray">See on Discogs</a>
-                </div>
-                <div class="card-body">
-                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="" style="text-underline: green; color: green; font-weight: bold">Add</a>
-                </div>
-              </div>
-              <div class = "vertical"></div>
-
-            <div class="tracklist-details" style="width: 300px">
-              <div class="card-body">
-                Songs:
-
-                <c:forEach items="${tracklist}" var="e">
-                  <br><div class="text-black-50 small">${e.position}     ${e.title}     ${e.duration}</div>
-                </c:forEach>
-
-              </div>
-            </div>
-
-            </div>
+          <div class="card-body">
+            Users:
           </div>
 
-  <div class="col-lg-6 mb-4">
-    <div class="card bg-light text-black shadow markus-details">
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-        Gallery:
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-
-<c:forEach items="${images}" var="e">
-
-      <div  style="padding: 10px"><a href="<c:url value="${e.uri}"/>"><img src="${e.uri}" alt="${e.type}" width="130" height="130"></a><br>
-
-      </div>
-</c:forEach>
-      </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
+          <!-- Begin Page Content -->
           <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
+            <!-- Page Heading -->
 
 
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username/Email</th>
+                    <th>Enabled</th>
+                    <th>Role</th>
+                  </tr>
+                  </thead>
+                   <tbody>
 
+
+<c:forEach items="${users}" var="a">
+
+             <c:set var="counter" value="${counter + 1}"  scope="request" />
+                  <tr>
+                    <td>${counter}</td>
+                    <td>${a.id}</td>
+                    <td>${a.firstName}</td>
+                    <td>${a.lastName}</td>
+                    <td>${a.username}</td>
+                    <td>${a.enabled}</td>
+                    <th><a href="<c:url value="/user/changeRole/${a.id}"/>" style="color: red">Update</a></th>
+                  </tr>
+
+</c:forEach>
+                   </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <!-- /.container-fluid -->
         </div>

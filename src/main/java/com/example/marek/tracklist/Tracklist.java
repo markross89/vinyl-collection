@@ -25,8 +25,10 @@ public class Tracklist {
 	private long id;
 	private String name;
 	private Date date;
+	
 	@ManyToMany
 	private List<Track> tracks;
+	
 	@ManyToOne
 	private User user;
 	

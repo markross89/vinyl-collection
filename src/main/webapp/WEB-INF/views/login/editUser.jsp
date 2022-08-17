@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Add to Track List</title>
+    <title>Vinyl Collection - Register</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -34,55 +35,46 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-addTrack-image"></div>
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
             <div class="col-lg-7">
               <div class="p-5">
-
-                <form action="/track/addToTracklist/${track.id}" >
-                <div style="margin-bottom: 10px">
-                  <select name="tracklistId" class="selectBox" id="tracklist" >
-                    <option value="0" hidden  selected >Pick Track List</option>
-                    <c:forEach items="${tracklists}" var="e">
-                      <option value="${e.id}">${e.name}</option>
-                    </c:forEach>
-                  </select>
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Edit Your Profile</h1>
                 </div>
-                <button  class="btn btn-primary btn-user btn-block" style="border-radius: 25px; font-size: small; width: 530px;
-                           height: 45px" type="submit">
-                  Add
-                </button>
-                <div class="text-center" style="margin-bottom: 50px; margin-top: 50px">
-                 <hr />
-                </div>
-               </form>
+                <form:form  class="user" modelAttribute="user" method="post">
 
-                <form class="user" action="<c:url value="/track/addCreate/${track.id}" />">
                   <div class="form-group row">
-                    <div class="" style="width: 530px; height: 45px; margin-left: 8px">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <form:hidden path="id" value="${user.id}" />
+                          <form:input path="firstName" class="form-control form-control-user" placeholder="${user.firstName}"/>
+                        <form:errors path="firstName" Class="markus-error"  element="div"/>
 
-                      <input
-                        type="text"
-                        class="form-control form-control-user"
-                        id="exampleFirstName"
-                        placeholder="Track List Name"
-                        name="name"
-                      />
-                    </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <form:input path="lastName" class="form-control form-control-user" placeholder="${user.lastName}"/>
+                        <form:errors path="lastName" Class="markus-error" />
+                      </div>
+                  </div>
+                  <div class="form-group">
+                          <form:input path="username" class="form-control form-control-user" placeholder="${user.username}"/>
+                    <form:errors path="username" Class="markus-error" />
+                  </div>
+                  <div class="form-group ">
+
+                          <form:password path="password" class="form-control form-control-user" placeholder="${user.password}"/>
+                    <form:errors path="password" Class="markus-error" />
 
 
                   </div>
-                  <button  class="btn btn-primary btn-user btn-block" type="submit">
-                   Create & Add
-                  </button>
+                    <button  class="btn btn-primary btn-user btn-block" type="submit" value="Save">Save Changes</button>
 
-                  <hr />
-                </form>
+                </form:form>
 
-
+                <hr/>
 
                   <div class="text-center">
-                    <a class="small" href="<c:url value="/track/tracks" />"
-                    >Back</a
+                    <a class="small" href="<c:url value="/home/start" />"
+                    >Back Home</a
                     >
                 </div>
               </div>
