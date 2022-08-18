@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")  // adds a user
-	public String processForm (@Valid User user, BindingResult result) {
+	public String processForm (@Valid User user, BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {
 			return "login/register";
@@ -47,12 +47,10 @@ public class UserController {
 				if (u.getUsername().equals(user.getUsername())) {
 					return "/login/messageRegister";
 				}
-				else {
-					userService.saveUser(user);
-					return "redirect:/login";
-				}
 			}
-			return "redirect:/login";
+			userService.saveUser(user);
+			model.addAttribute("user", user);
+			return "login/messageAddUser";
 		}
 	}
 	
