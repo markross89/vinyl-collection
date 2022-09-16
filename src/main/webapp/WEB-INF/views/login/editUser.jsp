@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,7 +47,7 @@
                   <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
                         <form:hidden path="id" value="${user.id}" />
-                          <form:input path="firstName" class="form-control form-control-user" placeholder="${user.firstName}"/>
+                          <form:input path="firstName" class="form-control form-control-user" />
                         <form:errors path="firstName" Class="markus-error"  element="div"/>
 
                       </div>

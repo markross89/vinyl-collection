@@ -30,20 +30,21 @@ public class HomeController {
 	
 	private final ApiController apiController;
 	private final AlbumRepository albumRepository;
+	private final ApiService apiService;
 	
 	
-	public HomeController (ApiController apiController, AlbumRepository albumRepository) {
+	public HomeController (ApiController apiController, AlbumRepository albumRepository, ApiService apiService) {
 		
 		this.apiController = apiController;
 		this.albumRepository = albumRepository;
-		
+		this.apiService = apiService;
 	}
 	
 	@GetMapping("/start") // home page
 	public String start (Model model) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_NEW_RELASE, java.time.LocalDate.now().toString(), "&", DISCOGS_KEY_SECRET));
-		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
+		model.addAttribute("thumbs", apiService.thumbsDisplay(map));
 		return "home/home";
 	}
 	
@@ -51,7 +52,7 @@ public class HomeController {
 	public String searchDiscogs (@RequestParam String value, Model model) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_SEARCH, value.replaceAll(" ", ","), "&", DISCOGS_KEY_SECRET));
-		model.addAttribute("thumbs", apiController.thumbsDisplay(map));
+		model.addAttribute("thumbs", apiService.thumbsDisplay(map));
 		return "home/home";
 	}
 	
@@ -59,9 +60,9 @@ public class HomeController {
 	public String albumDetails (Model model, @PathVariable long id) throws JsonProcessingException {
 		
 		Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
-		model.addAttribute("albumDetails", apiController.getAlbumDetails(map));
-		model.addAttribute("tracklist", apiController.getTracklist(map));
-		model.addAttribute("images", apiController.getImages(map));
+		model.addAttribute("albumDetails", apiService.getAlbumDetails(map));
+		model.addAttribute("tracklist", apiService.getTracklist(map));
+		model.addAttribute("images", apiService.getImages(map));
 		return "home/details";
 	}
 	
@@ -83,9 +84,9 @@ public class HomeController {
 		else {
 			Map map = apiController.mapRequestData(String.join("", DISCOGS_ALBUM, String.valueOf(id), "?", DISCOGS_KEY_SECRET));
 			
-			List<Track> tracks = apiController.saveAlbumTracks(id, map);
-			List<Image> images = apiController.saveAlbumImages(map);
-			apiController.saveAlbum(images, tracks, map, customUser.getUser(), id);
+			List<Track> tracks = apiService.saveAlbumTracks(id, map);
+			List<Image> images = apiService.saveAlbumImages(map);
+			apiService.saveAlbum(images, tracks, map, customUser.getUser(), id);
 		}
 		return "redirect:/album/albums";
 	}

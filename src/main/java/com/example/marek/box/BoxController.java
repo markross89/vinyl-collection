@@ -3,6 +3,7 @@ package com.example.marek.box;
 import com.example.marek.album.Album;
 import com.example.marek.album.AlbumRepository;
 import com.example.marek.homeHttp.ApiController;
+import com.example.marek.homeHttp.ApiService;
 import com.example.marek.user.CurrentUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,15 +25,15 @@ import java.util.List;
 @RequestMapping("/box")
 public class BoxController {
 	
-	private final ApiController apiController;
 	private final BoxRepository boxRepository;
 	private final AlbumRepository albumRepository;
+	private final ApiService apiService;
 	
-	public BoxController (ApiController apiController, BoxRepository boxRepository, AlbumRepository albumRepository) {
+	public BoxController (BoxRepository boxRepository, AlbumRepository albumRepository, ApiService apiService) {
 		
-		this.apiController = apiController;
 		this.boxRepository = boxRepository;
 		this.albumRepository = albumRepository;
+		this.apiService = apiService;
 	}
 	
 	@GetMapping("/boxes")  //display list of boxes
@@ -47,8 +48,7 @@ public class BoxController {
 		
 		if (boxRepository.findByName(name).isPresent()) {
 			return "/box/messageBox2";
-		}
-		else {
+		}else {
 			Box box = Box.builder()
 					.date(Date.valueOf(LocalDate.now()))
 					.name(name)
@@ -70,7 +70,7 @@ public class BoxController {
 	public String details (@PathVariable long id, Model model) {
 		
 		List<Album> albums = boxRepository.findById(id).get().getAlbums();
-		model.addAttribute("thumbs", apiController.thumbsDisplayDatabase(albums));
+		model.addAttribute("thumbs", apiService.thumbsDisplayDatabase(albums));
 		model.addAttribute("box", boxRepository.findById(id).get());
 		return "/box/details";
 	}
@@ -91,16 +91,16 @@ public class BoxController {
 	}
 	
 	@GetMapping("/addAlbum/{discogsId}")  //  adds album to box
-	public String addAlbum (@PathVariable long discogsId, @RequestParam long boxId) {
+	public String addAlbum (@PathVariable long discogsId, @RequestParam long boxId, Model model) {
 		
 		if (boxId != 0) {
 			Album album = albumRepository.findAlbumByDiscogsId(discogsId);
 			Box box = boxRepository.findById(boxId).get();
 			
 			if (box.getAlbums().contains(album)) {
+				model.addAttribute("id", discogsId);
 				return "/box/messageAlbum";
-			}
-			else {
+			}else {
 				List<Album> albums = box.getAlbums();
 				albums.add(album);
 				box.setAlbums(albums);
@@ -117,8 +117,7 @@ public class BoxController {
 		if (boxRepository.findByName(name).isPresent()) {
 			model.addAttribute("id", discogsId);
 			return "/box/messageAlbum";
-		}
-		else {
+		}else {
 			List<Album> albums = new ArrayList<>();
 			albums.add(albumRepository.findAlbumByDiscogsId(discogsId));
 			Box box = Box.builder()

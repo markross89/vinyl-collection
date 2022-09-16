@@ -3,6 +3,7 @@ package com.example.marek.user;
 import com.example.marek.UserService;
 import com.example.marek.role.Role;
 import com.example.marek.role.RoleRepository;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,13 +55,14 @@ public class UserController {
 		}
 	}
 	
+	
 	@GetMapping("/details")  // display details of  user
 	public String showUserDetails (Model model, @AuthenticationPrincipal CurrentUser customUser) {
 		
 		model.addAttribute("user", customUser.getUser());
 		return "/login/userDetails";
 	}
-	
+
 	@GetMapping("/editUser")  // display edit user form
 	public String editUser (Model model, @AuthenticationPrincipal CurrentUser customUser) {
 		
@@ -78,8 +80,7 @@ public class UserController {
 			for (User u : userRepository.findAll()) {
 				if (u.getUsername().equals(user.getUsername())) {
 					return "/login/messageRegister";
-				}
-				else {
+				}else {
 					userService.saveUser(user);
 					return "/login/messageUpdate";
 				}
@@ -87,14 +88,14 @@ public class UserController {
 			return "redirect:/login";
 		}
 	}
-	
+
 	@GetMapping("/userList") // display users list
 	public String userList (Model model) {
 		
 		model.addAttribute("users", userRepository.findAll());
 		return "/login/usersList";
 	}
-	
+
 	@GetMapping("/changeRole/{id}")  // display user role form
 	public String roleForm (Model model, @PathVariable long id) {
 		
@@ -102,7 +103,7 @@ public class UserController {
 		model.addAttribute("roles", roleRepository.findAll());
 		return "/login/roleForm";
 	}
-	
+
 	@PostMapping("/changeRole/{id}")  // update users role
 	public String updateRole (@PathVariable long id, @RequestParam String role) {
 		

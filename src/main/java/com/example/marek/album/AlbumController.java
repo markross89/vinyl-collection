@@ -2,7 +2,7 @@ package com.example.marek.album;
 
 
 import com.example.marek.box.BoxRepository;
-import com.example.marek.homeHttp.ApiController;
+import com.example.marek.homeHttp.ApiService;
 import com.example.marek.tracklist.TracklistRepository;
 import com.example.marek.user.CurrentUser;
 import com.example.marek.user.User;
@@ -23,25 +23,25 @@ import java.util.List;
 @RequestMapping("/album")
 public class AlbumController {
 	
-	private final ApiController apiController;
 	private final AlbumRepository albumRepository;
 	private final TracklistRepository tracklistRepository;
 	private final BoxRepository boxRepository;
+	private final ApiService apiService;
 	
-	public AlbumController (ApiController apiController, AlbumRepository albumRepository, TracklistRepository tracklistRepository,
-							BoxRepository boxRepository) {
+	public AlbumController (AlbumRepository albumRepository, TracklistRepository tracklistRepository,
+							BoxRepository boxRepository, ApiService apiService) {
 		
-		this.apiController = apiController;
 		this.albumRepository = albumRepository;
 		this.tracklistRepository = tracklistRepository;
 		this.boxRepository = boxRepository;
+		this.apiService = apiService;
 	}
 	
 	@GetMapping("/albums")
 	public String display (Model model, @AuthenticationPrincipal CurrentUser customUser) throws JsonProcessingException {
 		
 		List<Album> albums = albumRepository.findByUsersContains(customUser.getUser());
-		model.addAttribute("thumbs", apiController.thumbsDisplayDatabase(albums));
+		model.addAttribute("thumbs", apiService.thumbsDisplayDatabase(albums));
 		
 		return "album/albums";
 	}

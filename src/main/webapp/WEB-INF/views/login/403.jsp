@@ -13,7 +13,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Vinyl Collection - Box Details</title>
+    <title>Vinyl Collection - Home page</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -50,8 +50,9 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-        <sec:authorize access="isAuthenticated()">
+
         <!-- Heading -->
+        <sec:authorize access="isAuthenticated()">
         <div class="sidebar-heading">Menu</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -87,17 +88,11 @@
           >
         </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/box/delete/${box.id}"/>">
-              <span> Delete</span></a
-            >
-          </li>
-
-
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
         </sec:authorize>
+
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
         </li>
@@ -178,28 +173,18 @@
 
           </nav>
           <!-- End of Topbar -->
-          <div class="card-body">
-            ${box.name}:
-          </div>
-          <!-- Begin Page Content -->
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
-            <!-- Page Heading -->
-
-
-
-           <c:forEach items="${thumbs}" var="e">
-            <div class="card shadow mb-4" style="width: 260px;"
-                >
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    ${e.title}
-                </h6>
-              </div>
-              <div class="card-body elements" ><a href="<c:url value="/album/details/${e.id}"/>"><img src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
-                <div class="markus-add"><a href="<c:url value="/box/removeAlbum/${e.id}/${box.id}"/>" class="" style="text-underline: red; color: red; font-weight: bold">Remove</a></div>
-              </div>
+          <div class="container-fluid">
+            <!-- 404 Error Text -->
+            <div class="text-center">
+              <div class="error mx-auto" data-text="404">403</div>
+              <p class="lead text-gray-800 mb-5">Access Deniede</p>
+              <p class="text-gray-500 mb-0">
+                It looks like you have no authority<br> Login as Admin
+              </p>
+              <a href="/logout">&larr; Logout</a><br>
+              <a href="/home/start">&larr; Home</a>
             </div>
-           </c:forEach>
+
           </div>
           <!-- /.container-fluid -->
         </div>
@@ -225,43 +210,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
