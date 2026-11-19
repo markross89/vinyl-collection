@@ -1,0 +1,38 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: vinyl-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: vinyl_db
+      MYSQL_USER: vinyl_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3308:3306"
+    volumes:
+      - vinyl_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  app:
+    build: .
+    container_name: vinyl-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      DB_URL: "jdbc:mysql://mysql:3306/vinyl_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  vinyl_mysql_data:
