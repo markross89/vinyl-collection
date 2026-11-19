@@ -1,89 +1,120 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-    <title>Vinyl Collection - Login</title>
+<jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-    <!-- Custom fonts for this template-->
-    <link
-            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+<section class="vc-page vc-contact-page">
 
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
-  </head>
+    <div class="vc-page-header">
+        <span class="vc-eyebrow">
+            <spring:message code="contact.eyebrow"/>
+        </span>
 
-  <body class="bg-gradient-primary">
-    <div class="container">
-      <!-- Outer Row -->
-      <div class="row justify-content-center">
-        <div class="col-xl-10 col-lg-12 col-md-9">
-          <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-              <!-- Nested Row within Card Body -->
-              <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-contact-image"></div>
-                <div class="col-lg-6">
-                  <div class="p-5">
-                    <div class="text-center">
-                      <h2 class="h4 text-gray-900 mb-4">You can find us here </h2><br>
-                      <div class="markus-contact">
-                      <h4>Topolka 41</h4>
-                      <h4>87-875 Topolka</h4>
-                        <h4>+48 781 037 897 </h4>
+        <h1>
+            <spring:message code="contact.title"/>
+        </h1>
 
-                          <a href="<c:url value="https://accounts.google.com/signin/v2/identifier?hl=pl&flowName=GlifWebSignIn&flowEntry=ServiceLogin" />" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i>
-                              roszak89@gmail.com</a>
-                          <hr />
-                        <div class="markus-social">
-                            <a href="<c:url value="https://www.facebook.com/" />"><img src="<c:url value="/resources/html-css/img/facebook.png" />" width="30" height="30"></a>
-                            <a href="<c:url value=" https://www.instagram.com/" />"><img src="<c:url value="/resources/html-css/img/instagram2.png" />" width="30" height="30"></a>
-                            <a href="<c:url value="https://www.twitter.com/" />"><img src="<c:url value="/resources/html-css/img/twitter.png" />" width="30" height="30"></a>
-                        </div>
-                          <hr />
-                      </div>
-
-                    </div>
-
-
-                    <div class="text-center">
-                      <a class="small" href="<c:url value="/home/start" />"
-                        >Back Home</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <p class="vc-page-subtitle">
+            <spring:message code="contact.subtitle"/>
+        </p>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <div class="vc-contact-content">
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <div class="vc-contact-intro">
+            <h2>
+                <spring:message code="contact.heading"/>
+            </h2>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-  </body>
-</html>
+            <p>
+                <spring:message code="contact.description"/>
+            </p>
+        </div>
+
+        <div class="vc-contact-details">
+
+            <div class="vc-contact-item">
+                <div class="vc-contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        <spring:message code="contact.address"/>
+                    </h3>
+
+                    <p>
+                        <spring:message code="contact.address.street"/>
+                    </p>
+
+                    <p>
+                        <spring:message code="contact.address.postcode"/>
+                    </p>
+                </div>
+            </div>
+
+            <div class="vc-contact-item">
+                <div class="vc-contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        <spring:message code="contact.phone"/>
+                    </h3>
+
+                    <spring:message code="contact.phone.value" var="phoneValue"/>
+                    <a href="tel:${phoneValue}">
+                        <spring:message code="contact.phone.value"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="vc-contact-item">
+                <div class="vc-contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div>
+                    <h3>
+                        <spring:message code="contact.email"/>
+                    </h3>
+
+                    <spring:message code="contact.email.value" var="emailValue"/>
+                    <a href="mailto:${emailValue}">
+                        <spring:message code="contact.email.value"/>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="vc-contact-socials">
+            <a href="https://www.facebook.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="<spring:message code='contact.facebook'/>">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.instagram.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="<spring:message code='contact.instagram'/>">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://www.x.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="<spring:message code='contact.twitter'/>">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

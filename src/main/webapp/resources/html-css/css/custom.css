@@ -1,0 +1,5371 @@
+
+/* =========================================
+   VINYL COLLECTION - GLOBAL
+========================================= */
+
+:root {
+    --vc-background: #17191d;
+    --vc-surface: #22252b;
+    --vc-surface-light: #2b2f36;
+    --vc-border: #383c44;
+
+    --vc-text: #f4f0e8;
+    --vc-text-muted: #a5a7ad;
+
+    --vc-accent: #c58b59;
+    --vc-accent-hover: #d69b68;
+
+    --vc-font-main: 'DM Sans', sans-serif;
+    --vc-font-heading: 'Playfair Display', serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--vc-background);
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 14px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--vc-accent);
+    text-decoration: none;
+}
+
+.vc-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.vc-header {
+    min-height: 86px;
+    padding: 16px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    background: #1d2025;
+    border-bottom: 1px solid var(--vc-border);
+}
+
+.vc-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.vc-brand-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--vc-accent);
+    font-size: 27px;
+}
+
+.vc-brand-name {
+    color: var(--vc-text);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.vc-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+}
+
+.vc-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+.vc-nav-link i {
+    color: var(--vc-accent);
+    font-size: 12px;
+}
+
+.vc-nav-link:hover {
+    color: var(--vc-text);
+}
+
+.vc-admin-link {
+    color: var(--vc-accent);
+}
+
+
+/* =========================================
+   HEADER ACTIONS
+========================================= */
+
+.vc-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 17px;
+}
+
+.vc-search {
+    width: 230px;
+    height: 38px;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 6px;
+}
+
+.vc-search > i {
+    color: var(--vc-text-muted);
+    font-size: 12px;
+}
+
+.vc-search input {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 11px;
+}
+
+.vc-search input::placeholder {
+    color: #898c94;
+}
+
+.vc-search button {
+    border: none;
+    background: transparent;
+    color: var(--vc-accent);
+    cursor: pointer;
+}
+
+.vc-search button:hover {
+    color: var(--vc-accent-hover);
+}
+
+.vc-language {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #646870;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.vc-language a {
+    color: var(--vc-text-muted);
+}
+
+.vc-language a.active {
+    color: var(--vc-accent);
+}
+
+.vc-auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.vc-login-link {
+    color: var(--vc-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.vc-register-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+
+    background: var(--vc-accent);
+    color: #17191d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.vc-register-button:hover {
+    background: var(--vc-accent-hover);
+    color: #17191d;
+}
+
+.vc-user-menu {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.vc-user-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: var(--vc-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.vc-user-link i {
+    color: var(--vc-accent);
+    font-size: 18px;
+}
+
+.vc-logout-button {
+    padding: 7px 9px;
+    border: 1px solid var(--vc-border);
+    border-radius: 5px;
+
+    background: transparent;
+    color: var(--vc-text-muted);
+    font-family: var(--vc-font-main);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.vc-logout-button:hover {
+    border-color: var(--vc-accent);
+    color: var(--vc-accent);
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.vc-main {
+    width: 100%;
+    max-width: 1500px;
+    flex: 1;
+    margin: 0 auto;
+    padding: 40px 5% 70px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.vc-hero {
+    min-height: 340px;
+    padding: 55px 7%;
+    margin-bottom: 65px;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+            radial-gradient(
+                    circle at 75% 50%,
+                    rgba(197, 139, 89, 0.16),
+                    transparent 35%
+            ),
+            linear-gradient(115deg, #292d34, #202329);
+
+    border: 1px solid var(--vc-border);
+    border-radius: 12px;
+}
+
+.vc-hero-content {
+    max-width: 570px;
+    position: relative;
+    z-index: 2;
+}
+
+.vc-eyebrow {
+    color: var(--vc-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.vc-hero h1 {
+    margin: 17px 0;
+
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: clamp(34px, 4vw, 53px);
+    line-height: 1.15;
+}
+
+.vc-hero p {
+    max-width: 440px;
+    margin-bottom: 28px;
+
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.vc-primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 19px;
+    border-radius: 5px;
+
+    background: var(--vc-accent);
+    color: #17191d;
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: background 0.2s ease;
+}
+
+.vc-primary-button:hover {
+    background: var(--vc-accent-hover);
+    color: #17191d;
+}
+
+
+/* =========================================
+   DECORATIVE VINYL RECORD
+========================================= */
+
+.vc-hero-decoration {
+    width: 270px;
+    height: 270px;
+    margin-right: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vc-record {
+    width: 250px;
+    height: 250px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+            repeating-radial-gradient(
+                    circle,
+                    #24262b 0,
+                    #24262b 2px,
+                    #303239 3px,
+                    #24262b 5px
+            );
+
+    box-shadow:
+            0 15px 45px rgba(0, 0, 0, 0.4),
+            inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.vc-record::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+}
+
+.vc-record-label {
+    width: 85px;
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--vc-accent);
+    border-radius: 50%;
+    color: #28221d;
+    font-size: 33px;
+}
+
+
+/* =========================================
+   ALBUM SECTION
+========================================= */
+
+.vc-albums-section {
+    width: 100%;
+}
+
+.vc-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 27px;
+}
+
+.vc-section-heading h2 {
+    margin: 8px 0 0;
+
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 27px;
+}
+
+.vc-album-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.vc-album-card {
+    min-width: 0;
+    overflow: hidden;
+
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 8px;
+
+    transition:
+            transform 0.2s ease,
+            border-color 0.2s ease;
+}
+
+.vc-album-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(197, 139, 89, 0.65);
+}
+
+.vc-album-image {
+    height: 245px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    background: #30343b;
+}
+
+.vc-album-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.vc-album-card:hover .vc-album-image img {
+    transform: scale(1.05);
+}
+
+.vc-image-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--vc-accent);
+    font-size: 55px;
+}
+
+.vc-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    background: rgba(15, 16, 19, 0.75);
+    color: var(--vc-text);
+    font-size: 12px;
+    font-weight: 600;
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.vc-album-card:hover .vc-image-overlay {
+    opacity: 1;
+}
+
+.vc-album-info {
+    padding: 17px;
+}
+
+.vc-album-info h3 {
+    min-height: 42px;
+    margin: 0 0 10px;
+
+    color: var(--vc-text);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.vc-details-link {
+    display: inline-block;
+    margin-bottom: 15px;
+
+    color: var(--vc-accent);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.vc-add-button {
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid rgba(197, 139, 89, 0.4);
+    border-radius: 5px;
+
+    background: rgba(197, 139, 89, 0.1);
+    color: var(--vc-accent);
+
+    font-family: var(--vc-font-main);
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.vc-add-button:hover {
+    background: rgba(197, 139, 89, 0.2);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.vc-empty-state {
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+
+    text-align: center;
+    color: var(--vc-text-muted);
+}
+
+.vc-empty-state i {
+    margin-bottom: 15px;
+    color: var(--vc-accent);
+    font-size: 42px;
+}
+
+.vc-empty-state p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FUTURE PAGINATION
+========================================= */
+
+.vc-pagination-slot {
+    width: 100%;
+    margin-top: 35px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.vc-footer {
+    min-height: 100px;
+    padding: 25px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: #1d2025;
+    border-top: 1px solid var(--vc-border);
+}
+
+.vc-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--vc-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.vc-footer-brand i {
+    color: var(--vc-accent);
+    font-size: 19px;
+}
+
+.vc-footer p {
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: 11px;
+}
+
+.vc-footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.vc-footer-links a {
+    color: var(--vc-text-muted);
+    font-size: 11px;
+}
+
+.vc-footer-links a:hover {
+    color: var(--vc-accent);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .vc-header {
+        flex-wrap: wrap;
+    }
+
+    .vc-navigation {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .vc-header-actions {
+        margin-left: auto;
+    }
+
+    .vc-album-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+
+    .vc-header {
+        padding: 17px 5%;
+        gap: 18px;
+    }
+
+    .vc-header-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .vc-search {
+        flex: 1;
+        min-width: 180px;
+    }
+
+    .vc-navigation {
+        gap: 15px;
+    }
+
+    .vc-main {
+        padding: 25px 5% 45px;
+    }
+
+    .vc-hero {
+        min-height: 290px;
+        padding: 35px 25px;
+    }
+
+    .vc-hero-decoration {
+        position: absolute;
+        right: -110px;
+        opacity: 0.2;
+    }
+
+    .vc-hero h1 {
+        font-size: 35px;
+    }
+
+    .vc-album-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .vc-album-image {
+        height: 190px;
+    }
+
+    .vc-footer {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .vc-brand-name {
+        font-size: 17px;
+    }
+
+    .vc-navigation {
+        gap: 12px;
+    }
+
+    .vc-nav-link {
+        font-size: 11px;
+    }
+
+    .vc-album-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vc-album-image {
+        height: 260px;
+    }
+
+    .vc-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Language selector */
+
+.vc-language {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.vc-language form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.vc-language button {
+    padding: 3px 0;
+    border: none;
+    background: transparent;
+    color: var(--vc-text-muted);
+    font-family: var(--vc-font-main);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.vc-language button.active {
+    color: var(--vc-accent);
+}
+
+.vc-language button:hover {
+    color: var(--vc-accent-hover);
+}
+
+/* Homepage without hero */
+
+.vc-main {
+    padding-top: 30px;
+}
+
+.vc-contact-socials a {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.vc-contact-socials a:hover {
+    transform: translateY(-3px);
+}
+
+.vc-contact-socials a:nth-child(1) {
+    color: #1877F2;
+}
+
+.vc-contact-socials a:nth-child(2) {
+    color: #E4405F;
+}
+
+.vc-contact-socials a:nth-child(3) {
+    color: #FFFFFF;
+}
+
+/* Album artist and title */
+
+.vc-album-artist {
+    color: #D6AD55;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 5px;
+    line-height: 1.4;
+}
+
+.vc-album-title {
+    color: #F2F0EB;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 15px;
+    line-height: 1.4;
+}
+
+
+/* =========================
+   LOGIN LAYOUT FIX
+========================= */
+
+.vc-login-body {
+    min-height: 100vh !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #171717 !important;
+    font-family: "DM Sans", sans-serif;
+}
+
+.vc-login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 35px 20px;
+}
+
+.vc-login-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 45px;
+}
+
+.vc-login-card {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 42px 38px;
+    background: #222222;
+    border: 1px solid #343434;
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+}
+
+.vc-login-heading {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.vc-login-form {
+    display: block;
+    width: 100%;
+}
+
+.vc-login-field {
+    display: block;
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.vc-login-field label {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.vc-login-input-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.vc-login-input-wrapper input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+}
+
+.vc-login-button {
+    display: flex;
+    width: 100%;
+    min-height: 49px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.vc-login-divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+}
+
+.vc-login-register {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.vc-login-back {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    margin: 28px auto 0;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .vc-login-wrapper {
+        padding: 22px 15px;
+    }
+
+    .vc-login-card {
+        padding: 32px 23px;
+    }
+
+    .vc-login-top {
+        margin-bottom: 30px;
+    }
+}
+
+/* Login button fix */
+
+.vc-login-button,
+.vc-login-button:focus,
+.vc-login-button:active {
+    display: flex !important;
+    width: 100%;
+    height: 49px;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    background-color: #B78B3E !important;
+    border: 1px solid #B78B3E !important;
+    border-radius: 7px !important;
+
+    color: #171717 !important;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.vc-login-button:hover {
+    background-color: #D6AD55 !important;
+    border-color: #D6AD55 !important;
+    color: #171717 !important;
+    transform: translateY(-2px);
+}
+
+.vc-login-button i {
+    color: #171717 !important;
+}
+
+.vc-login-body::before,
+.vc-login-body::after {
+    display: none !important;
+    content: none !important;
+}
+
+.vc-login-divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vc-login-register {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 1.8;
+}
+
+.vc-login-register a {
+    display: inline-block;
+    padding: 5px 3px;
+}
+
+
+.vc-album-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.vc-album-actions form {
+    margin: 0;
+}
+
+.vc-remove-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 14px;
+    background: transparent;
+    border: 1px solid #8e5550;
+    border-radius: 6px;
+    color: #df8b82;
+    font-family: var(--vc-font-main);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.vc-remove-button:hover {
+    background: rgba(190, 80, 70, 0.12);
+    border-color: #df8b82;
+}
+
+
+/* ALBUM COLLECTION PAGE */
+
+.vc-page {
+    width: 100%;
+    color: var(--vc-text);
+}
+
+.vc-page-header {
+    margin-bottom: 35px;
+}
+
+.vc-page-header h1 {
+    margin: 8px 0;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 2rem;
+}
+
+.vc-page-header p {
+    color: var(--vc-text-muted);
+    margin: 0;
+}
+
+.vc-album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 25px;
+}
+
+.vc-album-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.vc-album-actions form {
+    margin: 0;
+}
+
+.vc-remove-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 14px;
+    background: transparent;
+    border: 1px solid #8e5550;
+    border-radius: 6px;
+    color: #df8b82;
+    font-family: var(--vc-font-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.vc-remove-button:hover {
+    background: rgba(190, 80, 70, .12);
+    border-color: #df8b82;
+}
+
+.vc-empty-state {
+    padding: 65px 20px;
+    text-align: center;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 12px;
+}
+
+.vc-empty-state > i {
+    font-size: 3rem;
+    color: var(--vc-accent);
+    margin-bottom: 20px;
+}
+
+.vc-empty-state h2 {
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+}
+
+.vc-empty-state p {
+    color: var(--vc-text-muted);
+    margin-bottom: 25px;
+}
+
+.vc-album-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.vc-album-actions form {
+    margin: 0;
+}
+
+.vc-album-actions .vc-add-button,
+.vc-album-actions .vc-remove-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 8px 11px;
+    border-radius: 5px;
+    font-family: var(--vc-font-main);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.vc-album-actions .vc-add-button {
+    width: auto;
+    background: var(--vc-accent);
+    color: #17191d;
+    border: 1px solid var(--vc-accent);
+    text-decoration: none;
+}
+
+.vc-album-actions .vc-add-button:hover {
+    background: var(--vc-accent-hover);
+    border-color: var(--vc-accent-hover);
+}
+
+.vc-album-actions .vc-remove-button {
+    width: auto;
+    background: transparent;
+    color: #df8b82;
+    border: 1px solid #754b48;
+}
+
+.vc-album-actions .vc-remove-button:hover {
+    background: rgba(190, 80, 70, .12);
+    border-color: #df8b82;
+}
+
+@media (max-width: 480px) {
+    .vc-album-actions {
+        flex-wrap: wrap;
+    }
+}
+
+.vc-album-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+    width: 100%;
+}
+
+.vc-album-actions form {
+    margin: 0;
+    width: 100%;
+}
+
+.vc-album-actions .vc-add-button,
+.vc-album-actions .vc-remove-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 36px;
+    box-sizing: border-box;
+    padding: 8px 11px;
+    border-radius: 5px;
+    font-family: var(--vc-font-main);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.vc-album-actions .vc-add-button {
+    background: var(--vc-accent);
+    color: #17191d;
+    border: 1px solid var(--vc-accent);
+    text-decoration: none;
+}
+
+.vc-album-actions .vc-add-button:hover {
+    background: var(--vc-accent-hover);
+    border-color: var(--vc-accent-hover);
+}
+
+.vc-album-actions .vc-remove-button {
+    background: transparent;
+    color: #df8b82;
+    border: 1px solid #754b48;
+}
+
+.vc-album-actions .vc-remove-button:hover {
+    background: rgba(190, 80, 70, .12);
+    border-color: #df8b82;
+}
+
+/* Album cards */
+.vc-album-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Album cover */
+.vc-album-image {
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.vc-album-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Album information fills remaining card space */
+.vc-album-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Actions stay at the bottom */
+.vc-album-actions {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+/* Home page and collection: equal-height album cards */
+.vc-album-grid {
+    align-items: stretch;
+}
+
+.vc-album-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.vc-album-image {
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.vc-album-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vc-album-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Home page: pin Add button to the bottom */
+.vc-album-info > form {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+.vc-album-info > form .vc-add-button {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.vc-add-form {
+    margin-top: auto;
+}
+
+.vc-add-form button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#vc-notification-container {
+    width: 100%;
+}
+
+/* =========================================
+   VINYL COLLECTION - TOAST NOTIFICATIONS
+========================================= */
+
+#vc-notification-container {
+    position: fixed;
+    top: 90px;
+    right: 24px;
+    z-index: 11000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: min(380px, calc(100vw - 32px));
+
+    pointer-events: none;
+}
+
+#vc-notification-container .vc-alert {
+    display: flex;
+    align-items: center;
+
+    padding: 17px 20px;
+    margin: 0;
+
+    border-radius: 9px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+
+    font-family: var(--vc-font-main);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+
+    opacity: 0;
+    transform: translateX(120%);
+
+    transition:
+            transform 0.4s ease,
+            opacity 0.4s ease;
+}
+
+#vc-notification-container .vc-alert.vc-alert-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#vc-notification-container .vc-alert.vc-alert-hiding {
+    opacity: 0;
+    transform: translateX(120%);
+}
+
+#vc-notification-container .vc-alert i {
+    flex-shrink: 0;
+    margin-right: 12px;
+    font-size: 19px;
+}
+
+#vc-notification-container .vc-alert-success {
+    color: #b8e5c0;
+    background: #243b2d;
+    border: 1px solid #477b54;
+}
+
+#vc-notification-container .vc-alert-info {
+    color: #b5dced;
+    background: #243743;
+    border: 1px solid #426b80;
+}
+
+#vc-notification-container .vc-alert-error {
+    color: #f0b5ae;
+    background: #422b2b;
+    border: 1px solid #874d48;
+}
+
+
+/* =========================================
+   ALBUMS - BOX MODAL
+========================================= */
+
+.vc-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.72);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.vc-modal-overlay.vc-modal-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.vc-modal-body-open {
+    overflow: hidden;
+}
+
+.vc-modal {
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 13px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(18px);
+    transition: transform 0.25s ease;
+}
+
+.vc-modal-open .vc-modal {
+    transform: translateY(0);
+}
+
+.vc-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 27px 20px;
+    border-bottom: 1px solid var(--vc-border);
+}
+
+.vc-modal-header h2 {
+    margin: 7px 0 5px;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 25px;
+}
+
+.vc-modal-subtitle {
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: 13px;
+}
+
+.vc-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    color: var(--vc-text-muted);
+    background: var(--vc-surface-light);
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.vc-modal-close:hover {
+    color: var(--vc-text);
+    background: #383d45;
+}
+
+.vc-modal-body {
+    padding: 22px 27px 27px;
+}
+
+.vc-box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+.vc-box-row,
+.vc-box-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    min-height: 55px;
+    padding: 9px 12px 9px 16px;
+    background: var(--vc-surface-light);
+    border: 1px solid var(--vc-border);
+    border-radius: 8px;
+}
+
+.vc-box-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--vc-text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.vc-box-action {
+    flex: 0 0 auto;
+}
+
+.vc-box-action:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.vc-box-action-add {
+    color: #e8c49f;
+    background: rgba(197, 139, 89, 0.12);
+    border: 1px solid rgba(197, 139, 89, 0.5);
+}
+
+.vc-box-action-add:hover:not(:disabled) {
+    background: rgba(197, 139, 89, 0.25);
+}
+
+.vc-box-action-remove {
+    color: #e7aaa4;
+    background: rgba(170, 75, 68, 0.12);
+    border: 1px solid rgba(170, 75, 68, 0.45);
+}
+
+.vc-box-action-remove:hover:not(:disabled) {
+    background: rgba(170, 75, 68, 0.25);
+}
+
+.vc-modal-loading,
+.vc-box-list-empty,
+.vc-modal-error {
+    padding: 20px 12px;
+    color: var(--vc-text-muted);
+    text-align: center;
+    font-size: 13px;
+}
+
+.vc-modal-loading i {
+    margin-right: 8px;
+    color: var(--vc-accent);
+}
+
+.vc-modal-error {
+    color: #e7aaa4;
+}
+
+.vc-create-box {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--vc-border);
+}
+
+.vc-create-box-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    color: var(--vc-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.vc-create-box-heading i {
+    color: var(--vc-accent);
+    font-size: 16px;
+}
+
+
+
+#vc-new-box-name,
+#vc-new-tracklist-name,
+#vc-create-box-name {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 13px;
+    color: var(--vc-text);
+    background: var(--vc-background);
+    border: 1px solid var(--vc-border);
+    border-radius: 6px;
+    outline: none;
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+}
+
+#vc-new-box-name:focus {
+    border-color: var(--vc-accent);
+}
+
+.vc-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.vc-create-box-button {
+    width: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}.vc-create-box-input {
+     display: block;
+     width: 100%;
+     box-sizing: border-box;
+     padding: 13px 16px;
+     margin: 22px 0;
+     border: 1px solid #d8dce3;
+     border-radius: 10px;
+     background: #f8f9fb;
+     color: #222;
+     font-family: inherit;
+     font-size: 15px;
+     outline: none;
+     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+ }
+
+.vc-create-box-input::placeholder {
+    color: #9299a5;
+}
+
+.vc-create-box-input:focus {
+    background: #fff;
+    border-color: #7770d8;
+    box-shadow: 0 0 0 3px rgba(119, 112, 216, 0.12);
+}
+
+#vc-new-box-name::placeholder {
+    color: #777b83;
+}
+
+.vc-create-box-button {
+    padding: 10px 14px;
+    color: #17191d;
+    background: var(--vc-accent);
+    border: 1px solid var(--vc-accent);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.vc-create-box-button:hover:not(:disabled) {
+    background: var(--vc-accent-hover);
+}
+
+.vc-create-box-button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.vc-card-removing {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .vc-modal-overlay {
+        padding: 12px;
+    }
+
+    .vc-modal-header {
+        padding: 20px 18px 16px;
+    }
+
+    .vc-modal-body {
+        padding: 18px;
+    }
+
+    .vc-modal-header h2 {
+        font-size: 21px;
+    }
+
+    #vc-create-box-form {
+        flex-direction: column;
+    }
+
+    .vc-create-box-button {
+        min-height: 40px;
+    }
+}
+
+/* =========================================
+   REMOVE ALBUM - CONFIRMATION MODAL
+========================================= */
+
+.vc-remove-modal-overlay {
+    z-index: 12000;
+}
+
+.vc-remove-modal {
+    max-width: 410px;
+    padding: 30px;
+    text-align: center;
+}
+
+.vc-remove-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 17px;
+    color: #e7aaa4;
+    background: rgba(170, 75, 68, 0.15);
+    border: 1px solid rgba(170, 75, 68, 0.35);
+    border-radius: 50%;
+    font-size: 21px;
+}
+
+.vc-remove-modal h2 {
+    margin: 0 0 10px;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 25px;
+}
+
+.vc-remove-description {
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.vc-remove-album-title {
+    margin: 15px 0 0;
+    padding: 11px 14px;
+    color: var(--vc-text);
+    background: var(--vc-surface-light);
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.vc-remove-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.vc-remove-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 39px;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-family: var(--vc-font-main);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-remove-cancel {
+    color: var(--vc-text);
+    background: var(--vc-surface-light);
+    border: 1px solid var(--vc-border);
+}
+
+.vc-remove-cancel:hover {
+    background: #383d45;
+}
+
+.vc-remove-confirm {
+    color: #fff0ed;
+    background: #87433e;
+    border: 1px solid #a6534b;
+}
+
+.vc-remove-confirm:hover:not(:disabled) {
+    background: #a34f47;
+}
+
+.vc-remove-confirm:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+@media (max-width: 480px) {
+    .vc-remove-modal {
+        padding: 24px 19px;
+    }
+
+    .vc-remove-actions {
+        flex-direction: column-reverse;
+    }
+
+    .vc-remove-actions button {
+        width: 100%;
+    }
+}
+#vc-notification-container {
+    z-index: 13000;
+}
+
+
+/* =========================================
+   VINYL COLLECTION - ALBUM DETAILS
+========================================= */
+
+.vc-details-page {
+    min-height: 75vh;
+    padding: 45px 24px 70px;
+    background: var(--vc-background);
+    color: var(--vc-text);
+}
+
+.vc-details-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.vc-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 30px;
+    color: var(--vc-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.vc-back-link:hover {
+    color: var(--vc-accent);
+    text-decoration: none;
+}
+
+/* Album hero */
+
+.vc-album-hero {
+    display: grid;
+    grid-template-columns: minmax(260px, 390px) 1fr;
+    gap: 55px;
+    align-items: center;
+    margin-bottom: 65px;
+}
+
+.vc-album-cover-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 390px;
+}
+
+.vc-album-cover-button {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--vc-border);
+    border-radius: 12px;
+    background: var(--vc-surface);
+    cursor: zoom-in;
+}
+
+.vc-album-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.vc-album-cover-button:hover .vc-album-cover {
+    transform: scale(1.035);
+}
+
+.vc-cover-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.vc-album-cover-button:hover .vc-cover-overlay {
+    opacity: 1;
+}
+
+.vc-cover-image-count {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    color: #fff;
+    background: rgba(20, 20, 20, 0.8);
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.vc-album-cover-placeholder {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border: 1px solid var(--vc-border);
+    border-radius: 12px;
+    background: var(--vc-surface);
+    color: var(--vc-text-muted);
+}
+
+.vc-album-cover-placeholder i {
+    font-size: 75px;
+}
+
+.vc-album-info {
+    min-width: 0;
+}
+
+.vc-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--vc-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.vc-album-title {
+    margin: 0 0 10px;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+
+.vc-album-artist {
+    margin: 0 0 35px;
+    color: var(--vc-text-muted);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.vc-album-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 30px;
+    padding: 25px 0;
+    border-top: 1px solid var(--vc-border);
+    border-bottom: 1px solid var(--vc-border);
+}
+
+.vc-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vc-meta-label {
+    color: var(--vc-text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.vc-meta-value {
+    color: var(--vc-text);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.vc-album-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.vc-album-actions form {
+    margin: 0;
+}
+
+.vc-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+    background: var(--vc-surface);
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-action-button:hover {
+    color: var(--vc-text);
+    background: var(--vc-surface-light);
+    border-color: var(--vc-accent);
+    text-decoration: none;
+}
+
+.vc-action-discogs {
+    color: var(--vc-text-muted);
+}
+
+.vc-action-box {
+    color: var(--vc-accent);
+    border-color: var(--vc-accent);
+}
+
+.vc-action-add {
+    color: #b8e5c0;
+    border-color: #477b54;
+}
+
+.vc-action-remove {
+    color: #f0b5ae;
+    border-color: #874d48;
+}
+
+/* Tracklist */
+
+.vc-tracklist-section {
+    padding-top: 35px;
+    border-top: 1px solid var(--vc-border);
+}
+
+.vc-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.vc-section-heading h2 {
+    margin: 0;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 28px;
+}
+
+.vc-track-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid var(--vc-border);
+    border-radius: 20px;
+    color: var(--vc-text-muted);
+    font-size: 13px;
+}
+
+.vc-tracklist {
+    border-top: 1px solid var(--vc-border);
+}
+
+.vc-track-row {
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr) 75px;
+    align-items: center;
+    gap: 15px;
+    min-height: 54px;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--vc-border);
+    transition: background 0.2s ease;
+}
+
+.vc-track-row:hover {
+    background: var(--vc-surface);
+}
+
+.vc-track-position,
+.vc-track-duration {
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.vc-track-title {
+    color: var(--vc-text);
+    font-size: 14px;
+}
+
+.vc-track-duration {
+    text-align: right;
+}
+
+.vc-empty-tracklist {
+    padding: 20px;
+    color: var(--vc-text-muted);
+    background: var(--vc-surface);
+    border-radius: 8px;
+}
+
+/* Gallery modal */
+
+body.vc-gallery-open {
+    overflow: hidden;
+}
+
+.vc-gallery-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 15000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.vc-gallery-modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.vc-gallery-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+}
+
+.vc-gallery-dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1050px;
+    max-height: 92vh;
+    padding: 25px;
+    overflow: hidden;
+    border: 1px solid var(--vc-border);
+    border-radius: 12px;
+    background: var(--vc-surface);
+    transform: translateY(15px);
+    transition: transform 0.25s ease;
+}
+
+.vc-gallery-modal.active .vc-gallery-dialog {
+    transform: translateY(0);
+}
+
+.vc-gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.vc-gallery-header h2 {
+    margin: 0;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 24px;
+}
+
+.vc-gallery-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--vc-border);
+    border-radius: 50%;
+    background: var(--vc-surface-light);
+    color: var(--vc-text);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.vc-gallery-close:hover {
+    color: var(--vc-accent);
+    border-color: var(--vc-accent);
+}
+
+.vc-gallery-main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    height: min(60vh, 620px);
+    background: #111214;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vc-gallery-main img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.vc-gallery-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background 0.2s ease;
+}
+
+.vc-gallery-nav:hover {
+    background: var(--vc-accent);
+}
+
+.vc-gallery-prev {
+    left: 15px;
+}
+
+.vc-gallery-next {
+    right: 15px;
+}
+
+.vc-gallery-counter {
+    padding: 12px 0;
+    color: var(--vc-text-muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+.vc-gallery-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px 0;
+    overflow-x: auto;
+}
+
+.vc-gallery-thumbnail {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    padding: 3px;
+    border: 1px solid var(--vc-border);
+    border-radius: 6px;
+    background: var(--vc-background);
+    opacity: 0.55;
+    cursor: pointer;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-gallery-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.vc-gallery-thumbnail:hover,
+.vc-gallery-thumbnail.active {
+    opacity: 1;
+    border-color: var(--vc-accent);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .vc-details-page {
+        padding: 25px 16px 45px;
+    }
+
+    .vc-album-hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 45px;
+    }
+
+    .vc-album-cover-wrapper {
+        width: min(100%, 360px);
+        margin: 0 auto;
+    }
+
+    .vc-album-title {
+        font-size: 34px;
+    }
+
+    .vc-album-artist {
+        margin-bottom: 25px;
+        font-size: 18px;
+    }
+
+    .vc-album-meta {
+        gap: 18px;
+    }
+
+    .vc-gallery-modal {
+        padding: 10px;
+    }
+
+    .vc-gallery-dialog {
+        max-height: 95vh;
+        padding: 15px;
+    }
+
+    .vc-gallery-main {
+        height: 55vh;
+    }
+
+    .vc-gallery-thumbnail {
+        flex-basis: 58px;
+        width: 58px;
+        height: 58px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .vc-album-meta {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .vc-album-actions {
+        flex-direction: column;
+    }
+
+    .vc-action-button {
+        width: 100%;
+    }
+
+    .vc-album-actions form {
+        width: 100%;
+    }
+
+    .vc-track-row {
+        grid-template-columns: 40px minmax(0, 1fr) 55px;
+        gap: 8px;
+        padding: 10px 8px;
+    }
+
+    .vc-gallery-nav {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+.vc-action-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: grayscale(0.5);
+}
+
+/* =========================================
+   ALBUM DETAILS - ACTION BUTTONS
+========================================= */
+
+.vc-album-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    width: 100%;
+}
+
+.vc-collection-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 680px;
+}
+
+.vc-collection-actions form {
+    display: flex;
+    width: 100%;
+    margin: 0;
+}
+
+.vc-collection-actions .vc-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
+    font-size: 13px;
+}
+
+.vc-collection-actions .vc-action-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: grayscale(0.5);
+}
+
+@media (max-width: 600px) {
+    .vc-collection-actions {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+}
+
+/* Album details action layout */
+
+.vc-album-actions {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.vc-collection-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 680px;
+}
+
+.vc-collection-actions .vc-action-discogs {
+    grid-column: 1 / -1;
+}
+
+.vc-collection-actions form {
+    display: flex;
+    width: 100%;
+    margin: 0;
+}
+
+.vc-collection-actions .vc-action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: normal;
+}
+
+.vc-collection-actions .vc-action-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+@media (max-width: 600px) {
+    .vc-collection-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .vc-collection-actions .vc-action-discogs {
+        grid-column: auto;
+    }
+}
+
+/* Discogs link below album title and artist */
+.vc-album-source {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+/* Collection actions in one row */
+.vc-album-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.vc-album-actions form {
+    margin: 0;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .vc-album-actions {
+        gap: 8px;
+    }
+
+    .vc-album-actions .vc-action-button {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+/* DETAILS - COLLECTION ACTIONS */
+.vc-album-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.vc-album-actions form {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+}
+
+.vc-album-actions form[hidden] {
+    display: none !important;
+}
+
+.vc-album-actions > button {
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+}
+
+
+/* BOX CARDS */
+
+.vc-box-image {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.vc-box-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.vc-box-image:hover img {
+    transform: scale(1.04);
+}
+
+.vc-box-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.vc-box-date,
+.vc-box-count {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+    color: var(--vc-muted, #888);
+}
+
+.vc-box-date i,
+.vc-box-count i {
+    margin-right: 7px;
+}
+
+
+/* BOX DETAILS HEADER */
+
+.vc-box-details-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.vc-box-heading-info {
+    flex: 1;
+    min-width: 220px;
+}
+
+.vc-box-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 8px 0 12px;
+}
+
+.vc-box-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--vc-muted, #888);
+    font-size: 0.9rem;
+}
+
+.vc-box-meta i {
+    margin-right: 6px;
+}
+
+.vc-box-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.vc-box-back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.vc-box-back-button:hover {
+    background: rgba(255,255,255,0.07);
+    color: inherit;
+    text-decoration: none;
+}
+
+/* BOX DELETE MODAL */
+
+.vc-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.72);
+}
+
+.vc-confirm-overlay.is-visible {
+    display: flex;
+}
+
+.vc-confirm-modal {
+    width: 100%;
+    max-width: 430px;
+    padding: 30px;
+    border-radius: 12px;
+    background: #252525;
+    color: #f5f1e9;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+}
+
+.vc-confirm-icon {
+    font-size: 2rem;
+    color: #c78b55;
+    margin-bottom: 16px;
+}
+
+.vc-confirm-modal h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+.vc-confirm-modal p {
+    color: #c5c0b8;
+}
+
+.vc-confirm-box-name {
+    font-weight: 700;
+    color: #f5f1e9 !important;
+    margin: 18px 0;
+}
+
+.vc-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.vc-confirm-cancel,
+.vc-confirm-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.vc-confirm-cancel {
+    background: #444;
+    color: #fff;
+}
+
+.vc-confirm-cancel:hover {
+    background: #555;
+    color: #fff;
+}
+
+.vc-confirm-delete {
+    background: #a94d43;
+    color: #fff;
+}
+
+.vc-confirm-delete:hover {
+    background: #bd5b50;
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 576px) {
+    .vc-box-main-title {
+        font-size: 1.65rem;
+    }
+
+    .vc-box-heading-actions {
+        width: 100%;
+    }
+
+    .vc-box-heading-actions > * {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .vc-confirm-modal {
+        padding: 24px 18px;
+    }
+
+    .vc-confirm-actions {
+        flex-direction: column;
+    }
+}
+
+.vc-album-actions button.vc-remove-button,
+.vc-box-heading-actions button.vc-remove-button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* Album cards - equal height and bottom-aligned buttons */
+
+.vc-album-grid {
+    align-items: stretch;
+}
+
+.vc-album-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.vc-album-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.vc-album-info > .vc-add-form,
+.vc-album-info > a.vc-add-button {
+    margin-top: auto;
+}
+
+
+/* =========================================
+   SONG COLLECTION
+========================================= */
+
+.vc-songs-section {
+    width: 100%;
+}
+
+.vc-songs-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.vc-songs-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: min(100%, 360px);
+    min-height: 42px;
+    padding: 0 13px;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+}
+
+.vc-songs-search i {
+    color: var(--vc-text-muted);
+}
+
+.vc-songs-search input {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+}
+
+.vc-songs-search input::placeholder {
+    color: var(--vc-text-muted);
+}
+
+.vc-songs-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.vc-songs-select {
+    min-height: 42px;
+    max-width: 210px;
+    padding: 0 12px;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+}
+
+.vc-songs-select:focus {
+    border-color: var(--vc-accent);
+}
+
+.vc-songs-select option {
+    background: var(--vc-surface);
+    color: var(--vc-text);
+}
+
+/* List heading */
+
+.vc-songs-list {
+    width: 100%;
+    border-top: 1px solid var(--vc-border);
+}
+
+
+.vc-song-row {
+    display: grid;
+    grid-template-columns:
+        minmax(220px, 2fr)
+        minmax(130px, 1.2fr)
+        minmax(110px, 1fr)
+        75px
+        90px;
+    align-items: center;
+    gap: 18px;
+}
+
+.vc-songs-list-heading {
+    min-height: 43px;
+    padding: 0 17px;
+    color: var(--vc-text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Individual song */
+
+.vc-song-row {
+    min-height: 76px;
+    padding: 12px 17px;
+    border-top: 1px solid var(--vc-border);
+    background: transparent;
+    transition: background 0.2s ease;
+}
+
+.vc-song-row:hover {
+    background: var(--vc-surface);
+}
+
+.vc-song-main {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.vc-song-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+    background: var(--vc-surface-light);
+    color: var(--vc-accent);
+    font-size: 16px;
+}
+
+.vc-song-title-wrapper {
+    min-width: 0;
+}
+
+.vc-song-title {
+    display: block;
+    overflow: hidden;
+    color: var(--vc-text);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-song-artist {
+    display: block;
+    margin-top: 3px;
+    overflow: hidden;
+    color: var(--vc-text-muted);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-song-album,
+.vc-song-genre {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--vc-text-muted);
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-song-album:hover {
+    color: var(--vc-accent);
+}
+
+.vc-song-duration {
+    color: var(--vc-text-muted);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.vc-song-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 34px;
+    padding: 7px 11px;
+    border: 1px solid rgba(197, 139, 89, 0.5);
+    border-radius: 5px;
+    background: rgba(197, 139, 89, 0.1);
+    color: var(--vc-accent);
+    font-family: var(--vc-font-main);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.vc-song-add:hover {
+    background: rgba(197, 139, 89, 0.22);
+    color: var(--vc-accent-hover);
+}
+
+/* Empty collection */
+
+.vc-songs-empty {
+    padding: 65px 20px;
+    text-align: center;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 10px;
+}
+
+.vc-songs-empty i {
+    margin-bottom: 18px;
+    color: var(--vc-accent);
+    font-size: 42px;
+}
+
+.vc-songs-empty h2 {
+    margin: 0 0 10px;
+    color: var(--vc-text);
+    font-family: var(--vc-font-heading);
+    font-size: 25px;
+}
+
+.vc-songs-empty p {
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .vc-songs-list-heading {
+        display: none;
+    }
+
+    .vc-song-row {
+        grid-template-columns: minmax(0, 1fr) 75px 85px;
+        gap: 12px;
+    }
+
+    .vc-song-main {
+        grid-column: 1;
+    }
+
+    .vc-song-album {
+        grid-column: 1;
+        padding-left: 55px;
+        margin-top: -10px;
+    }
+
+    .vc-song-genre {
+        display: none;
+    }
+
+    .vc-song-duration {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .vc-song-add {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
+@media (max-width: 520px) {
+    .vc-songs-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .vc-songs-search {
+        width: 100%;
+    }
+
+    .vc-songs-filters {
+        width: 100%;
+    }
+
+    .vc-songs-select {
+        flex: 1;
+        max-width: none;
+    }
+
+    .vc-song-row {
+        grid-template-columns: minmax(0, 1fr) 55px;
+        gap: 8px;
+        padding: 12px 9px;
+    }
+
+    .vc-song-main {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .vc-song-album {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 55px;
+        margin-top: -7px;
+    }
+
+    .vc-song-duration {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .vc-song-add {
+        grid-column: 2;
+        grid-row: 2;
+        padding: 6px;
+    }
+
+    .vc-song-add i {
+        display: none;
+    }
+}
+
+
+
+/* SONGS - SEARCH BUTTON */
+
+.vc-songs-search button {
+    border: 1px solid var(--vc-accent);
+    background: var(--vc-accent);
+    color: #17191d;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--vc-font-main);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.vc-songs-search button:hover {
+    background: var(--vc-accent-hover);
+    border-color: var(--vc-accent-hover);
+    transform: translateY(-1px);
+}
+
+/* SONGS - SORTING AND GENRE FILTER */
+
+.vc-songs-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    width: 100%;
+    margin-top: 18px;
+}
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    width: 100%;
+}
+
+.vc-songs-control-label {
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vc-songs-sort {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.vc-songs-sort-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    border: 1px solid var(--vc-border);
+    border-radius: 8px;
+    background: var(--vc-surface);
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.vc-songs-sort-option:hover {
+    color: var(--vc-accent-hover);
+    border-color: var(--vc-accent);
+    background: var(--vc-surface-light);
+}
+
+.vc-songs-sort-option.active {
+    color: #17191d;
+    background: var(--vc-accent);
+    border-color: var(--vc-accent);
+    font-weight: 700;
+}
+
+.vc-songs-sort-option.active:hover {
+    color: #17191d;
+    background: var(--vc-accent-hover);
+    border-color: var(--vc-accent-hover);
+}
+
+@media (max-width: 600px) {
+    .vc-songs-sort {
+        gap: 7px;
+    }
+
+    .vc-songs-sort-option {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* SONGS - SORTING AND GENRE FILTER */
+
+.vc-songs-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    margin-top: 18px;
+}
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    width: 100%;
+}
+
+.vc-songs-control-label {
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: none;
+}
+
+.vc-songs-sort {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+}
+
+.vc-songs-sort-option {
+    display: inline-block;
+    padding: 3px 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-songs-sort-option:hover {
+    color: var(--vc-accent-hover);
+    border-bottom-color: var(--vc-accent);
+    background: transparent;
+}
+
+.vc-songs-sort-option.active {
+    color: var(--vc-accent);
+    border-bottom-color: var(--vc-accent);
+    background: transparent;
+    font-weight: 700;
+}
+
+.vc-songs-sort-option.active:hover {
+    color: var(--vc-accent-hover);
+    border-bottom-color: var(--vc-accent-hover);
+    background: transparent;
+}
+
+/* SONGS - SEARCH BUTTON */
+
+.vc-songs-search button {
+    padding: 9px 17px;
+    border: 1px solid var(--vc-accent);
+    border-radius: 7px;
+    background: var(--vc-accent);
+    color: #17191d;
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-songs-search button:hover {
+    background: var(--vc-accent-hover);
+    border-color: var(--vc-accent-hover);
+}
+
+@media (max-width: 600px) {
+    .vc-songs-sort {
+        gap: 12px;
+    }
+
+    .vc-songs-sort-option {
+        font-size: 13px;
+    }
+}
+/* SONGS - SEARCH ARROW */
+
+.vc-songs-search .vc-search-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--vc-accent);
+    font-size: 21px;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.vc-songs-search .vc-search-arrow:hover {
+    color: var(--vc-accent-hover);
+    background: transparent;
+    transform: translateX(2px);
+}
+
+/* SORTING AND GENRE FILTER - SEPARATE ROWS */
+
+.vc-songs-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    width: 100%;
+}
+
+/* =========================================
+   SONGS - SEARCH ARROW
+========================================= */
+
+.vc-songs-search .vc-search-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--vc-accent);
+    font-size: 21px;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.vc-songs-search .vc-search-arrow:hover,
+.vc-songs-search .vc-search-arrow:focus {
+    color: var(--vc-accent-hover);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+/* =========================================
+   SONGS - SORTING AND GENRE FILTER
+========================================= */
+
+.vc-songs-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+}
+
+.vc-songs-control-label {
+    display: block;
+    color: var(--vc-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.vc-songs-sort {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+}
+
+.vc-songs-sort-option,
+.vc-songs-sort-option:hover,
+.vc-songs-sort-option:focus {
+    display: inline-block;
+    padding: 3px 0;
+    border: none;
+    border-bottom: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none !important;
+    box-shadow: none;
+    outline: none;
+}
+
+.vc-songs-sort-option:hover,
+.vc-songs-sort-option:focus {
+    color: var(--vc-accent-hover);
+}
+
+.vc-songs-sort-option.active {
+    color: var(--vc-accent);
+    font-weight: 700;
+    text-decoration: none !important;
+    border: none;
+}
+
+.vc-songs-sort-option.active:hover {
+    color: var(--vc-accent-hover);
+    border: none;
+    text-decoration: none !important;
+}
+
+.vc-songs-sort-option::after,
+.vc-songs-sort-option:hover::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* SEARCH ARROW - YELLOW */
+
+.vc-songs-search button.vc-search-arrow,
+.vc-songs-search button.vc-search-arrow i {
+    color: #f5c400 !important;
+}
+
+.vc-songs-search button.vc-search-arrow {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.vc-songs-search button.vc-search-arrow:hover,
+.vc-songs-search button.vc-search-arrow:hover i {
+    color: #ffd633 !important;
+    background: transparent !important;
+}
+
+/* =========================================
+   SONGS - OVERVIEW LAYOUT
+========================================= */
+
+.vc-songs-overview {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 35px;
+    align-items: start;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* LEFT PANEL */
+
+.vc-songs-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    min-width: 0;
+}
+
+.vc-songs-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 42px;
+    padding: 0 10px 0 13px;
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 7px;
+}
+
+.vc-songs-search input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--vc-text);
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+}
+
+.vc-songs-search input::placeholder {
+    color: var(--vc-text-muted);
+}
+
+/* SEARCH ARROW */
+
+.vc-songs-search .vc-search-arrow,
+.vc-songs-search .vc-search-arrow:focus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none !important;
+    border-radius: 5px;
+    background: transparent !important;
+    color: var(--vc-accent) !important;
+    font-size: 19px;
+    box-shadow: none !important;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.vc-songs-search .vc-search-arrow i {
+    color: inherit !important;
+}
+
+.vc-songs-search .vc-search-arrow:hover {
+    color: var(--vc-accent-hover) !important;
+    background: transparent !important;
+    transform: translateX(2px);
+}
+
+/* TRACK COUNT */
+
+.vc-songs-count {
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* RIGHT PANEL */
+
+.vc-songs-main-controls {
+    min-width: 0;
+    width: 100%;
+}
+
+.vc-songs-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+}
+
+/* SORTING AND GENRE GROUPS */
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.vc-songs-control-label {
+    display: block;
+    color: var(--vc-text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* LINKS */
+
+.vc-songs-sort {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 20px;
+    width: 100%;
+    min-width: 0;
+}
+
+.vc-songs-sort-option,
+.vc-songs-sort-option:hover,
+.vc-songs-sort-option:focus {
+    display: inline-block;
+    flex: 0 0 auto;
+    padding: 3px 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: var(--vc-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: none;
+    outline: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-songs-sort-option:hover,
+.vc-songs-sort-option:focus {
+    color: var(--vc-accent-hover);
+    border-bottom-color: var(--vc-accent);
+}
+
+.vc-songs-sort-option.active {
+    color: var(--vc-accent);
+    border-bottom-color: var(--vc-accent);
+    font-weight: 700;
+}
+
+.vc-songs-sort-option.active:hover {
+    color: var(--vc-accent-hover);
+    border-bottom-color: var(--vc-accent-hover);
+}
+
+/* REMOVE OLD YELLOW ARROW OVERRIDE */
+
+.vc-songs-search button.vc-search-arrow,
+.vc-songs-search button.vc-search-arrow i {
+    color: var(--vc-accent) !important;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .vc-songs-overview {
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 25px;
+    }
+
+    .vc-songs-sort {
+        gap: 8px 15px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .vc-songs-overview {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .vc-songs-sidebar {
+        max-width: 100%;
+    }
+
+    .vc-songs-controls {
+        gap: 18px;
+    }
+
+    .vc-songs-sort {
+        gap: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .vc-songs-sort {
+        gap: 8px 13px;
+    }
+
+    .vc-songs-sort-option {
+        font-size: 13px;
+    }
+
+}
+
+.vc-songs-sort-option,
+.vc-songs-sort-option:hover,
+.vc-songs-sort-option:focus,
+.vc-songs-sort-option:active,
+.vc-songs-sort-option.active {
+    border-bottom: none !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+/* =========================================
+   SONGS - FINAL ALIGNMENT
+========================================= */
+
+/* LEFT PANEL */
+.vc-songs-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-self: stretch;
+    text-align: left;
+}
+
+/* RIGHT PANEL */
+.vc-songs-main-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.vc-songs-controls {
+    align-items: flex-end;
+    width: 100%;
+}
+
+/* SORTING AND GENRE GROUPS */
+.vc-songs-control-group {
+    align-items: flex-end;
+    text-align: right;
+}
+
+/* OPTIONS */
+.vc-songs-sort {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+/* RESPONSIVE */
+@media (max-width: 650px) {
+    .vc-songs-sidebar {
+        justify-content: flex-start;
+    }
+
+    .vc-songs-main-controls,
+    .vc-songs-controls,
+    .vc-songs-control-group {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .vc-songs-sort {
+        justify-content: flex-start;
+    }
+}
+.vc-song-genre {
+    text-align: right;
+}
+
+.vc-tracklist-clear-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   TRACKLIST - SINGLE ROW LAYOUT
+========================================= */
+
+.vc-songs-list .vc-song-row {
+    display: grid;
+    grid-template-columns:
+        28px
+        20px
+        minmax(200px, 2fr)
+        minmax(120px, 1.2fr)
+        minmax(100px, 1fr)
+        75px
+        90px;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    min-height: 64px;
+    padding: 10px 14px;
+}
+
+.vc-song-position {
+    text-align: center;
+    color: var(--vc-text-muted);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.vc-song-drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vc-text-muted);
+    cursor: grab;
+}
+
+.vc-song-main {
+    min-width: 0;
+}
+
+.vc-song-album,
+.vc-song-genre,
+.vc-song-duration {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Disable previous mobile rules that moved album to another row */
+
+@media (max-width: 900px) {
+    .vc-songs-list .vc-song-row {
+        grid-template-columns:
+            24px
+            18px
+            minmax(140px, 2fr)
+            minmax(90px, 1fr)
+            65px;
+        gap: 9px;
+    }
+
+    .vc-songs-list .vc-song-main,
+    .vc-songs-list .vc-song-album,
+    .vc-songs-list .vc-song-duration {
+        grid-column: auto;
+        grid-row: auto;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    .vc-songs-list .vc-song-genre {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .vc-songs-list .vc-song-row {
+        grid-template-columns: 20px 16px minmax(0, 1fr) 55px;
+        gap: 7px;
+        padding: 9px 6px;
+    }
+
+    .vc-songs-list .vc-song-main,
+    .vc-songs-list .vc-song-album,
+    .vc-songs-list .vc-song-duration {
+        grid-column: auto;
+        grid-row: auto;
+        padding-left: 0;
+        margin-top: 0;
+    }
+}
+
+/* Drag & drop - miejsce docelowe utworu */
+
+.vc-songs-list .vc-song-row {
+    position: relative;
+}
+
+.vc-songs-list .vc-song-row.is-drop-before::before,
+.vc-songs-list .vc-song-row.is-drop-after::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 3px;
+    background: var(--vc-primary, #777);
+    border-radius: 3px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.vc-songs-list .vc-song-row.is-drop-before::before {
+    top: -2px;
+}
+
+.vc-songs-list .vc-song-row.is-drop-after::after {
+    bottom: -2px;
+}
+
+/* Przeciągany utwór */
+
+.vc-songs-list .vc-song-row.is-dragging {
+    opacity: 0.4;
+}
+
+/* Uchwyt drag & drop - sortowanie inne niż My Order */
+
+.vc-song-drag-handle.is-disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Aktywny uchwyt w My Order */
+
+.vc-songs-list[data-sort-mode="manual"] .vc-song-drag-handle:not(.is-disabled) {
+    opacity: 1;
+    cursor: grab;
+}
+
+.vc-songs-list[data-sort-mode="manual"] .vc-song-drag-handle:not(.is-disabled):active {
+    cursor: grabbing;
+}
+
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 14px;
+}
+
+.vc-playback-time-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.vc-playback-time strong {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.vc-playback-time-estimated {
+    font-size: 11px;
+    color: #999;
+}
+
+#vc-new-box-name,
+#vc-new-tracklist-name,
+#vc-create-box-name,
+#vc-create-add-name {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 13px;
+    color: var(--vc-text);
+    background: var(--vc-background);
+    border: 1px solid var(--vc-border);
+    border-radius: 6px;
+    outline: none;
+    font-family: var(--vc-font-main);
+    font-size: 13px;
+}
+
+#vc-new-box-name:focus,
+#vc-create-add-name:focus {
+    border-color: var(--vc-accent);
+}
+
+.vc-box-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    width: 90px;
+    min-width: 90px;
+    min-height: 36px;
+    box-sizing: border-box;
+
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.vc-modal {
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--vc-surface);
+    border: 1px solid var(--vc-border);
+    border-radius: 13px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(18px);
+    transition: transform 0.25s ease;
+}
+
+.vc-modal-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    padding: 22px 27px 27px;
+}
+
+.vc-box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    flex: 0 1 280px;
+    min-height: 0;
+    max-height: 280px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 8px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #666 transparent;
+}
+
+.vc-create-box {
+    flex: 0 0 auto;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--vc-border);
+}
+
+/* Playback settings */
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 14px;
+    max-width: 360px;
+}
+
+.vc-playback-settings label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #aaa;
+}
+
+/* Playback type select */
+.vc-playback-settings select {
+    width: 100%;
+    padding: 9px 36px 9px 12px;
+    border: 1px solid #3b3b3b;
+    border-radius: 7px;
+    background-color: #202020;
+    color: #eee;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.vc-playback-settings select:hover {
+    border-color: #666;
+}
+
+.vc-playback-settings select:focus {
+    border-color: #b58a45;
+    background-color: #252525;
+}
+
+/* DJ transition settings */
+.vc-transition-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 5px;
+}
+
+.vc-transition-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Range slider */
+.vc-transition-control input[type="range"] {
+    flex: 1;
+    min-width: 0;
+    height: 5px;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #444;
+    cursor: pointer;
+    outline: none;
+}
+
+.vc-transition-control input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #b58a45;
+    border: 2px solid #202020;
+    box-shadow: 0 0 0 1px #b58a45;
+    transition: transform 0.15s;
+}
+
+.vc-transition-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.vc-transition-control input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #b58a45;
+    border: 2px solid #202020;
+    box-shadow: 0 0 0 1px #b58a45;
+}
+
+.vc-transition-control input[type="range"]:focus-visible {
+    outline: 2px solid #b58a45;
+    outline-offset: 5px;
+}
+
+/* Slider value */
+#vc-transition-value {
+    min-width: 65px;
+    color: #ddd;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+}
+.vc-playback-mode {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+}
+
+.vc-playback-mode .vc-playback-option {
+    flex: 0 0 auto;
+}
+
+.vc-tracklist-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-tracklist-playback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.vc-tracklist-playback .vc-playback-time {
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.vc-tracklist-tools .vc-songs-main-controls {
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-tracklist-tools .vc-songs-control-group {
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .vc-tracklist-tools {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .vc-tracklist-tools .vc-songs-main-controls {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-tracklist-tools .vc-songs-control-group {
+        align-items: flex-start;
+    }
+}
+
+
+/* Playback and sorting layout */
+.vc-tracklist-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-tracklist-playback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+}
+
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.vc-playback-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    width: 100%;
+}
+
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 0;
+}
+
+.vc-playback-time-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.vc-playback-time-estimated {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Sorting on the right */
+.vc-songs-main-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.vc-tracklist-clear-action {
+    align-self: flex-end;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .vc-tracklist-tools {
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .vc-songs-main-controls {
+        align-items: flex-start;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-songs-control-group {
+        align-items: flex-start;
+    }
+
+    .vc-tracklist-clear-action {
+        align-self: flex-start;
+    }
+}
+/* =========================================
+   TRACKLIST DETAILS - FINAL SPACING
+========================================= */
+
+.vc-tracklist-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Left: Playback */
+.vc-tracklist-playback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+    align-self: flex-start;
+}
+
+/* Playback type */
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.vc-playback-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+/* Playback time */
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 0;
+}
+
+.vc-playback-time-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+/* Right: Sort by + Clear Playlist */
+.vc-tracklist-tools .vc-songs-main-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: stretch;
+    gap: 14px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-tracklist-tools .vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.vc-tracklist-tools .vc-songs-sort {
+    justify-content: flex-end;
+}
+
+.vc-tracklist-clear-action {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .vc-tracklist-tools {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+
+    .vc-tracklist-tools .vc-songs-main-controls {
+        align-self: flex-start;
+        align-items: flex-start;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-tracklist-tools .vc-songs-control-group {
+        align-items: flex-start;
+    }
+
+    .vc-tracklist-tools .vc-songs-sort {
+        justify-content: flex-start;
+    }
+
+    .vc-tracklist-clear-action {
+        align-self: flex-start;
+    }
+}
+
+.vc-songs-sidebar {
+    gap: 10px;
+}
+
+.vc-songs-count {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   TRACKLIST DETAILS - LAYOUT
+========================================= */
+
+/* Search and track count */
+.vc-songs-overview {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.vc-songs-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+}
+
+.vc-songs-sidebar .vc-search {
+    margin: 0;
+}
+
+.vc-songs-count {
+    margin: 0;
+}
+
+/* Playback and sorting area */
+.vc-tracklist-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* Left side - playback */
+.vc-tracklist-playback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 14px;
+    min-width: 0;
+}
+
+/* Playback type */
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.vc-playback-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    width: auto;
+}
+
+/* Playback time */
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 0;
+}
+
+.vc-playback-time-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+/* Right side - sorting and clear */
+.vc-tracklist-tools .vc-songs-main-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: stretch;
+    gap: 14px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-tracklist-tools .vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.vc-tracklist-tools .vc-songs-sort {
+    justify-content: flex-end;
+}
+
+.vc-tracklist-clear-action {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin: 0;
+}
+
+/* Track list */
+.vc-songs-list {
+    width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .vc-tracklist-tools {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+
+    .vc-tracklist-tools .vc-songs-main-controls {
+        align-self: flex-start;
+        align-items: flex-start;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-tracklist-tools .vc-songs-control-group {
+        align-items: flex-start;
+    }
+
+    .vc-tracklist-tools .vc-songs-sort {
+        justify-content: flex-start;
+    }
+
+    .vc-tracklist-clear-action {
+        align-self: flex-start;
+    }
+}
+
+.vc-playback-time-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.vc-playback-time-main strong {
+    white-space: nowrap;
+}
+
+/* Playback type and DJ MIX transition in one row */
+.vc-playback-settings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.vc-playback-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+}
+
+.vc-transition-settings {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+}
+
+.vc-transition-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vc-transition-control input[type="range"] {
+    width: 120px;
+}
+
+/* Playback layout: info on left, slider on right */
+.vc-playback-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.vc-playback-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+}
+
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.vc-transition-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding-top: 0;
+}
+
+.vc-transition-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vc-transition-control input[type="range"] {
+    width: 140px;
+}
+
+@media (max-width: 768px) {
+    .vc-playback-layout {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.vc-playback-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.vc-playback-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.vc-transition-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+@media (max-width: 768px) {
+    .vc-playback-layout {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* =========================================
+   TRACKLIST - TWO ROW LAYOUT
+========================================= */
+
+.vc-tracklist-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* First row: Playback Type + Slider */
+.vc-tracklist-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.vc-playback-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+}
+
+.vc-transition-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+}
+
+.vc-transition-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vc-transition-control input[type="range"] {
+    width: 140px;
+}
+
+/* Second row: Playback Time + Sort/Clear */
+.vc-tracklist-bottom-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-playback-time-wrapper {
+    min-width: 0;
+}
+
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 0;
+}
+
+.vc-playback-time-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.vc-playback-time-main strong {
+    white-space: nowrap;
+}
+
+/* Sorting on the right */
+.vc-tracklist-bottom-row .vc-songs-main-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-tracklist-bottom-row .vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.vc-tracklist-bottom-row .vc-songs-sort {
+    justify-content: flex-end;
+}
+
+.vc-tracklist-bottom-row .vc-tracklist-clear-action {
+    align-self: flex-end;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .vc-tracklist-top-row {
+        flex-wrap: wrap;
+        gap: 16px 24px;
+    }
+
+    .vc-transition-settings {
+        max-width: 100%;
+    }
+
+    .vc-tracklist-bottom-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .vc-tracklist-bottom-row .vc-songs-main-controls {
+        align-items: flex-start;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-tracklist-bottom-row .vc-songs-control-group {
+        align-items: flex-start;
+    }
+
+    .vc-tracklist-bottom-row .vc-songs-sort {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .vc-tracklist-bottom-row .vc-tracklist-clear-action {
+        align-self: flex-start;
+    }
+}
+/* Wyrównanie suwaka do Playback Type */
+.vc-tracklist-top-row {
+    align-items: flex-start;
+}
+
+.vc-transition-settings {
+    padding-top: 0;
+    margin-top: 0;
+    transform: translateY(20px);
+}
+
+/* Playback Time - etykieta nad czasem */
+.vc-playback-time-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.vc-playback-time-main strong {
+    white-space: nowrap;
+}
+.vc-transition-settings {
+    padding-top: 5px;
+    margin-top: 0;
+    transform: translateY(10px);
+}
+
+.vc-transition-settings > label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    line-height: normal;
+}
+
+.vc-transition-control {
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   TRACKLIST DETAILS - PLAYBACK LAYOUT
+========================================= */
+
+.vc-tracklist-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* First row: Playback Type + Transition */
+
+.vc-tracklist-top-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-playback-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 0;
+    max-width: none;
+    flex-shrink: 0;
+}
+
+.vc-playback-settings label,
+.vc-transition-settings > label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #aaa;
+}
+
+.vc-playback-mode {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+}
+
+.vc-playback-mode .vc-playback-option {
+    flex: 0 0 auto;
+}
+
+.vc-transition-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    transform: none;
+}
+
+.vc-transition-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.vc-transition-control input[type="range"] {
+    width: 140px;
+    flex: 0 1 140px;
+    height: 5px;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #444;
+    cursor: pointer;
+    outline: none;
+}
+
+.vc-transition-control input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #b58a45;
+    border: 2px solid #202020;
+    box-shadow: 0 0 0 1px #b58a45;
+}
+
+.vc-transition-control input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #b58a45;
+    border: 2px solid #202020;
+    box-shadow: 0 0 0 1px #b58a45;
+}
+
+.vc-transition-control input[type="range"]:focus-visible {
+    outline: 2px solid #b58a45;
+    outline-offset: 5px;
+}
+
+#vc-transition-value {
+    min-width: 65px;
+    color: #ddd;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Second row: Playback Time + Sorting */
+
+.vc-tracklist-bottom-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+.vc-playback-time-wrapper {
+    min-width: 0;
+}
+
+.vc-playback-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 0;
+}
+
+.vc-playback-time-label {
+    color: #888;
+    font-size: 12px;
+}
+
+.vc-playback-time-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.vc-playback-time strong {
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.vc-playback-time-estimated {
+    color: #999;
+    font-size: 11px;
+}
+
+/* Sorting + Clear Playlist */
+
+.vc-tracklist-bottom-row .vc-songs-main-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    width: auto;
+    margin-left: auto;
+    text-align: right;
+}
+
+.vc-tracklist-bottom-row .vc-songs-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    width: auto;
+}
+
+.vc-tracklist-bottom-row .vc-songs-sort {
+    justify-content: flex-end;
+    width: auto;
+}
+
+.vc-tracklist-bottom-row .vc-tracklist-clear-action {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .vc-tracklist-top-row {
+        flex-wrap: wrap;
+        gap: 16px 24px;
+    }
+
+    .vc-tracklist-bottom-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .vc-tracklist-bottom-row .vc-songs-main-controls,
+    .vc-tracklist-bottom-row .vc-songs-control-group {
+        align-items: flex-start;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .vc-tracklist-bottom-row .vc-songs-sort {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .vc-tracklist-bottom-row .vc-tracklist-clear-action {
+        align-self: flex-start;
+    }
+}
+
+/* =========================================
+   MY TRACKS - TRACKLIST STYLE
+========================================= */
+
+/* Desktop: five columns, without position and drag handle */
+
+.vc-tracks-page .vc-songs-list .vc-song-row {
+    display: grid;
+    grid-template-columns:
+        minmax(200px, 2fr)
+        minmax(130px, 1.2fr)
+        minmax(110px, 1fr)
+        75px
+        90px;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    min-height: 64px;
+    padding: 10px 14px;
+    box-sizing: border-box;
+}
+
+.vc-tracks-page .vc-song-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.vc-tracks-page .vc-song-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+}
+
+.vc-tracks-page .vc-song-title-wrapper {
+    min-width: 0;
+}
+
+.vc-tracks-page .vc-song-title,
+.vc-tracks-page .vc-song-artist {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-tracks-page .vc-song-album,
+.vc-tracks-page .vc-song-genre,
+.vc-tracks-page .vc-song-duration {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-tracks-page .vc-song-genre {
+    text-align: right;
+}
+
+.vc-tracks-page .vc-song-duration {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.vc-tracks-page .vc-song-add {
+    justify-self: end;
+    min-width: 75px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .vc-tracks-page .vc-songs-list .vc-song-row {
+        grid-template-columns:
+            minmax(0, 2fr)
+            minmax(90px, 1fr)
+            65px
+            85px;
+        gap: 9px;
+    }
+
+    .vc-tracks-page .vc-song-main {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .vc-tracks-page .vc-song-album {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 0;
+        margin: 0;
+    }
+
+    .vc-tracks-page .vc-song-genre {
+        display: none;
+    }
+
+    .vc-tracks-page .vc-song-duration {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .vc-tracks-page .vc-song-add {
+        grid-column: 4;
+        grid-row: 1;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+    .vc-tracks-page .vc-songs-list .vc-song-row {
+        grid-template-columns: minmax(0, 1fr) 55px;
+        gap: 7px 8px;
+        padding: 10px 9px;
+    }
+
+    .vc-tracks-page .vc-song-main {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .vc-tracks-page .vc-song-album {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 54px;
+        margin: -7px 0 0;
+    }
+
+    .vc-tracks-page .vc-song-duration {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .vc-tracks-page .vc-song-add {
+        grid-column: 2;
+        grid-row: 2;
+        min-width: 0;
+        padding: 6px;
+    }
+}
+
+.vc-login-eyebrow {
+    color: #b08a32;
+}
+
+.vc-login-error {
+    display: block;
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* DELETE ACCOUNT */
+
+.vc-login-delete-account {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.vc-login-delete-heading h3 {
+    margin-bottom: 8px;
+    color: #dc3545;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.vc-login-delete-heading p {
+    margin-bottom: 18px;
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.vc-login-delete-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 18px;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    background: transparent;
+    color: #dc3545;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.vc-login-delete-button:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.vc-login-delete-button:focus-visible {
+    outline: 3px solid rgba(220, 53, 69, 0.25);
+    outline-offset: 3px;
+}

@@ -16,3 +16,4 @@ _site/
 *.logs
 .idea/
 .eclipse
+.env

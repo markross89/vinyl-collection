@@ -1,315 +1,385 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-    <title>Vinyl Collection - Details</title>
+<jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-    <!-- Custom fonts for this template-->
-    <link
-            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+<main class="vc-details-page">
+    <div class="vc-details-container">
 
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
-  </head>
-
-  <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <!-- Sidebar - Brand -->
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="<c:url value="/home/start"/>"
-        >
-          <div class="sidebar-brand-text mx-3">Vinyl collection</div>
+        <!-- Back -->
+        <!-- Back -->
+        <a href="<c:url value='/home/start'/>" class="vc-back-link">
+            <i class="fas fa-arrow-left"></i>
+            <spring:message code="common.back" text="Back"/>
         </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
+        <!-- Album Heading -->
+        <div class="vc-details-heading">
 
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
-        <sec:authorize access="isAuthenticated()">
-        <!-- Heading -->
-        <div class="sidebar-heading">Menu</div>
+            <span class="vc-eyebrow">Discogs release</span>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+            <h1 class="vc-album-title">
+                <c:out value="${albumDetails.title}"/>
+            </h1>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/album/albums"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Albums</span></a
-          >
-        </li>
+            <p class="vc-album-artist">
+                <c:out value="${albumDetails.artist}"/>
+            </p>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/track/tracks"/>">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Songs</span></a
-          >
-        </li>
+        </div>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Track lists</span></a
-          >
-        </li>
+        <!-- Album Hero -->
+        <section class="vc-album-hero">
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/box/boxes"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Boxes</span></a
-          >
-        </li>
+            <!-- Cover -->
+            <div class="vc-album-cover-wrapper">
+
+                <c:choose>
+                    <c:when test="${not empty images}">
+                        <button type="button"
+                                class="vc-album-cover-button"
+                                id="vc-open-gallery"
+                                aria-label="Open album gallery">
+
+                            <img src="<c:out value='${images[0].uri}'/>"
+                                 alt="<c:out value='${albumDetails.title}'/>"
+                                 class="vc-album-cover"/>
+
+                            <span class="vc-cover-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </span>
+                        </button>
+
+                        <c:if test="${fn:length(images) gt 1}">
+                            <span class="vc-cover-image-count">
+                                <i class="fas fa-images"></i>
+                                <c:out value="${fn:length(images)}"/>
+                            </span>
+                        </c:if>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="vc-album-cover-placeholder">
+                            <i class="fas fa-record-vinyl"></i>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
+
+            <!-- Album Information -->
+            <div class="vc-album-info">
 
 
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block" />
-        </sec:authorize>
+                <c:if test="${not empty albumDetails.uri}">
+                    <div class="vc-album-source">
+                        <a href="<c:out value='${albumDetails.uri}'/>"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="vc-action-button vc-action-discogs">
 
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/contact"/>"> <span>Contact</span></a>
-        </li>
-        <sec:authorize access="isAnonymous()">
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/login"/>"> <span>Login</span></a>
+                            <i class="fas fa-external-link-alt"></i>
+                            <spring:message code="album.details.discogs"/>
+                        </a>
+                    </div>
+                </c:if>
 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
-        </li>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ADMIN')">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/user/userList"/>"> <span>Users</span></a>
-          </li>
-        </sec:authorize>
-      </ul>
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <!-- Topbar Search -->
+                <!-- Metadata -->
+                <div class="vc-album-meta">
 
-            <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
-            >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control bg-light border-0 small"
-                  placeholder="Search Album"
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                  name="value"
-                />
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
+                    <c:if test="${not empty albumDetails.label}">
+                        <div class="vc-meta-item">
+                            <span class="vc-meta-label">Label</span>
+                            <span class="vc-meta-value">
+                                <c:out value="${albumDetails.label}"/>
+                            </span>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${not empty albumDetails.catno}">
+                        <div class="vc-meta-item">
+                            <span class="vc-meta-label">Catalog number</span>
+                            <span class="vc-meta-value">
+                                <c:out value="${albumDetails.catno}"/>
+                            </span>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${not empty albumDetails.genre}">
+                        <div class="vc-meta-item">
+                            <span class="vc-meta-label">Genre</span>
+                            <span class="vc-meta-value">
+                                <c:out value="${albumDetails.genre}"/>
+                            </span>
+                        </div>
+                    </c:if>
+
+                    <div class="vc-meta-item">
+                        <span class="vc-meta-label">Discogs ID</span>
+                        <span class="vc-meta-value">
+                            <c:out value="${albumDetails.id}"/>
+                        </span>
+                    </div>
+
                 </div>
-              </div>
-            </form>
 
+                <!-- Actions -->
+               <div class="vc-album-actions">
 
+                   <sec:authorize access="isAuthenticated()">
+                       <form action="<c:url value='/home/add/${albumDetails.id}'/>"
+                             method="post"
+                             class="vc-add-form">
 
+                           <input type="hidden"
+                                  name="${_csrf.parameterName}"
+                                  value="${_csrf.token}"/>
 
+                           <button type="submit" class="vc-action-button vc-action-add">
+                               <i class="fas fa-plus"></i>
+                               <spring:message code="album.addToCollection"/>
+                           </button>
+                       </form>
+                   </sec:authorize>
 
-             <sec:authorize access="isAuthenticated()">
-               <div style="margin:7px;">
-                  <a class="markus-logout"  href="<c:url value="/user/details"/>">
-                  <span class="submitLink"><sec:authentication property="principal.username"/></span> </a>
+                   <sec:authorize access="isAnonymous()">
+
+                       <a href="<c:url value='/login'>
+                                    <c:param name='returnUrl'
+                                             value='/home/details/${albumDetails.id}'/>
+                                    <c:param name='addAlbumId'
+                                             value='${albumDetails.id}'/>
+                                </c:url>"
+                          class="vc-action-button vc-action-add">
+
+                           <i class="fas fa-plus"></i>
+                           <spring:message code="album.addToCollection"/>
+
+                       </a>
+
+                   </sec:authorize>
+
                </div>
 
+            </div>
+        </section>
 
-               <div class="markus-logout" style="margin:7px;">
-                    <form action="<c:url value="/logout"/>" method="post">
-                      <input class="submitLink" type="submit" value="Logout">
-                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
-               </div>
-               </sec:authorize>
+        <!-- Tracklist -->
+        <section class="vc-tracklist-section">
 
-          </nav>
-          <!-- End of Topbar -->
-<div class="content-details" style="display: flex; flex-direction: row">
-
-          <div class="col-lg-6 mb-4">
-            <div class="card bg-light text-black shadow markus-details">
-
-              <div class="album-details" style="width: 200px">
-
-              <div class="card-body">
-                Artist:
-                <div class="text-black-50 small">${albumDetails.artist}</div>
-              </div>
-                <div class="card-body">
-                  Album:
-                  <div class="text-black-50 small">${albumDetails.title}</div>
-              </div>
-              <div class="card-body">
-                Label:
-                <div class="text-black-50 small">${albumDetails.label}</div>
-              </div>
-              <div class="card-body">
-                Catno:
-                <div class="text-black-50 small">${albumDetails.catno}</div>
-              </div>
-              <div class="card-body">
-                Genre:
-                <div class="text-black-50 small">${albumDetails.genre}</div>
-              </div>
-                <div class="card-body">
-                  <a href="<c:url value="${albumDetails.uri}"/>" class="add-class" style="color: dimgray">See on Discogs</a>
+            <div class="vc-section-heading">
+                <div>
+                    <span class="vc-eyebrow">Album content</span>
+                    <h2>Tracklist</h2>
                 </div>
-                <div class="card-body">
-                <a href="<c:url value="/home/add/${albumDetails.id}"/>" class="" style="text-underline: green; color: green; font-weight: bold">Add</a>
-                </div>
-              </div>
-              <div class = "vertical"></div>
 
-            <div class="tracklist-details" style="width: 300px">
-              <div class="card-body">
-                Songs:
+                <span class="vc-track-count">
+                    <i class="fas fa-music"></i>
+                    <c:out value="${fn:length(tracklist)}"/> tracks
+                </span>
+            </div>
 
-                <c:forEach items="${tracklist}" var="e">
-                  <br><div class="text-black-50 small">${e.position}     ${e.title}     ${e.duration}</div>
+            <c:choose>
+                <c:when test="${not empty tracklist}">
+                    <div class="vc-tracklist">
+
+                        <c:forEach items="${tracklist}" var="track">
+                            <div class="vc-track-row">
+
+                                <span class="vc-track-position">
+                                    <c:out value="${track.position}"/>
+                                </span>
+
+                                <span class="vc-track-title">
+                                    <c:out value="${track.title}"/>
+                                </span>
+
+                                <span class="vc-track-duration">
+                                    <c:out value="${track.duration}"/>
+                                </span>
+
+                            </div>
+                        </c:forEach>
+
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <div class="vc-empty-tracklist">
+                        <i class="fas fa-music"></i>
+                        <p>No tracklist available.</p>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+        </section>
+
+    </div>
+</main>
+
+<!-- Gallery Modal -->
+<c:if test="${not empty images}">
+    <div class="vc-gallery-modal" id="vc-gallery-modal">
+
+        <div class="vc-gallery-backdrop"></div>
+
+        <div class="vc-gallery-dialog">
+
+            <div class="vc-gallery-header">
+                <span>Album gallery</span>
+
+                <button type="button"
+                        class="vc-gallery-close"
+                        id="vc-gallery-close"
+                        aria-label="Close gallery">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="vc-gallery-main">
+
+                <button type="button"
+                        class="vc-gallery-nav vc-gallery-prev"
+                        id="vc-gallery-prev"
+                        aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <img id="vc-gallery-main-image"
+                     src="<c:out value='${images[0].uri}'/>"
+                     alt="Album image"/>
+
+                <button type="button"
+                        class="vc-gallery-nav vc-gallery-next"
+                        id="vc-gallery-next"
+                        aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+            <div class="vc-gallery-counter" id="vc-gallery-counter">
+                1 / <c:out value="${fn:length(images)}"/>
+            </div>
+
+            <div class="vc-gallery-thumbnails" id="vc-gallery-thumbnails">
+
+                <c:forEach items="${images}" var="image" varStatus="status">
+                    <button type="button"
+                            class="vc-gallery-thumbnail ${status.first ? 'active' : ''}"
+                            data-index="${status.index}"
+                            data-image="<c:out value='${image.uri}'/>">
+
+                        <img src="<c:out value='${image.uri}'/>"
+                             alt="<c:out value='${image.type}'/>"/>
+
+                    </button>
                 </c:forEach>
 
-              </div>
             </div>
 
-            </div>
-          </div>
-
-  <div class="col-lg-6 mb-4">
-    <div class="card bg-light text-black shadow markus-details">
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-        Gallery:
-      <div class="card-body" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: left">
-
-<c:forEach items="${images}" var="e">
-
-      <div  style="padding: 10px"><a href="<c:url value="${e.uri}"/>"><img src="${e.uri}" alt="${e.type}" width="130" height="130"></a><br>
-
-      </div>
-</c:forEach>
-      </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
-
-
-
-          </div>
-          <!-- /.container-fluid -->
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Vinyl Collection 2022</span>
-            </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
-      </div>
-      <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Page Wrapper -->
+</c:if>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
+<script src="<c:url value='/resources/html-css/js/home.js'/>"></script>
 
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        const modal = document.getElementById("vc-gallery-modal");
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-  </body>
-</html>
+        if (!modal) {
+            return;
+        }
+
+        const images = Array.from(
+            modal.querySelectorAll(".vc-gallery-thumbnail")
+        );
+
+        const mainImage = document.getElementById("vc-gallery-main-image");
+        const counter = document.getElementById("vc-gallery-counter");
+        const thumbnails = document.getElementById("vc-gallery-thumbnails");
+
+        const openButton = document.getElementById("vc-open-gallery");
+        const closeButton = document.getElementById("vc-gallery-close");
+        const previousButton = document.getElementById("vc-gallery-prev");
+        const nextButton = document.getElementById("vc-gallery-next");
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+            if (images.length === 0) {
+                return;
+            }
+
+            currentIndex = (index + images.length) % images.length;
+
+            const selected = images[currentIndex];
+
+            mainImage.src = selected.dataset.image;
+            counter.textContent = (currentIndex + 1) + " / " + images.length;
+
+            images.forEach(function (thumbnail, i) {
+                thumbnail.classList.toggle("active", i === currentIndex);
+            });
+        }
+
+        function openGallery() {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+            showImage(0);
+        }
+
+        function closeGallery() {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        openButton.addEventListener("click", openGallery);
+        closeButton.addEventListener("click", closeGallery);
+
+        previousButton.addEventListener("click", function () {
+            showImage(currentIndex - 1);
+        });
+
+        nextButton.addEventListener("click", function () {
+            showImage(currentIndex + 1);
+        });
+
+        thumbnails.addEventListener("click", function (event) {
+            const thumbnail = event.target.closest(".vc-gallery-thumbnail");
+
+            if (!thumbnail) {
+                return;
+            }
+
+            showImage(Number(thumbnail.dataset.index));
+        });
+
+        modal.querySelector(".vc-gallery-backdrop")
+            .addEventListener("click", closeGallery);
+
+        document.addEventListener("keydown", function (event) {
+            if (!modal.classList.contains("active")) {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                closeGallery();
+            } else if (event.key === "ArrowLeft") {
+                showImage(currentIndex - 1);
+            } else if (event.key === "ArrowRight") {
+                showImage(currentIndex + 1);
+            }
+        });
+
+    });
+</script>

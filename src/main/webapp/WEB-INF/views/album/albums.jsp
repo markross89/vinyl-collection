@@ -1,274 +1,145 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-    <title>Vinyl Collection - Albums</title>
+<jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
+<jsp:include page="/WEB-INF/views/album/album-i18n.jsp"/>
 
-    <!-- Custom fonts for this template-->
-    <link
-            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
-            rel="stylesheet"
-            type="text/css"
-    />
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet"
-    />
+<section class="vc-albums-section">
 
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
-</head>
+    <div class="vc-section-heading">
+        <div>
+            <span class="vc-eyebrow">VINYL COLLECTION</span>
+            <h2>
+                <spring:message code="album.title"/>
+            </h2>
+            <p class="vc-page-description">
+                <spring:message code="album.collection.description"/>
+            </p>
+        </div>
+    </div>
 
-<body id="page-top">
-<!-- Page Wrapper -->
-<div id="wrapper">
-    <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-            id="accordionSidebar"
-    >
-        <!-- Sidebar - Brand -->
-        <a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="<c:url value="/home/start"/>"
-        >
-            <div class="sidebar-brand-text mx-3">Vinyl collection</div>
-        </a>
+    <div class="vc-album-grid">
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0"/>
+        <c:choose>
+            <c:when test="${not empty albums}">
 
-        <!-- Divider -->
-        <hr class="sidebar-divider"/>
-        <sec:authorize access="isAuthenticated()">
-            <!-- Heading -->
-            <div class="sidebar-heading">Menu</div>
+                <c:forEach items="${albums}" var="album">
 
-            <!-- Nav Item - Pages Collapse Menu -->
+                    <article class="vc-album-card">
 
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/album/albums"/>">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Albums</span></a
-                >
-            </li>
+                        <a class="vc-album-image"
+                           href="${pageContext.request.contextPath}/album/details/${album.discogsId}">
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/track/tracks"/>">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Songs</span></a
-                >
-            </li>
+                            <c:set var="coverImage" value=""/>
+                            <c:set var="firstImage" value=""/>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Track lists</span></a
-                >
-            </li>
+                            <c:forEach items="${album.images}" var="image">
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/box/boxes"/>">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Boxes</span></a
-                >
-            </li>
+                                <c:if test="${empty firstImage}">
+                                    <c:set var="firstImage" value="${image.uri}"/>
+                                </c:if>
 
+                                <c:if test="${image.type eq 'primary' and empty coverImage}">
+                                    <c:set var="coverImage" value="${image.uri}"/>
+                                </c:if>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block"/>
-        </sec:authorize>
-        <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/contact"/>"> <span>Contact</span></a>
-        </li>
-        <sec:authorize access="isAnonymous()">
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/login"/>"> <span>Login</span></a>
+                            </c:forEach>
 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/register"/>"> <span>Register</span></a>
-            </li>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ADMIN')">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/user/userList"/>"> <span>Users</span></a>
-            </li>
-        </sec:authorize>
+                            <c:if test="${empty coverImage}">
+                                <c:set var="coverImage" value="${firstImage}"/>
+                            </c:if>
 
+                            <c:choose>
+                                <c:when test="${not empty coverImage}">
+                                    <img src="${coverImage}"
+                                         alt="${fn:escapeXml(album.artist)} - ${fn:escapeXml(album.title)}"
+                                         loading="lazy"/>
+                                </c:when>
 
-    </ul>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-            <!-- Topbar -->
-            <nav
-                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-            >
-                <!-- Topbar Search -->
+                                <c:otherwise>
+                                    <div class="vc-image-placeholder">
+                                        <i class="fas fa-compact-disc"></i>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
 
-                <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-                        action="<c:url value="/home/search"/>"
-                >
-                    <div class="input-group">
-                        <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="Search Album"
-                                aria-label="Search"
-                                aria-describedby="basic-addon2"
-                                name="value"
-                        />
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                            <span class="vc-image-overlay">
+                                <spring:message code="album.details"/>
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
 
+                        </a>
 
-                <sec:authorize access="isAuthenticated()">
-                    <div style="margin:7px;">
-                        <a class="markus-logout" href="<c:url value="/user/details"/>">
-                            <span class="submitLink"><sec:authentication property="principal.username"/></span> </a>
-                    </div>
+                        <div class="vc-album-info">
 
+                            <p class="vc-album-artist">
+                                <c:out value="${album.artist}"/>
+                            </p>
 
-                    <div class="markus-logout" style="margin:7px;">
-                        <form action="<c:url value="/logout"/>" method="post">
-                            <input class="submitLink" type="submit" value="Logout">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>
-                    </div>
-                </sec:authorize>
+                            <h3 class="vc-album-title">
+                                <c:out value="${album.title}"/>
+                            </h3>
 
+                            <div class="vc-album-actions">
 
-                <!-- Dropdown - User Information -->
+                                <button type="button"
+                                        class="vc-add-button js-open-box-modal"
+                                        data-album-id="${album.discogsId}"
+                                        data-album-title="${fn:escapeXml(album.artist)} - ${fn:escapeXml(album.title)}">
 
+                                    <i class="fas fa-plus"></i>
+                                    <spring:message code="album.addToBox"/>
 
-            </nav>
-            <!-- End of Topbar -->
-            <div class="card-body">
-                Album collection:
-            </div>
-            <!-- Begin Page Content -->
-            <div class="markus-markus" style="display: flex" style="flex-wrap: wrap"
-                 style="justify-content: space-evenly">
-                <!-- Page Heading -->
+                                </button>
 
+                                <button type="button"
+                                        class="vc-remove-button js-open-delete-modal"
+                                        data-delete-url="${pageContext.request.contextPath}/album/api/${album.discogsId}"
+                                        data-delete-name="${fn:escapeXml(album.artist)} - ${fn:escapeXml(album.title)}">
 
-                <c:forEach items="${thumbs}" var="e">
-                    <div class="card shadow mb-4" style="width: 260px;"
-                    >
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                    ${e.title}
-                            </h6>
-                        </div>
-                        <div class="card-body elements"><a href="<c:url value="/album/details/${e.id}"/>"><img
-                                src="${e.image}" alt="${e.title}" width="220" height="220"></a><br>
+                                    <i class="fas fa-trash-alt"></i>
+                                    <spring:message code="album.remove"/>
 
-                            <div class="markus-add"><a href="<c:url value="/box/addForm/${e.id}"/>" class=""
-                                                       style="text-underline: green; color: green; font-weight: bold">Add
-                                to Box</a></div>
-                            <div class="markus-add"><a href="<c:url value="/album/remove/${e.id}"/>" class=""
-                                                       style="text-underline: red; color: red; font-weight: bold">Remove</a>
+                                </button>
+
                             </div>
 
                         </div>
-                    </div>
+
+                    </article>
+
                 </c:forEach>
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- End of Main Content -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Vinyl Collection 2022</span>
+            </c:when>
+
+            <c:otherwise>
+
+                <div class="vc-empty-state">
+                    <i class="fas fa-compact-disc"></i>
+                    <p>
+                        <spring:message code="album.empty.title"/>
+                    </p>
                 </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
+
+            </c:otherwise>
+        </c:choose>
+
     </div>
-    <!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+</section>
 
-<!-- Logout Modal-->
-<div
-        class="modal fade"
-        id="logoutModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button
-                        class="close"
-                        type="button"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Select "Logout" below if you are ready to end your current session.
-            </div>
-            <div class="modal-footer">
-                <button
-                        class="btn btn-secondary"
-                        type="button"
-                        data-dismiss="modal"
-                >
-                    Cancel
-                </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/layouts/create-add-modal.jsp">
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <jsp:param name="eyebrowCode" value="album.eyebrow"/>
+    <jsp:param name="titleCode" value="box.modal.title"/>
+    <jsp:param name="createHeadingCode" value="box.create.heading"/>
+    <jsp:param name="placeholderCode" value="box.create.placeholder"/>
+    <jsp:param name="confirmCode" value="box.create.button"/>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
-</body>
-</html>
+</jsp:include>
+
+<jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

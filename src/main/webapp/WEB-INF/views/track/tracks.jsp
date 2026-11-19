@@ -1,304 +1,263 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="g" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
+<jsp:include page="/WEB-INF/views/track/track-i18n.jsp"/>
 
-    <title>Vinyl Collection - Songs</title>
+<main class="vc-main vc-songs-section vc-tracks-page">
+<div class="vc-section-heading">
+    <div>
+        <span class="vc-eyebrow">
+            <spring:message code="songs.eyebrow"/>
+        </span>
+        <h2>
+            <spring:message code="songs.myTracks"/>
+        </h2>
+        <p class="vc-section-description">
+            <spring:message code="songs.description"/>
+        </p>
+    </div>
+</div>
 
-    <!-- Custom fonts for this template-->
-    <link
-            href="<c:url value="/resources/html-css/vendor/fontawesome-free/css/all.min.css" />"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+    <%-- SONGS OVERVIEW --%>
+    <div class="vc-songs-overview">
 
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/resources/html-css/css/sb-admin-2.min.css" />" rel="stylesheet">
-  </head>
+        <%-- LEFT PANEL: SEARCH AND TRACK COUNT --%>
+        <div class="vc-songs-sidebar">
 
-  <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <!-- Sidebar - Brand -->
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="<c:url value="/home/start"/>"
-        >
-          <div class="sidebar-brand-text mx-3">Vinyl collection</div>
-        </a>
+            <form class="vc-search"
+                      action="<c:url value='/track/searchCollection'/>"
+                      method="get">
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
+                    <i class="fas fa-search"></i>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
+                    <input type="text"
+                           name="query"
+                           value="${fn:escapeXml(param.query)}"
+                           placeholder="<spring:message code='songs.search.placeholder'/>"
+                           aria-label="<spring:message code='songs.search.placeholder'/>"
+                           required/>
 
-        <!-- Heading -->
-        <sec:authorize access="isAuthenticated()">
-        <div class="sidebar-heading">Menu</div>
+                    <button type="submit" aria-label="Search">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+                </form>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/album/albums"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Albums</span></a
-          >
-        </li>
+            <div class="vc-songs-count">
+                <c:choose>
+                    <c:when test="${not empty tracks}">
+                        ${fn:length(tracks)}
+                        <spring:message code="songs.trackCount"/>
+                    </c:when>
+                    <c:otherwise>
+                        <spring:message code="songs.yourTracks"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/track/tracks"/>">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Songs</span></a
-          >
-        </li>
+        </div>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/tracklist/tracklists"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Track lists</span></a
-          >
-        </li>
+        <%-- RIGHT PANEL: SORTING AND GENRE FILTER --%>
+        <div class="vc-songs-main-controls">
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/box/boxes"/>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Boxes</span></a
-          >
-        </li>
+            <div class="vc-songs-controls">
 
+                <%-- SORT BY --%>
+                <div class="vc-songs-control-group">
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block" />
-        </sec:authorize>
+                    <span class="vc-songs-control-label">
+                        <spring:message code="songs.sortBy"/>
+                    </span>
 
+                    <div class="vc-songs-sort">
 
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/about"/>"> <span>About us</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/contact"/>"> <span>Contact</span></a>
-        </li>
-        <sec:authorize access="isAnonymous()">
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/login"/>"> <span>Login</span></a>
+                        <a href="<c:url value='/track/sortBy/artist'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'artist' ? 'active' : ''}">
+                            <spring:message code="songs.sort.artist"/>
+                        </a>
 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/user/register"/>"> <span>Register</span></a>
-        </li>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ADMIN')">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/user/userList"/>"> <span>Users</span></a>
-          </li>
-        </sec:authorize>
-      </ul>
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <!-- Topbar Search -->
+                        <a href="<c:url value='/track/sortBy/title'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'title' ? 'active' : ''}">
+                            <spring:message code="songs.sort.title"/>
+                        </a>
 
-            <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<c:url value="/home/search"/>"
-            >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control bg-light border-0 small"
-                  placeholder="Search Album"
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                  name="value"
-                />
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
+                        <a href="<c:url value='/track/sortBy/album'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'album' ? 'active' : ''}">
+                            <spring:message code="songs.sort.album"/>
+                        </a>
+
+                        <a href="<c:url value='/track/sortBy/duration'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'duration' ? 'active' : ''}">
+                            <spring:message code="songs.sort.duration"/>
+                        </a>
+
+                        <a href="<c:url value='/track/sortBy/label'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'label' ? 'active' : ''}">
+                            <spring:message code="songs.sort.label"/>
+                        </a>
+
+                        <a href="<c:url value='/track/sortBy/date'/>"
+                           class="vc-songs-sort-option ${activeSort eq 'date' ? 'active' : ''}">
+                            <spring:message code="songs.sort.date"/>
+                        </a>
+
+                    </div>
                 </div>
-              </div>
-            </form>
 
+                <%-- FILTER BY GENRE --%>
+                <div class="vc-songs-control-group">
 
+                    <span class="vc-songs-control-label">
+                        <spring:message code="songs.filterByGenre"/>
+                    </span>
 
+                    <div class="vc-songs-sort">
 
+                        <a href="<c:url value='/track/filterByGenre'/>"
+                           class="vc-songs-sort-option ${empty selectedGenre ? 'active' : ''}">
+                            <spring:message code="songs.allGenres"/>
+                        </a>
 
-             <sec:authorize access="isAuthenticated()">
-               <div style="margin:7px;">
-                  <a class="markus-logout"  href="<c:url value="/user/details"/>">
-                  <span class="submitLink"><sec:authentication property="principal.username"/></span> </a>
-               </div>
+                        <c:forEach items="${genres}" var="genre">
 
+                            <c:url var="genreUrl" value="/track/filterByGenre">
+                                <c:param name="genre" value="${genre}"/>
+                            </c:url>
 
-               <div class="markus-logout" style="margin:7px;">
-                    <form action="<c:url value="/logout"/>" method="post">
-                      <input class="submitLink" type="submit" value="Logout">
-                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
-               </div>
-               </sec:authorize>
+                            <a href="${genreUrl}"
+                               class="vc-songs-sort-option ${selectedGenre eq genre ? 'active' : ''}">
+                                <c:out value="${genre}"/>
+                            </a>
 
+                        </c:forEach>
 
+                    </div>
+                </div>
 
-
-
-                <!-- Dropdown - User Information -->
-
-
-          </nav>
-          <!-- End of Topbar -->
-          <div class="card-body">
-            Songs collection:
-            <div class="search-container input">
-              <form action="<c:url value="/track/searchCollection"/>">
-                <input class="input" type="text" placeholder="Search collection" name="query" style="border-radius:4px; border-style: solid;">
-                <button type="submit" style="border-radius: 3px"><i class="fa fa-search" ></i></button>
-              </form>
             </div>
-          </div>
 
-          <!-- Begin Page Content -->
-          <div class="markus-markus" style="display: flex"  style="flex-wrap: wrap" style="justify-content: space-evenly">
-            <!-- Page Heading -->
-
-
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th><a href="<c:url value="/track/sortBy/title"/>" style="color: grey">Title</a></th>
-                    <th><a href="<c:url value="/track/sortBy/artist"/>" style="color: grey">Artist</a></th>
-                    <th><a href="<c:url value="/track/sortBy/album"/>" style="color: grey">Album</a></th>
-                    <th><a href="<c:url value="/track/sortBy/label"/>" style="color: grey">Label</a></th>
-                    <th><a href="<c:url value="/track/sortBy/date"/>" style="color: grey">Date</a></th>
-                    <th><a href="<c:url value="/track/sortBy/duration"/>" style="color: grey">Duration</a></th>
-                    <th>Track</th>
-                  </tr>
-                  </thead>
-                   <tbody>
-
-
-
-           <c:forEach items="${tracks}" var="t"  >
-             <c:set var="counter" value="${counter + 1}"  scope="request" />
-                  <tr>
-                    <td>${counter}</td>
-                    <td>${t.title}</td>
-                    <td>${t.artist}</td>
-                    <td><a href="<c:url value="/album/details/${t.discogsId}"/>" style="color: grey">${t.album}</a></td>
-                    <td>${t.label}</td>
-                    <td>${t.date}</td>
-                    <td>${t.duration}</td>
-                    <th><a href="<c:url value="/track/addForm/${t.id}"/>" style="color: darkgreen">Add</a></th>
-                  </tr>
-           </c:forEach>
-
-                   </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- /.container-fluid -->
         </div>
-        <!-- End of Main Content -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Vinyl Collection 2022</span>
-            </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
-      </div>
-      <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%-- TRACK LIST --%>
+    <c:choose>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <c:when test="${not empty tracks}">
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-  </body>
-</html>
+            <div class="vc-songs-list">
+
+                <c:forEach items="${tracks}" var="t">
+
+                    <article class="vc-song-row">
+
+                        <div class="vc-song-main">
+
+                            <div class="vc-song-icon">
+                                <span>&#9835;</span>
+                            </div>
+
+                            <div class="vc-song-title-wrapper">
+
+                                <h3 class="vc-song-title">
+                                    ${t.title}
+                                </h3>
+
+                                <p class="vc-song-artist">
+                                    ${t.artist}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="vc-song-album">
+
+                            <span class="vc-song-label">
+                                <spring:message code="songs.album"/>
+                            </span>
+
+                           <a href="<c:url value='/album/details/${t.discogsId}'>
+                                       <c:param name='returnUrl' value='/track/tracks'/>
+                                   </c:url>">
+                               ${t.album}
+                           </a>
+
+                        </div>
+
+                        <div class="vc-song-genre">
+
+                            <span>
+                                <c:choose>
+                                    <c:when test="${not empty t.release.genre}">
+                                        ${t.release.genre}
+                                    </c:when>
+                                    <c:otherwise>
+                                        —
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
+
+                        </div>
+
+                        <div class="vc-song-duration">
+                            ${not empty t.duration ? t.duration : '—'}
+                        </div>
+
+                        <button type="button"
+                                class="vc-song-add js-open-tracklist-modal"
+                                data-track-id="${t.id}"
+                                data-track-title="<c:out value='${t.title}'/>"
+                                data-track-artist="<c:out value='${t.artist}'/>">
+                            + <spring:message code="songs.add"/>
+                        </button>
+
+                    </article>
+
+                </c:forEach>
+
+            </div>
+
+        </c:when>
+
+        <c:otherwise>
+
+            <div class="vc-songs-empty">
+
+                <span class="vc-empty-icon">&#9835;</span>
+
+                <h2>
+                    <spring:message code="songs.empty.title"/>
+                </h2>
+
+                <p>
+                    <spring:message code="songs.empty.description"/>
+                </p>
+
+                <a href="<c:url value='/album/albums'/>">
+                    <spring:message code="songs.empty.button"/>
+                </a>
+
+            </div>
+
+        </c:otherwise>
+
+    </c:choose>
+
+</main>
+
+<jsp:include page="/WEB-INF/views/layouts/create-add-modal.jsp">
+
+    <jsp:param name="eyebrowCode" value="songs.eyebrow"/>
+    <jsp:param name="titleCode" value="tracklist.modal.title"/>
+    <jsp:param name="createHeadingCode" value="tracklist.create.heading"/>
+    <jsp:param name="placeholderCode" value="tracklist.create.placeholder"/>
+    <jsp:param name="confirmCode" value="tracklist.create.button"/>
+
+</jsp:include>
+
+<jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

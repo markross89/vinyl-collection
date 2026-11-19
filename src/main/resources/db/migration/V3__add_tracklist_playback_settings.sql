@@ -1,0 +1,3 @@
+ALTER TABLE tracklist
+    ADD COLUMN playback_type VARCHAR(20) NOT NULL DEFAULT 'NORMAL',
+    ADD COLUMN transition_duration INT NOT NULL DEFAULT 60;
